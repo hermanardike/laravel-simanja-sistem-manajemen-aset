@@ -10,7 +10,15 @@
                 <div class="breadcrumb-item">Form Registrasi User</div>
             </div>
         </div>
-
+        @if (session('status'))
+            <div class="alert alert-success alert-has-icon">
+                <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                <div class="alert-body">
+                    <div class="alert-title">Success</div>
+                    {{ session('status') }}
+                </div>
+            </div>
+        @endif
         <div class="section-body">
             <h2 class="section-title">Form Registrasi User</h2>
             <p class="section-lead">
@@ -28,19 +36,38 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control"  name="name">
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"  name="name">
+                                    @error('name')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email"  name="email" class="form-control" >
+                                    <input type="email"  name="email" class="form-control @error('email') is-invalid @enderror" >
+                                    @error('email')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control" name="password">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                                    @error('password')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group ">
                                     <label for="password_confirmation">Confirm Password</label>
-                                    <input type="password" class="form-control" name="password_confirmation">
+                                    <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation">
+                                    @error('password_confirmation')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Select Role</label>

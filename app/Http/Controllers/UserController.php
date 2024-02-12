@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 
 class UserController extends Controller
 {
+    use PasswordValidationRules;
     /**
      * Display a listing of the resource.
      *
@@ -50,8 +53,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique(User::class),
+            ],
+            'password' => $this->passwordRules(),
+            'role' => ['required'],
+        ]);
 
-        
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -60,7 +74,7 @@ class UserController extends Controller
         $user->email_verified_at = now();
         $user->remember_token = Str::random('10');
         $user->save();
-        return redirect(route('user.create'));
+        return redirect('/user/create')->with('status', 'Berhasil Menambahkan User Baru');
     }
 
     /**
