@@ -3,10 +3,22 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
+
+    public static $permission = [
+        'dashboard' => ['superadmin','admin',],
+        'index-user' => ['superadmin','admin',],
+        'create-user' => ['superadmin','admin',],
+        'edit-user' => ['superadmin','admin',],
+        'update-user' => ['superadmin','admin',],
+        'destroy-user' => ['superadmin','admin',],
+
+    ];
     /**
      * The model to policy mappings for the application.
      *
@@ -25,6 +37,20 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::before(function (User $user) {
+            if ($user->role =='superadmin') {
+                return true;
+            }
+        });
+
+
+        foreach (self::$permission as $action => $role) {
+            Gate::define($action, function(User $user) use ($role) {
+                if (in_array($user->role, $role)){
+                    return true;
+                }
+            });
+        }
+
     }
 }

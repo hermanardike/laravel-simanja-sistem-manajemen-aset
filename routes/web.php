@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+Route::middleware(['auth','verified'])->group(function () {
+   Route::get('/',function () {
+       return view('home.index');
+   })->name('home');
+
+   Route::get('edit-profile', function () {
+        return view('home.profile');
+    })->name('profile.edit');
+
+   Route::resource('user', UserController::class);
+
 });
+
+
