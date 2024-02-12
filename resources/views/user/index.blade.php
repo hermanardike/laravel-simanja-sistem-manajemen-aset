@@ -55,9 +55,9 @@
                                         <td> {{$index + $users->firstItem()}} </td>
                                         <td>{{$user->name}}
                                             <div class="table-links">
-                                                <a href="#">View</a>
+                                                <a href="user/{{$user->id}}">View</a>
                                                 <div class="bullet"></div>
-                                                <a href="#">Edit</a>
+                                                <a href="/user/{{$user->id}}/edit">Edit</a>
                                                 <div class="bullet"></div>
                                                 <a href="#" class="text-danger">Trash</a>
                                             </div>
