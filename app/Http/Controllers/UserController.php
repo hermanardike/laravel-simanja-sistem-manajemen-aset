@@ -109,7 +109,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id)->first($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = $request->role;
+        $user->phone = $request->phone;
+        $user->bio = $request->bio;
+        $user->save();
+
+        return redirect('/user/{$}')->with('status', 'Berhasil Mengubah User');
     }
 
     /**
