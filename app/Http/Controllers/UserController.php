@@ -111,7 +111,22 @@ class UserController extends Controller
      */
     public function update( Request $request, $id )
     {
+        $request->validate([
+            'name' => ['required','string','max:255'],
+            'email' => "required|email|unique:users,email,$id",
+            'phone' => 'required|numeric|digits_between:10,12'
+        ]);
 
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->bio   = $request->bio;
+        $user->email_verified_at = now();
+        $user->save();
+
+
+        return redirect("/user/{$user->id}/edit")->with('status', 'Berhasil Update User');
     }
 
     /**
