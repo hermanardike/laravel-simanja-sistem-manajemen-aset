@@ -5,7 +5,15 @@
         <div class="section-header">
             <h1>Edit Profile</h1>
         </div>
-
+        @if (session('status'))
+            <div class="alert alert-success alert-has-icon">
+                <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                <div class="alert-body">
+                    <div class="alert-title">Success</div>
+                    {{ session('status') }}
+                </div>
+            </div>
+        @endif
         <div class="section-body">
             <div class="section-body">
                 <h2 class="section-title">Hi, {{$user->name}}</h2>
@@ -35,7 +43,7 @@
                             </div>
                             <div class="profile-widget-description">
                                 <div class="profile-widget-name">{{$user->name}} <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> {{$user->role}}</div></div>
-                                {!! auth()->user()->bio !!}  <b>'{{$user->name}}'</b>.
+                                {!! $user->bio !!}  <b>'{{$user->name}}'</b>.
                             </div>
                             <div class="card-footer text-center">
                                 <div class="font-weight-bold mb-2">Follow {{$user->name}} On</div>
@@ -104,7 +112,7 @@
 
                     <div class="col-12 col-md-12 col-lg-7">
                         <div class="card">
-                            <form method="post"  action="{{route('user-profile-information.update')}}"
+                            <form method="post"  action="/user/{{$user->id}}"
                                   class="needs-validation" novalidate="">
                                 @method('put')
                                 @csrf
@@ -115,8 +123,8 @@
                                     <div class="row">
                                         <div class="form-group col-md-6 col-12">
                                             <label>First Name</label>
-                                            <input  name="name" type="text" class="form-control @error('name','updateProfileInformation') is-invalid @enderror" value="{{$user->name}}" >
-                                            @error('name','updateProfileInformation')
+                                            <input  name="name" type="text" class="form-control @error('name') is-invalid @enderror" value="{{$user->name}}" >
+                                            @error('name')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -124,8 +132,8 @@
                                         </div>
                                         <div class="form-group col-md-6 col-12">
                                             <label>Email</label>
-                                            <input name="email" type="email" class="form-control @error('email','updateProfileInformation') is-invalid @enderror" value="{{$user->email}}"  >
-                                            @error('email','updateProfileInformation')
+                                            <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{$user->email}}"  >
+                                            @error('email',)
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -135,8 +143,8 @@
                                     <div class="row">
                                         <div class="form-group col-md-6 col-12">
                                             <label>Phone</label>
-                                            <input  name="phone" class="form-control @error('phone','updateProfileInformation') is-invalid @enderror" value="{{$user->phone}}"  >
-                                            @error('phone', 'updateProfileInformation')
+                                            <input  name="phone" class="form-control @error('phone') is-invalid @enderror" value="{{$user->phone}}"  >
+                                            @error('phone',)
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
