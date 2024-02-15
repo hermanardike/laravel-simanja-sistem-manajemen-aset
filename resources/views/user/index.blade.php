@@ -15,6 +15,16 @@
             <p class="section-lead">
                 You can manage all posts, such as editing, deleting and more.
             </p>
+
+            @if (session('status'))
+                <div class="alert alert-warning alert-has-icon">
+                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                    <div class="alert-body">
+                        <div class="alert-title">Success</div>
+                        {{ session('status') }}
+                    </div>
+                </div>
+            @endif
             <div class="row mt-4">
                 <div class="col-12">
                     <div class="card">
@@ -59,7 +69,14 @@
                                                 <div class="bullet"></div>
                                                 <a href="/user/{{$user->id}}/edit">Edit</a>
                                                 <div class="bullet"></div>
-                                                <a href="#" class="text-danger">Trash</a>
+
+                                                <a href="/user/{{$user->id}}"  class="text-danger"
+                                                   onclick="event.preventDefault(); document.getElementById('delete').submit()">
+                                                     Delete </a>
+                                                <form id="delete" action="/user/{{$user->id}}" method="POST" style="display: none;">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                </form>
                                             </div>
                                         </td>
                                         <td>{{$user->email}}</td>

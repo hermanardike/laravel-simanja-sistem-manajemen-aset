@@ -10,11 +10,12 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 use Illuminate\Support\Facades\Validator;
 
 
 
-class UserController extends Controller
+class UserController extends Controller implements UpdatesUserPasswords
 {
     use PasswordValidationRules;
     /**
@@ -114,19 +115,36 @@ class UserController extends Controller
         $request->validate([
             'name' => ['required','string','max:255'],
             'email' => "required|email|unique:users,email,$id",
-            'phone' => 'required|numeric|digits_between:10,12'
+            'phone' => 'required|numeric|digits_between:10,12',
+
         ]);
 
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->role = $request->role;
+        $user->password =Hash::make('password');
         $user->bio   = $request->bio;
         $user->email_verified_at = now();
         $user->save();
 
 
         return redirect("/user/{$user->id}/edit")->with('status', 'Berhasil Update User');
+    }
+
+    public function UpdatePassword(Request $request, $id) {
+        $request->validate([
+            'current_password' => ['required','string', 'current_password:web'],
+            'current_password.current_password' =>__ ('The provided password does not match your current password.'),
+            'password' => $this->passwordRules(),
+        ]);
+
+        $password = User::findOrFail($id);
+        $password->password = Hash::make($request->password);
+        $password->save();
+        return redirect("/user/{$password->id}/edit")->with('status', 'Berhasil Update Password  User');
+
     }
 
     /**
@@ -137,6 +155,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->back()->with('status', 'Berhasil Menghapus User');
     }
 }

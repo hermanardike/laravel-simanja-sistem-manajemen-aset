@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="card">
-                            <form method="post"  action="{{route('user-password.update')}}"
+                            <form method="post"  action="/update-password/{{$user->id}}"
                                   class="needs-validation" novalidate="">
                                 @method('put')
                                 @csrf
@@ -73,8 +73,8 @@
                                     <div class="row">
                                         <div class="form-group col-md-6 col-12">
                                             <label>Current Password</label>
-                                            <input  id="current_password" name="current_password" type="password" class="form-control @error('current_password','updatePassword') is-invalid @enderror" tabindex="2">
-                                            @error('current_password','updatePassword')
+                                            <input  id="current_password" name="current_password" type="password" class="form-control @error('current_password',) is-invalid @enderror" tabindex="2">
+                                            @error('current_password',)
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -85,8 +85,8 @@
                                     <div class="row">
                                         <div class="form-group col-md-6 col-12">
                                             <label for="password">New Password</label>
-                                            <input id="password" name="password" type="password" class="form-control @error('password','updatePassword') is-invalid @enderror" tabindex="2"  >
-                                            @error('password','updatePassword')
+                                            <input id="password" name="password" type="password" class="form-control @error('password') is-invalid @enderror" tabindex="2"  >
+                                            @error('password')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -94,8 +94,8 @@
                                         </div>
                                         <div class="form-group col-md-6 col-12">
                                             <label for="password_confirmation">Password Confirmation</label>
-                                            <input id="password"  type="password" class="form-control @error('password_confirmation','updatePassword') is-invalid @enderror" name="password_confirmation" tabindex="2">
-                                            @error('password_confirmation','updatePassword')
+                                            <input id="password"  type="password" class="form-control @error('password_confirmation') is-invalid @enderror" name="password_confirmation" tabindex="2">
+                                            @error('password_confirmation')
                                             <div class="invalid-feedback">
                                                 {{$message}}
                                             </div>
@@ -149,6 +149,14 @@
                                                 {{$message}}
                                             </div>
                                             @enderror
+                                        </div>
+                                        <div class="form-group col-md-6 col-12">
+                                            <label>Role : <div class="badge badge-success">{{$user->role}}</div></label>
+                                            <select name="role" class="form-control" id="role" >
+                                                <option value="superadmin">superadmin</option>
+                                                <option value="admin">admin</option>
+                                                <option value="operator">operator</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row">
