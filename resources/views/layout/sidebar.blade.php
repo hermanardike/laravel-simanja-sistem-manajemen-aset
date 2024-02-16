@@ -9,7 +9,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">DATA SERVER</li>
             <li >
-                <a href="{{route('server.index')}}"><i class="fas fa-fire"></i><span>Data Server</span></a>
+                <a href="{{route('server.index')}}"><i class=" fa fa-server"></i><span>Data Server</span></a>
             </li>
             <li class="menu-header">DATA PERANGKAT JARINGAN</li>
             <li class="nav-item dropdown active">

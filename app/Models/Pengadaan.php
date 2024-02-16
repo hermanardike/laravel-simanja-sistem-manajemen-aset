@@ -15,4 +15,9 @@ class Pengadaan extends Model
     protected $table = 'pengadaan';
     protected $fillable = ['id_pengadaan', 'thn_pengadaan'];
 
+    public function server()
+    {
+        return $this->hasMany('id_pengadaan');
+    }
+
 }

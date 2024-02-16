@@ -3,9 +3,11 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Posts</h1>
+            <h1>Servers</h1>
             <div class="section-header-button">
-                <a href="features-post-create.html" class="btn btn-primary">Add New</a>
+                <a href="features-post-create.html" class="btn btn-outline-primary">Add Server</a>
+                <a href="features-post-create.html" class="btn btn-outline-primary">Add Host</a>
+                <a href="features-post-create.html" class="btn btn-outline-primary">Add Instance</a>
             </div>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
@@ -14,9 +16,9 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Posts</h2>
+            <h2 class="section-title">Data Server</h2>
             <p class="section-lead">
-                You can manage all posts, such as editing, deleting and more.
+                Server Management UPT TIK Universitas Lampung
             </p>
 
             <div class="row">
@@ -25,13 +27,13 @@
                         <div class="card-body">
                             <ul class="nav nav-pills">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#">All <span class="badge badge-white">5</span></a>
+                                    <a class="nav-link " href="#">Physical Server <span class="badge badge-primary">5</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Draft <span class="badge badge-primary">1</span></a>
+                                    <a class="nav-link" href="#">Host Server <span class="badge badge-primary">1</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Pending <span class="badge badge-primary">1</span></a>
+                                    <a class="nav-link" href="#">Guest Server <span class="badge badge-primary">1</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Trash <span class="badge badge-primary">0</span></a>
@@ -45,7 +47,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>All Posts</h4>
+                            <h4>Data Server  </h4>
                         </div>
                         <div class="card-body">
                             <div class="float-left">
@@ -72,19 +74,20 @@
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <tr>
-                                        <th>No</th>
-                                        <th>Title</th>
-                                        <th>Category</th>
-                                        <th>Author</th>
-                                        <th>Created At</th>
+                                        <th class="text-center text-bold">No</th>
+                                        <th>SERVER NAME</th>
+                                        <th>IP ADDRESS</th>
+                                        <th>RACK NUMBER</th>
+                                        <th>PENGADAAN</th>
                                         <th>Status</th>
                                     </tr>
-                                    @foreach($server as $servers)
+                                    @foreach($server as $index => $servers)
+
                                     <tr>
-                                        <td> {{$servers->id_srv}}
+                                        <td class="text-bold text-center "> {{$index + $server->firstItem()}}
 
                                         </td>
-                                        <td> {{$servers->srv_name}}
+                                        <td class="text-bold"> {{$servers->srv_name}}
                                             <div class="table-links">
                                                 <a href="#">View</a>
                                                 <div class="bullet"></div>
@@ -94,16 +97,18 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a href="#">Web Developer</a>,
-                                            <a href="#">Tutorial</a>
+                                             <div class="badge badge-primary text-bold">{{$servers->srv_ip}} </div>
                                         </td>
                                         <td>
-                                            <a href="#">
-                                                <img alt="image" src="../assets/img/avatar/avatar-5.png" class="rounded-circle" width="35" data-toggle="title" title=""> <div class="d-inline-block ml-1">Rizal Fakhri</div>
-                                            </a>
+                                            <div class="badge  text-bold">{{$servers->rack->rack_number}} </div>
                                         </td>
-                                        <td>2018-01-20</td>
-                                        <td><div class="badge badge-primary">Published</div></td>
+                                        <td class="text-primary text-bold">{{$servers->pengadaan->thn_pengadaan}}</td>
+                                        <td>
+                                            @if ($servers->srv_status == 'Aktif')
+                                            <div class="badge badge-success">{{$servers->srv_status}}</div></td>
+                                        @else
+                                            <div class="badge badge-secondary">{{$servers->srv_status}}</div></td>
+                                        @endif
                                     </tr>
                                     @endforeach
                                 </table>

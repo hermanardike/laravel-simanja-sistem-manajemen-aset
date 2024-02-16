@@ -20,6 +20,9 @@ return new class extends Migration
             $table->string('srv_auth')->nullable();
             $table->text('srv_spec')->nullable();
             $table->string('srv_owner')->nullable();
+            $table->string('srv_image')->nullable();
+            $table->enum('srv_status',['Aktif','Rusak','Mati']);
+            $table->text('srv_keterangan')->nullable();
             $table->integer('id_pengadaan')->nullable();
             $table->integer('id_rack')->nullable();
             $table->timestamps();

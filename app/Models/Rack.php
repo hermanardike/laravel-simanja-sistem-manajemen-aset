@@ -13,4 +13,9 @@ class Rack extends Model
     use HasFactory;
     protected $table = 'rack';
     protected $fillable = ['id_rack','rack_number'];
+
+    public function server()
+    {
+        return $this->hasMany('id_rack');
+    }
 }

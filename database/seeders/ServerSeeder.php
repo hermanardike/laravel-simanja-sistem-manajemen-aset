@@ -21,6 +21,8 @@ class ServerSeeder extends Seeder
             'srv_auth' => 'user/password',
             'srv_spec' => 'Intel(R) Xeon(R) CPU E5-4627 v2 @ 3.30GHz x 4 CPU, RAM 256GB,  SAS RAID 1 300G ',
             'srv_owner' => 'andi',
+            'srv_status' => 'Aktif',
+            'srv_keterangan' => 'Masih Keadaan Baik',
             'id_pengadaan' => '1',
             'id_rack' => '1',
         ]);
@@ -31,6 +33,8 @@ class ServerSeeder extends Seeder
             'srv_auth' => 'user/password',
             'srv_spec' => 'Intel(R) Xeon(R) CPU E5-4627 v2 @ 3.30GHz x 4 CPU, RAM 256GB,  SAS RAID 1 300G ',
             'srv_owner' => 'andi',
+            'srv_status' => 'Aktif',
+            'srv_keterangan' => 'Masih Keadaan Baik',
             'id_pengadaan' => '1',
             'id_rack' => '1',
         ]);
@@ -41,6 +45,8 @@ class ServerSeeder extends Seeder
             'srv_auth' => 'user/password',
             'srv_spec' => 'Intel(R) Xeon(R) CPU E5-4627 v2 @ 3.30GHz x 4 CPU, RAM 256GB,  SAS RAID 1 300G ',
             'srv_owner' => 'andi',
+            'srv_status' => 'Aktif',
+            'srv_keterangan' => 'Masih Keadaan Baik',
             'id_pengadaan' => '2',
             'id_rack' => '2',
         ]);
@@ -52,6 +58,8 @@ class ServerSeeder extends Seeder
             'srv_auth' => 'user/password',
             'srv_spec' => 'Intel(R) Xeon(R) CPU E5-4627 v2 @ 3.30GHz x 4 CPU, RAM 256GB,  SAS RAID 1 300G ',
             'srv_owner' => 'andi',
+            'srv_status' => 'Aktif',
+            'srv_keterangan' => 'Masih Keadaan Baik',
             'id_pengadaan' => '3',
             'id_rack' => '3',
         ]);
@@ -63,6 +71,8 @@ class ServerSeeder extends Seeder
             'srv_auth' => 'user/password',
             'srv_spec' => 'Intel(R) Xeon(R) CPU E5-4627 v2 @ 3.30GHz x 4 CPU, RAM 256GB,  SAS RAID 1 300G ',
             'srv_owner' => 'andi',
+            'srv_status' => 'Aktif',
+            'srv_keterangan' => 'Masih Keadaan Baik',
             'id_pengadaan' => '4',
             'id_rack' => '4',
         ]);
@@ -73,6 +83,8 @@ class ServerSeeder extends Seeder
             'srv_auth' => 'user/password',
             'srv_spec' => 'Intel(R) Xeon(R) CPU E5-4627 v2 @ 3.30GHz x 4 CPU, RAM 256GB,  SAS RAID 1 300G ',
             'srv_owner' => 'andi',
+            'srv_status' => 'Aktif',
+            'srv_keterangan' => 'Masih Keadaan Baik',
             'id_pengadaan' => '5',
             'id_rack' => '5',
         ]);
@@ -84,6 +96,8 @@ class ServerSeeder extends Seeder
             'srv_auth' => 'user/password',
             'srv_spec' => 'Intel(R) Xeon(R) CPU E5-4627 v2 @ 3.30GHz x 4 CPU, RAM 256GB,  SAS RAID 1 300G ',
             'srv_owner' => 'andi',
+            'srv_status' => 'Aktif',
+            'srv_keterangan' => 'Masih Keadaan Baik',
             'id_pengadaan' => '1',
             'id_rack' => '1',
         ]);
@@ -94,6 +108,8 @@ class ServerSeeder extends Seeder
             'srv_auth' => 'user/password',
             'srv_spec' => 'Intel(R) Xeon(R) CPU E5-4627 v2 @ 3.30GHz x 4 CPU, RAM 256GB,  SAS RAID 1 300G ',
             'srv_owner' => 'andi',
+            'srv_status' => 'Aktif',
+            'srv_keterangan' => 'Masih Keadaan Baik',
             'id_pengadaan' => '2',
             'id_rack' => '2',
         ]);
@@ -104,6 +120,8 @@ class ServerSeeder extends Seeder
             'srv_auth' => 'user/password',
             'srv_spec' => 'Intel(R) Xeon(R) CPU E5-4627 v2 @ 3.30GHz x 4 CPU, RAM 256GB,  SAS RAID 1 300G ',
             'srv_owner' => 'andi',
+            'srv_status' => 'Aktif',
+            'srv_keterangan' => 'Masih Keadaan Baik',
             'id_pengadaan' => '3',
             'id_rack' => '3',
         ]);
@@ -115,6 +133,8 @@ class ServerSeeder extends Seeder
             'srv_auth' => 'user/password',
             'srv_spec' => 'Intel(R) Xeon(R) CPU E5-4627 v2 @ 3.30GHz x 4 CPU, RAM 256GB,  SAS RAID 1 300G ',
             'srv_owner' => 'andi',
+            'srv_status' => 'Aktif',
+            'srv_keterangan' => 'Masih Keadaan Baik',
             'id_pengadaan' => '4',
             'id_rack' => '4',
         ]);

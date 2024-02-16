@@ -14,8 +14,9 @@ class ServerController extends Controller
      */
     public function index()
     {
+
         $server = Server::paginate(5);
-        return view('server.index', compact('server'));
+        return view('server.index', ['server' => $server]);
     }
 
     /**
