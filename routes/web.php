@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\ServerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::middleware(['auth','verified'])->group(function () {
 
    Route::resource('user', UserController::class);
    Route::put('update-password/{id}',[UserController::class,'UpdatePassword']);
+
+   Route::resource('server', ServerController::class);
+
 
 });
 

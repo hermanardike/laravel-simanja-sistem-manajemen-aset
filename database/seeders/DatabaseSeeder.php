@@ -36,5 +36,9 @@ class DatabaseSeeder extends Seeder
             RackSeeder::class,
         ]);
 
+        $this->call([
+            ServerSeeder::class,
+        ]);
+
     }
 }
