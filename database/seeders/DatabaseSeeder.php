@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Rack;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,5 +27,14 @@ class DatabaseSeeder extends Seeder
         $this->call([
            UserSeeder::class,
         ]);
+
+        $this->call([
+            PengadaanSeeder::class,
+        ]);
+
+        $this->call([
+            RackSeeder::class,
+        ]);
+
     }
 }
