@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengadaan;
+use App\Models\Rack;
 use App\Models\Server;
 use Illuminate\Http\Request;
 
@@ -26,7 +28,12 @@ class ServerController extends Controller
      */
     public function create()
     {
-        //
+        $pengadaan = Pengadaan::all();
+        $rack = Rack::all();
+        return view('server.create',[
+            'pengadaan' => $pengadaan,
+            'rack' => $rack
+        ]);
     }
 
     /**

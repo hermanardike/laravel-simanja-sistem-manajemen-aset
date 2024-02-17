@@ -5,7 +5,7 @@
         <div class="section-header">
             <h1>Servers</h1>
             <div class="section-header-button">
-                <a href="features-post-create.html" class="btn btn-outline-primary">Add Server</a>
+                <a href="{{route('server.create')}}" class="btn btn-outline-primary">Add Server</a>
                 <a href="features-post-create.html" class="btn btn-outline-primary">Add Host</a>
                 <a href="features-post-create.html" class="btn btn-outline-primary">Add Instance</a>
             </div>
