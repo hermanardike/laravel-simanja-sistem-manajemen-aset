@@ -20,65 +20,78 @@
                Halaman menambahkan server fisik baru
             </p>
 
+            @if (session('status'))
+                <div class="alert alert-success alert-has-icon">
+                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                    <div class="alert-body">
+                        <div class="alert-title">Success</div>
+                        {{ session('status') }}
+                    </div>
+                </div>
+            @endif
+
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <h4>Add Server Details</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" >
+                            <form METHOD="POST" action="{{route('server.store')}}">
+                                @csrf
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Server Name</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="srv_name">
                                 </div>
                             </div>
 
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">IP Address</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="srv_ip">
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">User : Password</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="srv_auth">
                                 </div>
                             </div>
 
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Server Specification</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <textarea class="summernote-simple"></textarea>
+                                    <textarea class="summernote-simple" name="srv_spec"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Owner</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" name="srv_owner">
                                 </div>
                             </div>
 
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Rack Number</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <select class="form-control selectric">
-                                        <option>RACK 1 </option>
-                                        <option>RACK 2</option>
-                                        <option>RACK 3</option>
+                                    <select class="form-control selectric" name="id_rack" id="id_rack">
+                                        <option value="">Pilih Rack Server</option>
+                                        @foreach($rack as $racks)
+                                        <option value="{{$racks->id_rack}}">{{$racks->rack_number}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
-
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Tahun Pengadaan</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <select class="form-control selectric">
-                                        <option>2012</option>
-                                        <option>2013</option>
-                                        <option>2014</option>
+                                    <select class="form-control selectric" name="thn_pengadaan" id="thn_pengadaan">
+                                        <option value="">Pilih Tahun Pengadaan</option>
+                                        @foreach($pengadaan as $thn)
+                                        <option value="{{$thn->id_pengadaan}}">{{$thn->thn_pengadaan}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -86,10 +99,11 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <select class="form-control selectric">
-                                        <option>Aktif</option>
-                                        <option>Mati</option>
-                                        <option>Rusak</option>
+                                    <select class="form-control selectric" name="srv_status" id="srv_status">
+                                        <option value=" ">Pilih Status Device</option>
+                                        <option value="Aktif">Aktif</option>
+                                        <option value="Rusak">Rusak</option>
+                                        <option value="Mati">Mati</option>
                                     </select>
                                 </div>
                             </div>
@@ -97,7 +111,7 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Details Server Information</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <textarea class="summernote-simple"></textarea>
+                                    <textarea class="summernote-simple" name="srv_keterangan"></textarea>
                                 </div>
                             </div>
 
@@ -106,16 +120,17 @@
                                 <div class="col-sm-12 col-md-7">
                                     <div id="image-preview" class="image-preview">
                                         <label for="image-upload" id="image-label">Choose File</label>
-                                        <input type="file" name="image" id="image-upload" />
+                                        <input type="file" name="srv_image" id="image-upload" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                 <div class="col-sm-12 col-md-7">
-                                    <button class="btn btn-primary">Add Server Device</button>
+                                    <button class="btn btn-primary" type="submit">Add Server Device</button>
                                 </div>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,7 @@ use App\Models\Pengadaan;
 use App\Models\Rack;
 use App\Models\Server;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ServerController extends Controller
 {
@@ -18,7 +19,9 @@ class ServerController extends Controller
     {
 
         $server = Server::paginate(5);
-        return view('server.index', ['server' => $server]);
+
+            return view('server.index', ['server' => $server]);
+
     }
 
     /**
@@ -44,7 +47,18 @@ class ServerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $server = new Server();
+        $server->srv_name = $request->srv_name;
+        $server->srv_ip = $request->srv_ip;
+        $server->srv_auth = $request->srv_auth;
+        $server->srv_spec = $request->srv_spec;
+        $server->srv_owner = $request->srv_owner;
+        $server->srv_status    = $request->srv_status;
+        $server->srv_keterangan = $request->srv_keterangan;
+        $server->id_pengadaan = $request->id_pengadaan;
+        $server->id_rack = $request->id_rack;
+        $server->save();
+        return redirect()->back()->with('status','Success adding new server Devices');
     }
 
     /**

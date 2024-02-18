@@ -59,9 +59,9 @@
                                 </select>
                             </div>
                             <div class="float-right">
-                                <form>
+                                <form method="GET">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search">
+                                        <input  name="search" type="text" class="form-control" placeholder="Search">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                         </div>
@@ -82,6 +82,7 @@
                                         <th>Status</th>
                                     </tr>
                                     @foreach($server as $index => $servers)
+
 
                                     <tr>
                                         <td class="text-bold text-center "> {{$index + $server->firstItem()}}
