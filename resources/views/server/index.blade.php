@@ -52,10 +52,13 @@
                         <div class="card-body">
                             <div class="float-left">
                                 <select class="form-control selectric">
-                                    <option>Action For Selected</option>
-                                    <option>Move to Draft</option>
-                                    <option>Move to Pending</option>
-                                    <option>Delete Pemanently</option>
+                                    <option>Fillter By Rack</option>
+                                    <option>RACK 1</option>
+                                    <option>RACK 2</option>
+                                    <option>RACK 3</option>
+                                    <option>RACK 4</option>
+                                    <option>RACK 5</option>
+
                                 </select>
                             </div>
                             <div class="float-right">
@@ -81,7 +84,7 @@
                                         <th>PENGADAAN</th>
                                         <th>Status</th>
                                     </tr>
-                                    @foreach($server as $index => $servers)
+                                    @forelse($server as $index => $servers)
 
 
                                     <tr>
@@ -111,33 +114,33 @@
                                             <div class="badge badge-secondary">{{$servers->srv_status}}</div></td>
                                         @endif
                                     </tr>
-                                    @endforeach
+
+                                    @empty
+                                        <tr>
+                                            <td colspan="5" class="text-center">
+                                                <div class="card">
+                                                    <div class="card-body">
+                                                        <div class="empty-state" data-height="400">
+                                                            <div class="empty-state-icon">
+                                                                <i class="fas fa-question"></i>
+                                                            </div>
+                                                            <h2>We couldn't find any data</h2>
+                                                            <p class="lead">
+                                                                Sorry we can't find any data, to get rid of this message, make at least 1 entry.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                    @endforelse
                                 </table>
                             </div>
                             <div class="float-right">
                                 <nav>
                                     <ul class="pagination">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active">
-                                            <a class="page-link" href="#">1</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">3</a>
-                                        </li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
+                                        {{$server->withQueryString()->links()}}
                                     </ul>
                                 </nav>
                             </div>

@@ -15,13 +15,22 @@ class ServerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $server = Server::with('pengadaan','rack')
+            ->when($request->input('search'), function ($query, $search){
+                $query->where('srv_name', 'like',"%" .   $search . "%")
+                    ->orwhere('srv_ip', 'like',"%" . $search . "%")
+                    ->orwhere('srv_status', 'like',"%" . $search . "%")
+                    ->orWhereHas('pengadaan', function ($query)  use ($search) {
+                    $query->where('thn_pengadaan', 'like',"%" . $search . "%");
+                    })
+                ->orwhereHas('rack', function ($query) use ($search) {
+                    $query->where('rack_number','like',"%" . $search . "%");
+                });
 
-        $server = Server::paginate(5);
-
+            })->paginate('5');
             return view('server.index', ['server' => $server]);
-
     }
 
     /**
@@ -47,6 +56,31 @@ class ServerController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'srv_name' => ['required','string','max:255'],
+            'srv_ip' => 'required|ipv4|unique:servers',
+            'srv_auth' => ['required','string','max:255'],
+            'srv_spec' => 'required|max:1000',
+            'srv_owner' => ['required','string','max:255'],
+            'srv_status' => 'required',
+            'srv_keterangan' => 'required|max:1000',
+            'id_pengadaan' =>'required',
+            'id_rack' =>'required',
+        ],[
+              'srv_name.required' => 'Nama Server Harus Diisi',
+              'srv_ip.required' => 'IP Server Harus Diisi',
+                    'srv_ip.ipv4' => 'Masukan Alamat IPv4 Yang Valid',
+                    'srv_ip.unique:servers' => 'IPv4 sudah digunakan',
+
+              'srv_auth.required' => 'Server Username dan Password harus Diisi',
+               'srv_spec.required' => 'Spesifikasi Server Harus Diisi',
+               'srv_owner.required' => 'Pengelola Server Harus Diisi',
+               'srv_status.required' => 'Tambahkan Status Server ',
+              'srv_keterangan.required' => 'Tambahkan Keterangan Kondisi Server',
+               'id_pengadaan.required' => 'Tambahkan Tahun Pengadaan Server',
+              'id_rack.required' => 'Tambahkan Rack Server',
+        ]);
+
         $server = new Server();
         $server->srv_name = $request->srv_name;
         $server->srv_ip = $request->srv_ip;
