@@ -105,7 +105,7 @@
                                 <div class="col-sm-12 col-md-7">
                                     <select class="form-control selectric @error('id_rack')  is-invalid @enderror" name="id_rack" id="id_rack" >
                                         @foreach($rack as $racks)
-                                        <option value="{{$racks->id_rack}}" @selected(old('id_rack') == $racks->rack_number)>{{$racks->rack_number}}</option>
+                                        <option value="{{$racks->id_rack}}" @selected(old('id_rack') == $racks->id_rack)>{{$racks->rack_number}}</option>
                                         @endforeach
                                     </select>
                                     @error('id_rack')
@@ -120,7 +120,7 @@
                                 <div class="col-sm-12 col-md-7">
                                     <select class="form-control @error('id_pengadaan') is-invalid @enderror selectric" name="id_pengadaan" id="id_pengadaan">
                                         @foreach($pengadaan as $thn)
-                                        <option value="{{$thn->id_pengadaan}}" @selected(old('id_pengadaan') == $thn->thn_pengadaan)>{{$thn->thn_pengadaan}}</option>
+                                        <option value="{{$thn->id_pengadaan}}" @selected(old('id_pengadaan') == $thn->id_pengadaan)>{{$thn->thn_pengadaan}}</option>
                                         @endforeach
                                     </select>
                                     @error('id_pengadaan')

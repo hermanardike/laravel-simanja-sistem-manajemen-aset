@@ -70,7 +70,7 @@ class ServerController extends Controller
               'srv_name.required' => 'Nama Server Harus Diisi',
               'srv_ip.required' => 'IP Server Harus Diisi',
                     'srv_ip.ipv4' => 'Masukan Alamat IPv4 Yang Valid',
-                    'srv_ip.unique:servers' => 'IPv4 sudah digunakan',
+                    'srv_ip.unique' => 'IPv4 sudah digunakan',
 
               'srv_auth.required' => 'Server Username dan Password harus Diisi',
                'srv_spec.required' => 'Spesifikasi Server Harus Diisi',
