@@ -8,12 +8,61 @@
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{asset('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css')}}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="{{asset('https://use.fontawesome.com/releases/v5.7.2/css/all.css')}}" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
     <!-- CSS Libraries -->
     @stack('customCss')
+    @stack('custom-owl')
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/components.css')}}">
+    <style>
+        .tab1 {
+            display: inline-block;
+            margin-left: 63px;
+        }
+
+        .tab2 {
+            display: inline-block;
+            margin-left: 75px;
+        }
+        .tab3 {
+            display: inline-block;
+            margin-left: 65px;
+        }
+        .tab4 {
+            display: inline-block;
+            margin-left: 100px;
+        }
+        .tab5 {
+            display: inline-block;
+            margin-left: 100px;
+        }
+        .tab6 {
+            display: inline-block;
+            margin-left: 25px;
+        }
+        .tab7 {
+            display: inline-block;
+            margin-left: 60px;
+        }
+        .tab8 {
+            display: inline-block;
+            margin-left: 50px;
+        }
+        .tab9 {
+            display: inline-block;
+            margin-left: 35px;
+        }
+        .tab10 {
+            display: inline-block;
+            margin-left: 50px;
+        }
+        .tab11 {
+            display: inline-block;
+            margin-left: 50px;
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -41,12 +90,23 @@
 <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js')}}"></script>
 <script src="{{asset('assets/js/stisla.js')}}"></script>
 
+<script>
+    function myFunction() {
+        var x = document.getElementById("myInput");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+</script>
 <!-- JS Libraies -->
 @stack('customJS')
+@stack('js-owl')
 <!-- Template JS File -->
 <script src="{{asset('assets/js/scripts.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
 
-<!-- Page Specific JS File -->
+
 </body>
 </html>

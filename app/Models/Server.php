@@ -14,8 +14,10 @@ class Server extends Model
     use HasFactory;
 
     protected $table ='servers';
+    protected $primaryKey = 'id_srv';
 
    protected $fillable = [
+       'id_srv',
        'srv_name',
        'srv_ip',
        'srv_auth',

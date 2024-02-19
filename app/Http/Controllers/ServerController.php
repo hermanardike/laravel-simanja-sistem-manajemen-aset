@@ -103,8 +103,10 @@ class ServerController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('server.show',
+            ['server' => Server::find($id)]);
     }
+
 
     /**
      * Show the form for editing the specified resource.

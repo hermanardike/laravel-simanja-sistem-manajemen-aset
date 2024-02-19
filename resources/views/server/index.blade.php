@@ -93,7 +93,7 @@
                                         </td>
                                         <td class="text-bold"> {{$servers->srv_name}}
                                             <div class="table-links">
-                                                <a href="#">View</a>
+                                                <a href="server/{{$servers->id_srv}}">View</a>
                                                 <div class="bullet"></div>
                                                 <a href="#">Edit</a>
                                                 <div class="bullet"></div>
@@ -111,7 +111,7 @@
                                             @if ($servers->srv_status == 'Aktif')
                                             <div class="badge badge-success">{{$servers->srv_status}}</div></td>
                                         @else
-                                            <div class="badge badge-secondary">{{$servers->srv_status}}</div></td>
+                                            <div class="badge badge-secondary">{{$servers->srv_status}}</div>
                                         @endif
                                     </tr>
 
