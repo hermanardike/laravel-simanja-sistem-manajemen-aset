@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateRequestServer;
 use App\Models\Pengadaan;
 use App\Models\Rack;
 use App\Models\Server;
@@ -128,15 +129,32 @@ class ServerController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Server $server )
     {
-
         $request->validate([
-                    'srv_name' => ['required'],
-                     'srv_ip' => 'required|ipv4|unique:servers,srv_ip,'. 'id_srv',
+            'srv_name' => ['required','string','max:255'],
+            'srv_ip' => Rule::unique('servers','srv_ip')->ignore($server),
+            'srv_auth' => ['required','string','max:255'],
+            'srv_spec' => 'required|max:1000',
+            'srv_owner' => ['required','string','max:255'],
+            'srv_status' => 'required',
+            'srv_keterangan' => 'required|max:1000',
+            'id_pengadaan' =>'required',
+            'id_rack' =>'required',
+        ],[
+            'srv_name.required' => 'Nama Server Harus Diisi',
+            'srv_ip.required' => 'IP Server Harus Diisi',
+            'srv_ip.ipv4' => 'Masukan Alamat IPv4 Yang Valid',
+            'srv_ip.unique' => 'IPv4 sudah digunakan',
 
+            'srv_auth.required' => 'Server Username dan Password harus Diisi',
+            'srv_spec.required' => 'Spesifikasi Server Harus Diisi',
+            'srv_owner.required' => 'Pengelola Server Harus Diisi',
+            'srv_status.required' => 'Tambahkan Status Server ',
+            'srv_keterangan.required' => 'Tambahkan Keterangan Kondisi Server',
+            'id_pengadaan.required' => 'Tambahkan Tahun Pengadaan Server',
+            'id_rack.required' => 'Tambahkan Rack Server',
         ]);
-        $server = Server::FindOrFail($id);
         $server->srv_name = $request->srv_name;
         $server->srv_ip = $request->srv_ip;
         $server->srv_auth = $request->srv_auth;

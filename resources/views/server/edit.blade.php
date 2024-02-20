@@ -35,6 +35,7 @@
                         <div class="card-header">
                             <h4>Add Server Details</h4>
                         </div>
+
                         <div class="card-body" >
                             <form METHOD="POST" action="/server/{{$server->id_srv}}">
                                 @method('PUT')

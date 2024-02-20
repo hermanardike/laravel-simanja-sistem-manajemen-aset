@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('servers', function (Blueprint $table) {
            $table->id('id_srv');
             $table->string('srv_name');
-            $table->string('srv_ip')->unique();
+            $table->string('srv_ip');
             $table->string('srv_auth')->nullable();
             $table->text('srv_spec')->nullable();
             $table->string('srv_owner')->nullable();
