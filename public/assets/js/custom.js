@@ -6,3 +6,7 @@
  */
 
 "use strict";
+//modal confiramtion
+function  submit(id){
+  $('#del-'+id).submit();
+}

@@ -165,7 +165,7 @@ class ServerController extends Controller
         $server->id_pengadaan = $request->id_pengadaan;
         $server->id_rack = $request->id_rack;
         $server->save();
-        dd($server);
+        return redirect()->back()->with('status','Berhasil Merubah Data Server');
     }
 
     /**
@@ -176,6 +176,9 @@ class ServerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Server::destroy($id);
+        return redirect()->route('server.index')->with('status','Berhasil Menghapus Data');
+
+
     }
 }

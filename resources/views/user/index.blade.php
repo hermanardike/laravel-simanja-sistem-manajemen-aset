@@ -71,9 +71,11 @@
                                                 <div class="bullet"></div>
 
                                                 <a href="/user/{{$user->id}}"  class="text-danger"
-                                                   onclick="event.preventDefault(); document.getElementById('delete').submit()">
-                                                     Delete </a>
-                                                <form id="delete" action="/user/{{$user->id}}" method="POST" style="display: none;">
+                                                   onclick="event.preventDefault(); document.getElementById('del-{{$user->id}}')"
+
+                                                   data-confirm="Hapus Data Server ? | Apakah Anda Yakin ingin Mengapus User : {{$user->name}} "  data-confirm-yes="submit({{$user->id}})">
+                                                    Delete </a>
+                                                <form id="del-{{$user->id}}" action="/user/{{$user->id}}" method="POST" style="display: none;">
                                                     @method('DELETE')
                                                     @csrf
                                                 </form>

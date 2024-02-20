@@ -66,7 +66,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">User : Password</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('srv_auth') is-invalid @enderror" name="srv_auth" value="{{$server->srv_auth}}">
+                                        <input type="text" class="form-control @error('srv_auth') is-invalid @enderror" name="srv_auth" value="{{$server->srv_auth}}" placeholder="User :          /    Password :      ">
                                         @error('srv_auth')
                                         <div class="invalid-feedback">
                                             {{$message}}

@@ -21,6 +21,16 @@
                 Server Management UPT TIK Universitas Lampung
             </p>
 
+
+            @if (session('status'))
+                <div class="alert alert-warning alert-has-icon">
+                    <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
+                    <div class="alert-body">
+                        <div class="alert-title">Success</div>
+                        {{ session('status') }}
+                    </div>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-12">
                     <div class="card mb-0">
@@ -97,7 +107,15 @@
                                                 <div class="bullet"></div>
                                                 <a href="server/{{$servers->id_srv}}/edit">Edit</a>
                                                 <div class="bullet"></div>
-                                                <a href="#" class="text-danger">Trash</a>
+                                                <a href="/user/{{$servers->id_srv}}"  class="text-danger"
+                                                   onclick="event.preventDefault(); document.getElementById('del-{{$servers->id_srv}}')"
+
+                                                   data-confirm="Hapus Data Server ? | Apakah Anda Yakin ingin Mengapus server : {{$servers->srv_name}} "  data-confirm-yes="submit({{$servers->id_srv}})">
+                                                    Delete </a>
+                                                <form id="del-{{$servers->id_srv}}" action="/server/{{$servers->id_srv}}" method="POST" style="display: none;">
+                                                    @method('DELETE')
+                                                    @csrf
+                                                </form>
                                             </div>
                                         </td>
                                         <td>

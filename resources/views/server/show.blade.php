@@ -81,10 +81,10 @@
                             <div class="col-8">
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="list-spesifikasi" role="tabpanel" aria-labelledby="list-home-list">
-                                        {{$server->srv_spec}}
+                                        {!! $server->srv_spec !!}
                                     </div>
                                     <div class="tab-pane fade" id="list-ketarangan" role="tabpanel" aria-labelledby="list-profile-list">
-                                        {{$server->srv_keterangan}}
+                                        {!! $server->srv_keterangan !!}
                                     </div>
                                 </div>
                             </div>
