@@ -95,7 +95,7 @@
                                             <div class="table-links">
                                                 <a href="server/{{$servers->id_srv}}">View</a>
                                                 <div class="bullet"></div>
-                                                <a href="#">Edit</a>
+                                                <a href="server/{{$servers->id_srv}}/edit">Edit</a>
                                                 <div class="bullet"></div>
                                                 <a href="#" class="text-danger">Trash</a>
                                             </div>

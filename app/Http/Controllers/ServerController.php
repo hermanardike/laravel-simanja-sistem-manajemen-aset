@@ -6,7 +6,9 @@ use App\Models\Pengadaan;
 use App\Models\Rack;
 use App\Models\Server;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+
 
 class ServerController extends Controller
 {
@@ -29,7 +31,7 @@ class ServerController extends Controller
                     $query->where('rack_number','like',"%" . $search . "%");
                 });
 
-            })->paginate('5');
+            })->paginate('10');
             return view('server.index', ['server' => $server]);
     }
 
@@ -116,19 +118,36 @@ class ServerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $server = Server::find($id);
+        $pengadaan = Pengadaan::all();
+        $rack = Rack::all();
+       return view('server.edit', ['server' => $server,
+       'pengadaan' => $pengadaan,
+           'rack' => $rack,
+       ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+                    'srv_name' => ['required'],
+                     'srv_ip' => 'required|ipv4|unique:servers,srv_ip,'. 'id_srv',
+
+        ]);
+        $server = Server::FindOrFail($id);
+        $server->srv_name = $request->srv_name;
+        $server->srv_ip = $request->srv_ip;
+        $server->srv_auth = $request->srv_auth;
+        $server->srv_spec = $request->srv_spec;
+        $server->srv_owner = $request->srv_owner;
+        $server->srv_status    = $request->srv_status;
+        $server->srv_keterangan = $request->srv_keterangan;
+        $server->id_pengadaan = $request->id_pengadaan;
+        $server->id_rack = $request->id_rack;
+        $server->save();
+        dd($server);
     }
 
     /**
