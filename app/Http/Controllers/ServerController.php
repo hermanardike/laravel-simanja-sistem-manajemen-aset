@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateRequestServer;
+use App\Models\Host;
 use App\Models\Pengadaan;
 use App\Models\Rack;
 use App\Models\Server;
@@ -32,8 +33,16 @@ class ServerController extends Controller
                     $query->where('rack_number','like',"%" . $search . "%");
                 });
 
-            })->paginate('10');
-            return view('server.index', ['server' => $server]);
+            })->paginate('5');
+
+        $jumlahServer = Server::all()->count();
+        $jumlahHost = Host::all()->count();
+            return view('server.index', [
+                'server' => $server,
+                'jumlahserver' => $jumlahServer,
+                'jumlahhost' => $jumlahHost,
+
+            ]);
     }
 
     /**

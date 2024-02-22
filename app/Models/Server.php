@@ -33,6 +33,10 @@ class Server extends Model
         return $this->belongsTo(Rack::class, 'id_rack','id_rack');
     }
 
+    public function host()
+    {
+        return $this->hasMany('id_srv','id_srv');
+    }
 
 
 

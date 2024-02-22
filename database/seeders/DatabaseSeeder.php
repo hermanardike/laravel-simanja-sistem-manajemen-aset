@@ -40,5 +40,9 @@ class DatabaseSeeder extends Seeder
             ServerSeeder::class,
         ]);
 
+        $this->call([
+           HostSeeder::class,
+        ]);
+
     }
 }

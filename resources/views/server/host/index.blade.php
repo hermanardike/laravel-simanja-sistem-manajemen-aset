@@ -1,9 +1,9 @@
 @extends('layout.app')
-@section('title','Simanja : Data Server')
+@section('title','Simanja : Data Host')
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Servers</h1>
+            <h1>Host Server</h1>
             <div class="section-header-button">
                 <a href="{{route('server.create')}}" class="btn btn-outline-primary">Add Server</a>
                 <a href="features-post-create.html" class="btn btn-outline-primary">Add Host</a>
@@ -16,11 +16,10 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Data Server</h2>
+            <h2 class="section-title">Data Host Server</h2>
             <p class="section-lead">
                 Server Management UPT TIK Universitas Lampung
             </p>
-
 
             @if (session('status'))
                 <div class="alert alert-warning alert-has-icon">
@@ -40,7 +39,7 @@
                                     <a class="nav-link " href="{{route('server.index')}}">Physical Server <span class="badge badge-primary">{{$jumlahserver}}</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('host.index')}}">Host Server <span class="badge badge-primary">{{$jumlahhost}}</span></a>
+                                    <a class="nav-link" href="{{route('host.index')}}">Host Server <span class="badge badge-primary">{{$jmlhost}}</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Guest Server <span class="badge badge-primary">1</span></a>
@@ -57,7 +56,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Server  </h4>
+                            <h4>Data Host Server  </h4>
                         </div>
                         <div class="card-body">
                             <div class="float-left">
@@ -88,50 +87,56 @@
                                 <table class="table table-striped">
                                     <tr>
                                         <th class="text-center text-bold">No</th>
-                                        <th>SERVER NAME</th>
-                                        <th>IP ADDRESS</th>
-                                        <th>RACK NUMBER</th>
-                                        <th>PENGADAAN</th>
+                                        <th>Host Name</th>
+                                        <th>Host IP Address</th>
+                                        <th>Server Device </th>
+                                        <th>IP Server Device</th>
+                                        <th>Host Version</th>
                                         <th>Status</th>
                                     </tr>
-                                    @forelse($server as $index => $servers)
+
+                                    @forelse($host as $index => $hosts)
 
 
-                                    <tr>
-                                        <td class="text-bold text-center "> {{$index + $server->firstItem()}}
+                                        <tr>
+                                            <td class="text-bold text-center "> {{$index + $host->firstItem()}}
 
-                                        </td>
-                                        <td class="text-bold"> {{$servers->srv_name}}
-                                            <div class="table-links">
-                                                <a href="server/{{$servers->id_srv}}">View</a>
-                                                <div class="bullet"></div>
-                                                <a href="server/{{$servers->id_srv}}/edit">Edit</a>
-                                                <div class="bullet"></div>
-                                                <a href="/user/{{$servers->id_srv}}"  class="text-danger"
-                                                   onclick="event.preventDefault(); document.getElementById('del-{{$servers->id_srv}}')"
+                                            </td>
+                                            <td class="text-bold"> {{$hosts->host_name}}
+                                                <div class="table-links">
+                                                    <a href="#">View</a>
+                                                    <div class="bullet"></div>
+                                                    <a href="#">Edit</a>
+                                                    <div class="bullet"></div>
+                                                    <a href="#"  class="text-danger"
+                                                       onclick="event.preventDefault(); document.getElementById('del-{{$hosts->id_host}}')"
 
-                                                   data-confirm="Hapus Data Server ? | Apakah Anda Yakin ingin Mengapus server : {{$servers->srv_name}} "  data-confirm-yes="submit({{$servers->id_srv}})">
-                                                    Delete </a>
-                                                <form id="del-{{$servers->id_srv}}" action="/server/{{$servers->id_srv}}" method="POST" style="display: none;">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                </form>
-                                            </div>
-                                        </td>
-                                        <td>
-                                             <div class="badge badge-primary text-bold">{{$servers->srv_ip}} </div>
-                                        </td>
-                                        <td>
-                                            <div class="badge  text-bold">{{$servers->rack->rack_number}} </div>
-                                        </td>
-                                        <td class="text-primary text-bold">{{$servers->pengadaan->thn_pengadaan}}</td>
-                                        <td>
-                                            @if ($servers->srv_status == 'Aktif')
-                                            <div class="badge badge-success">{{$servers->srv_status}}</div></td>
-                                        @else
-                                            <div class="badge badge-secondary">{{$servers->srv_status}}</div>
-                                        @endif
-                                    </tr>
+                                                       data-confirm="Hapus Data Server ? | Apakah Anda Yakin ingin Mengapus server : {{$hosts->srv_name}} "  data-confirm-yes="submit({{$hosts->id_srv}})">
+                                                        Delete </a>
+                                                    <form id="del-{{$hosts->id_host}}" action="/host/{{$hosts->id_host}}" method="POST" style="display: none;">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                    </form>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="badge badge-primary text-bold">{{$hosts->host_ip}} </div>
+                                            </td>
+                                            <td>
+                                                <div class="badge  text-bold">{{$hosts->server->srv_name}} </div>
+                                            </td>
+                                            <td class="text-primary text-bold">{{$hosts->server->srv_ip}}</td>
+                                            <td>
+                                                <div class="badge  text-bold">{{$hosts->host_version}} </div>
+                                            </td>
+                                            <td>
+                                                @if ($hosts->status == 'Active')
+                                                    <div class="badge badge-success">{{$hosts->status}}</div>
+                                                @else
+                                                    <div class="badge badge-secondary">{{$hosts->status}}</div>
+                                                @endif
+                                            </td>
+                                        </tr>
 
                                     @empty
                                         <tr>
@@ -158,7 +163,7 @@
                             <div class="float-right">
                                 <nav>
                                     <ul class="pagination">
-                                        {{$server->withQueryString()->links()}}
+                                        {{$host->withQueryString()->links()}}
                                     </ul>
                                 </nav>
                             </div>
