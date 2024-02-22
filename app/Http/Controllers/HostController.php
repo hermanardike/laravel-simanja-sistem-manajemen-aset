@@ -38,7 +38,9 @@ class HostController extends Controller
      */
     public function create()
     {
-        //
+        $device =  Server::all();
+        return view( 'server.host.create',
+            ['device' => $device]);
     }
 
     /**
