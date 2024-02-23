@@ -15,7 +15,7 @@ class Host extends Model
     protected $fillable = [
         'id_host',
         'host_name',
-        'host_version',
+        'id_os',
         'host_ip',
         'host_auth',
         'id_srv',
@@ -28,6 +28,10 @@ class Host extends Model
         return $this->belongsTo(Server::class, 'id_srv', 'id_srv');
     }
 
+    public function os()
+    {
+        return $this->belongsTo(Os::class, 'id_os', 'id_os');
+    }
 
 
 }

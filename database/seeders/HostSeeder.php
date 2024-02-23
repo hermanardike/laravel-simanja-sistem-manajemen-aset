@@ -17,7 +17,7 @@ class HostSeeder extends Seeder
     {
         Host::create([
             'host_name' => 'Host Server Siakadu',
-            'host_version' => 'Vmware  ESXI 7',
+            'id_os' => '1',
             'host_ip' => '192.168.123.87',
             'host_auth' => 'user : Password',
             'id_srv' => '1',
@@ -26,7 +26,7 @@ class HostSeeder extends Seeder
 
         Host::create([
             'host_name' => 'Host Server One Data',
-            'host_version' => 'Vmware  ESXI 7',
+            'id_os' => '2',
             'host_ip' => '192.168.123.88',
             'host_auth' => 'user : Password',
             'id_srv' => '2',
@@ -35,7 +35,7 @@ class HostSeeder extends Seeder
 
         Host::create([
             'host_name' => 'Host Server My Unila',
-            'host_version' => 'Vmware  ESXI 7',
+            'id_os' => '3',
             'host_ip' => '192.168.123.89',
             'host_auth' => 'user : Password',
             'id_srv' => '3',
@@ -44,7 +44,7 @@ class HostSeeder extends Seeder
 
         Host::create([
             'host_name' => 'Host Server APPS',
-            'host_version' => 'Vmware  ESXI 7',
+            'id_os' => '4',
             'host_ip' => '192.168.123.90',
             'host_auth' => 'user : Password',
             'id_srv' => '4',
@@ -53,7 +53,7 @@ class HostSeeder extends Seeder
 
         Host::create([
             'host_name' => 'Host Server Muji',
-            'host_version' => 'Vmware  ESXI 7',
+            'id_os' => '5',
             'host_ip' => '192.168.123.91',
             'host_auth' => 'user : Password',
             'id_srv' => '5',
@@ -62,7 +62,7 @@ class HostSeeder extends Seeder
 
         Host::create([
             'host_name' => 'Host Server Hendri',
-            'host_version' => 'Vmware  ESXI 7',
+            'id_os' => '1',
             'host_ip' => '192.168.123.92',
             'host_auth' => 'user : Password',
             'id_srv' => '6',
@@ -71,7 +71,7 @@ class HostSeeder extends Seeder
 
         Host::create([
             'host_name' => 'Host Server Nyoman',
-            'host_version' => 'Vmware  ESXI 7',
+            'id_os' => '1',
             'host_ip' => '192.168.123.93',
             'host_auth' => 'user : Password',
             'id_srv' => '7',
@@ -80,7 +80,7 @@ class HostSeeder extends Seeder
 
         Host::create([
             'host_name' => 'Host Server bambang',
-            'host_version' => 'Vmware  ESXI 7',
+            'id_os' => '2',
             'host_ip' => '192.168.123.94',
             'host_auth' => 'user : Password',
             'id_srv' => '8',
@@ -89,7 +89,7 @@ class HostSeeder extends Seeder
 
         Host::create([
             'host_name' => 'Host Server Unila',
-            'host_version' => 'Vmware  ESXI 7',
+            'id_os' => '3',
             'host_ip' => '192.168.123.95',
             'host_auth' => 'user : Password',
             'id_srv' => '9',
@@ -98,7 +98,7 @@ class HostSeeder extends Seeder
 
         Host::create([
             'host_name' => 'Host Server FT',
-            'host_version' => 'Vmware  ESXI 7',
+            'id_os' => '4',
             'host_ip' => '192.168.123.96',
             'host_auth' => 'user : Password',
             'id_srv' => '10',

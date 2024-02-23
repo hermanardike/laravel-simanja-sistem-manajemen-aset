@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Host;
+use App\Models\Os;
 use App\Models\Server;
 use Illuminate\Http\Request;
 
@@ -39,8 +40,12 @@ class HostController extends Controller
     public function create()
     {
         $device =  Server::all();
+        $os =  Os::all();
         return view( 'server.host.create',
-            ['device' => $device]);
+            [
+                'device' => $device,
+                'os' => $os,
+            ]);
     }
 
     /**
@@ -51,7 +56,24 @@ class HostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'host_name' => ['required','string','max:255'],
+            'host_ip' => ['required','ipv4','unique:hosts'],
+            'host_auth' => ['required','string','max:255'],
+            'id_os' => ['required','string','max:255'],
+            'id_srv' => ['required','string','unique:hosts'],
+            'status' => ['required','string'],
+        ]);
+        $host = new Host();
+        $host->host_name = $request->host_name;
+        $host->host_ip = $request->host_ip;
+        $host->host_auth = $request->host_auth;
+        $host->id_os = $request->id_os;
+        $host->id_srv = $request->id_srv;
+        $host->status  = $request->status;
+        $host->save();
+        return redirect()->route('host.index')->with('status', 'Berhasil Menambahkan Data Host');
+
     }
 
     /**

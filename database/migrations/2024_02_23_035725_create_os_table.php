@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hosts', function (Blueprint $table) {
-            $table->id('id_host');
-            $table->string('host_name');
-            $table->string('id_os');
-            $table->string('host_ip')->unique();
-            $table->string('host_auth');
-            $table->integer('id_srv');
-            $table->enum('status',['Active', 'Deactivate',]);
+        Schema::create('os', function (Blueprint $table) {
+            $table->id('id_os');
+            $table->string('os_name');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hosts');
+        Schema::dropIfExists('os');
     }
 };

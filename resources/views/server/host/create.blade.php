@@ -20,6 +20,8 @@
                 Halaman Menamabhkan Host Baru
             </p>
 
+
+
             @if (session('status'))
                 <div class="alert alert-success alert-has-icon">
                     <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
@@ -42,7 +44,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Host Name</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('host_name') is-invalid @enderror" name="host_name" value="{{old('host_name')}}">
+                                        <input type="text" class="form-control @error('host_name') is-invalid @enderror" name="host_name" value="{{old('host_name')}}" placeholder="Format Nama Server : UPT TIK  HOST">
                                         @error('host_name')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -54,7 +56,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">IP Address</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('host_ip') is-invalid @enderror" name="host_ip"  value="{{old('host_ip')}}">
+                                        <input type="text" class="form-control @error('host_ip') is-invalid @enderror" name="host_ip"  value="{{old('host_ip')}}" placeholder="Inputkan IPv4 yang Valid " >
                                         @error('host_ip')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -63,9 +65,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">User : Password</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Host Auth</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('host_auth') is-invalid @enderror" name="host_auth" value="{{old('host_auth')}}">
+                                        <input type="text" class="form-control @error('host_auth') is-invalid @enderror" name="host_auth"  value="{{old('host_auth')}}" placeholder=" User : Password ">
                                         @error('host_auth')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -75,10 +77,14 @@
                                 </div>
 
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Version Host OS</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Host OS Version</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('host_version') is-invalid @enderror" name="host_version" value="{{old('host_version')}}">
-                                        @error('host_version')
+                                        <select class="form-control selectric @error('id_os')  is-invalid @enderror" name="id_os" id="id_os" >
+                                            @foreach($os as $oss)
+                                                <option value="{{$oss->id_os}}" @selected(old('id_os') == $oss->id_os)>{{$oss->os_name}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('id_os')
                                         <div class="invalid-feedback">
                                             {{$message}}
                                         </div>

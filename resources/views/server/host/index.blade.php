@@ -127,7 +127,7 @@
                                             </td>
                                             <td class="text-primary text-bold">{{$hosts->server->srv_ip}}</td>
                                             <td>
-                                                <div class="badge  text-bold">{{$hosts->host_version}} </div>
+                                                <div class="badge  text-bold">{{$hosts->os->os_name}} </div>
                                             </td>
                                             <td>
                                                 @if ($hosts->status == 'Active')
