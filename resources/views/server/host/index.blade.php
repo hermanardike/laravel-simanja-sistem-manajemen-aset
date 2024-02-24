@@ -22,7 +22,7 @@
             </p>
 
             @if (session('status'))
-                <div class="alert alert-warning alert-has-icon">
+                <div class="alert alert-info alert-has-icon">
                     <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
                     <div class="alert-body">
                         <div class="alert-title">Success</div>
@@ -104,16 +104,16 @@
                                             </td>
                                             <td class="text-bold"> {{$hosts->host_name}}
                                                 <div class="table-links">
-                                                    <a href="#">View</a>
+                                                    <a href="/host/{{$hosts->id_host}}">View</a>
                                                     <div class="bullet"></div>
-                                                    <a href="#">Edit</a>
+                                                    <a href=" host/{{$hosts->id_host}}/edit">Edit</a>
                                                     <div class="bullet"></div>
-                                                    <a href="#"  class="text-danger"
+                                                    <a href="/host/{{$hosts->id_srv}}"  class="text-danger"
                                                        onclick="event.preventDefault(); document.getElementById('del-{{$hosts->id_host}}')"
 
-                                                       data-confirm="Hapus Data Server ? | Apakah Anda Yakin ingin Mengapus server : {{$hosts->srv_name}} "  data-confirm-yes="submit({{$hosts->id_srv}})">
+                                                       data-confirm="Hapus Data Server ? | Apakah Anda Yakin ingin Mengapus server : {{$hosts->host_name}} "  data-confirm-yes="submit({{$hosts->id_host}})">
                                                         Delete </a>
-                                                    <form id="del-{{$hosts->id_host}}" action="/host/{{$hosts->id_host}}" method="POST" style="display: none;">
+                                                    <form id="del-{{$hosts->id_host}}" action="host/{{$hosts->id_host}}" method="POST" style="display: none;">
                                                         @method('DELETE')
                                                         @csrf
                                                     </form>
@@ -133,7 +133,7 @@
                                                 @if ($hosts->status == 'Active')
                                                     <div class="badge badge-success">{{$hosts->status}}</div>
                                                 @else
-                                                    <div class="badge badge-secondary">{{$hosts->status}}</div>
+                                                    <div class="badge badge-dark">{{$hosts->status}}</div>
                                                 @endif
                                             </td>
                                         </tr>

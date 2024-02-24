@@ -109,5 +109,31 @@
     <script src="{{asset('assets/js/page/modules-slider.js')}}"></script>
 @endpush
 
+@push('devicesauth')
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("myInput");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+
+
+    <script>
+        function myDevice() {
+            var x = document.getElementById("device");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+
+@endpush
 
 

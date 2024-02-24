@@ -90,19 +90,10 @@
 <script src="{{asset('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js')}}"></script>
 <script src="{{asset('assets/js/stisla.js')}}"></script>
 
-<script>
-    function myFunction() {
-        var x = document.getElementById("myInput");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
-</script>
 <!-- JS Libraies -->
 @stack('customJS')
 @stack('js-owl')
+@stack('devicesauth')
 <!-- Template JS File -->
 <script src="{{asset('assets/js/scripts.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
