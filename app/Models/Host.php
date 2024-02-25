@@ -32,6 +32,12 @@ class Host extends Model
     {
         return $this->belongsTo(Os::class, 'id_os', 'id_os');
     }
+    public function instance(){
+        return $this->hasMany('id_host','id_host');
+    }
+
+
+
 
 
 }

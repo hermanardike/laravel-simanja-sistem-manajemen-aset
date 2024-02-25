@@ -48,6 +48,9 @@ class DatabaseSeeder extends Seeder
             OsSeeder::class,
         ]);
 
+        $this->call([
+            InstanceSeeder::class,
+        ]);
 
     }
 }

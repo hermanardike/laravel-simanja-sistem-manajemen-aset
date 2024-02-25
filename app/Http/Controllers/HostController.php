@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Host;
+use App\Models\Instance;
 use App\Models\Os;
 use App\Models\Pengadaan;
 use App\Models\Rack;
@@ -20,19 +21,20 @@ class HostController extends Controller
      */
     public function index(Request $request)
     {
-        $host = Server::all();
         $jmlhost = Host::all()->count();
         $jumlahServer = Server::all()->count();
+        $jumlahinstance = Instance::all()->count();
         $host = Host::query()
             ->when($request->input('search'), function($query, $search) {
                $query->where('host_name', 'like', "%" . $search . "%")
                    ->orWhere('host_ip', 'like', "%". $search. "%");
             })->paginate('5');
+
         return  view('server.host.index', [
+            'jumlahinstance' => $jumlahinstance,
             'host' => $host,
             'jmlhost' => $jmlhost,
             'jumlahserver' => $jumlahServer,
-            'test' => $host
         ]);
     }
 

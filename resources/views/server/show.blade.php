@@ -39,16 +39,16 @@
                             <div class="card">
                                 <div class="card-body">
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"> Nama Server <span class="tab1"> : &nbsp;{{$server->srv_name}}</span> </li>
-                                        <li class="list-group-item">IP Address <span class="tab2"> : &nbsp;{{$server->srv_ip}}</span> </li>
-                                        <li class="list-group-item">Server Auth <span class="tab3"> :  <input style="border: #c9d7e0" type="password" value="{{$server->srv_auth}} " id="myInput" disabled>
+                                        <li class="list-group-item"> Nama Server <span class="tabs1"> : &nbsp;{{$server->srv_name}}</span> </li>
+                                        <li class="list-group-item">IP Address <span class="tabs2"> : &nbsp;{{$server->srv_ip}}</span> </li>
+                                        <li class="list-group-item">Server Auth <span class="tabs3"> :  <input style="border: #c9d7e0" type="password" value="{{$server->srv_auth}} " id="myInput" disabled>
                                            &nbsp;
 
                                                 <input type="checkbox" onclick="myFunction()"> &nbsp;Show Password</span>
                                         </li>
 
-                                        <li class="list-group-item">Owner <span class="tab4"> : &nbsp;{{$server->srv_owner}}</span></li>
-                                        <li class="list-group-item"> Status <span class="tab5"> : &nbsp;
+                                        <li class="list-group-item">Owner <span class="tabs4"> : &nbsp;{{$server->srv_owner}}</span></li>
+                                        <li class="list-group-item"> Status <span class="tabs5"> : &nbsp;
                                              @if ($server->srv_status == 'Aktif')
                                                     <div class="badge badge-success">{{$server->srv_status}}</div>
                                                 @else
@@ -56,10 +56,10 @@
                                                 @endif
 
                                             </span></li>
-                                        <li class="list-group-item">Tahun Pengadaan <span class="tab6"> :  &nbsp;{{$server->pengadaan->thn_pengadaan}}</span></li>
-                                        <li class="list-group-item">Nomor Rack <span class="tab7"> : &nbsp; {{$server->rack->rack_number}}</span></li>
-                                        <li class="list-group-item">Tanggal Input  <span class="tab8"> : &nbsp; {{ \Carbon\Carbon::parse($server->created_at)->format('d F, Y')}}</span> </li>
-                                        <li class="list-group-item">Tanggal Update <span class="tab9"> : &nbsp;{{\Carbon\Carbon::parse($server->updated_at)->format('d F,Y')}}</span> </li>
+                                        <li class="list-group-item">Tahun Pengadaan <span class="tabs6"> :  &nbsp;{{$server->pengadaan->thn_pengadaan}}</span></li>
+                                        <li class="list-group-item">Nomor Rack <span class="tabs7"> : &nbsp; {{$server->rack->rack_number}}</span></li>
+                                        <li class="list-group-item">Tanggal Input  <span class="tabs8"> : &nbsp; {{ \Carbon\Carbon::parse($server->created_at)->format('d F, Y')}}</span> </li>
+                                        <li class="list-group-item">Tanggal Update <span class="tabs9"> : &nbsp;{{\Carbon\Carbon::parse($server->updated_at)->format('d F,Y')}}</span> </li>
                                     </ul>
                                 </div>
                             </div>

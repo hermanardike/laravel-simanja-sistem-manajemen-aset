@@ -1,13 +1,13 @@
 @extends('layout.app')
-@section('title','Simanja : Data Server')
+@section('title','Simanja : Data instance')
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Servers</h1>
+            <h1>instances</h1>
             <div class="section-header-button">
-                <a href="{{route('server.create')}}" class="btn btn-outline-primary">Add Server</a>
+                <a href="{{route('instance.create')}}" class="btn btn-outline-primary">Add instance</a>
                 <a href="{{route('host.create')}}" class="btn btn-outline-primary">Add Host</a>
-                <a href="features-post-create.html" class="btn btn-outline-primary">Add Instance</a>
+                <a href="{{route('instance.create')}}" class="btn btn-outline-primary">Add Instance</a>
             </div>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
@@ -16,14 +16,13 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Data Server</h2>
+            <h2 class="section-title">Data Instance instance</h2>
             <p class="section-lead">
-                Server Management UPT TIK Universitas Lampung
+                instance Instance Management UPT TIK Universitas Lampung
             </p>
 
-
             @if (session('status'))
-                <div class="alert alert-warning alert-has-icon">
+                <div class="alert alert-success alert-has-icon">
                     <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
                     <div class="alert-body">
                         <div class="alert-title">Success</div>
@@ -37,16 +36,13 @@
                         <div class="card-body">
                             <ul class="nav nav-pills">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="{{route('server.index')}}">Physical Server <span class="badge badge-primary">{{$jumlahserver}}</span></a>
+                                    <a class="nav-link " href="{{route('instance.index')}}">Physical instance <span class="badge badge-primary">{{$jumlahinstance}}</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('host.index')}}">Host Server <span class="badge badge-primary">{{$jumlahhost}}</span></a>
+                                    <a class="nav-link" href="{{route('host.index')}}">Host instance <span class="badge badge-primary">{{$jumlahhost}}</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('instance.index')}}">Instance Server <span class="badge badge-primary">1</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Trash <span class="badge badge-primary">0</span></a>
+                                    <a class="nav-link" href="{{route('instance.index')}}">Instance instance <span class="badge badge-primary">{{$jumlahinstance}}</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -57,7 +53,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Server  </h4>
+                            <h4>Data instance  </h4>
                         </div>
                         <div class="card-body">
                             <div class="float-left">
@@ -88,50 +84,55 @@
                                 <table class="table table-striped">
                                     <tr>
                                         <th class="text-center text-bold">No</th>
-                                        <th>SERVER NAME</th>
+                                        <th>INSTANCE NAME</th>
                                         <th>IP ADDRESS</th>
-                                        <th>RACK NUMBER</th>
-                                        <th>PENGADAAN</th>
+                                        <th>HOST SERVER</th>
+                                        <th>IP HOST</th>
+                                        <th>OS VERSION</th>
                                         <th>Status</th>
                                     </tr>
-                                    @forelse($server as $index => $servers)
+                                    @forelse($instance as $index => $instances)
+                                        <tr>
+                                            <td class="text-bold text-center "> {{$index + $instance->firstItem()}}
 
+                                            </td>
+                                            <td class="text-bold"> {{$instances->instance_name}}
+                                                <div class="table-links">
+                                                    <a href="instance/{{$instances->id_instance}}">View</a>
+                                                    <div class="bullet"></div>
+                                                    <a href="instance/{{$instances->id_instance}}/edit">Edit</a>
+                                                    <div class="bullet"></div>
+                                                    <a href="/instance/{{$instances->id_instance}}"  class="text-danger"
+                                                       onclick="event.preventDefault(); document.getElementById('del-{{$instances->id_instance}}')"
 
-                                    <tr>
-                                        <td class="text-bold text-center "> {{$index + $server->firstItem()}}
+                                                       data-confirm="Hapus Data instance ? | Apakah Anda Yakin ingin Mengapus instance : {{$instances->instance_name}} "  data-confirm-yes="submit({{$instances->id_instance}})">
+                                                        Delete </a>
+                                                    <form id="del-{{$instances->id_instance}}" action="/instance/{{$instances->id_instance}}" method="POST" style="display: none;">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                    </form>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="badge badge-primary text-bold">{{$instances->instance_ip}} </div>
+                                            </td>
+                                            <td>
+                                                <div class="badge  text-bold">{{$instances->host->host_name}} </div>
+                                            </td>
+                                            <td class="text-primary text-bold">{{$instances->host->host_ip}}</td>
+                                            <td class="text-primary text-bold">{{$instances->os->os_name}}</td>
+                                            <td>
+                                                @if ($instances->instance_status == 'Active')
+                                                    <div class="badge badge-success">{{$instances->instance_status}}</div></td>
+                                            @elseif($instances->instance_status == 'Deactivate')
+                                                <div class="badge badge-secondary">{{$instances->instance_status}}</div>
+                                            @elseif($instances->instance_status == 'Deleted')
+                                                <div class="badge badge-danger">{{$instances->instance_status}}</div>
+                                            @else
+                                                <div class="badge badge-warning">{{$instances->instance_status}}</div>
 
-                                        </td>
-                                        <td class="text-bold"> {{$servers->srv_name}}
-                                            <div class="table-links">
-                                                <a href="server/{{$servers->id_srv}}">View</a>
-                                                <div class="bullet"></div>
-                                                <a href="server/{{$servers->id_srv}}/edit">Edit</a>
-                                                <div class="bullet"></div>
-                                                <a href="/user/{{$servers->id_srv}}"  class="text-danger"
-                                                   onclick="event.preventDefault(); document.getElementById('del-{{$servers->id_srv}}')"
-
-                                                   data-confirm="Hapus Data Server ? | Apakah Anda Yakin ingin Mengapus server : {{$servers->srv_name}} "  data-confirm-yes="submit({{$servers->id_srv}})">
-                                                    Delete </a>
-                                                <form id="del-{{$servers->id_srv}}" action="/server/{{$servers->id_srv}}" method="POST" style="display: none;">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                </form>
-                                            </div>
-                                        </td>
-                                        <td>
-                                             <div class="badge badge-primary text-bold">{{$servers->srv_ip}} </div>
-                                        </td>
-                                        <td>
-                                            <div class="badge  text-bold">{{$servers->rack->rack_number}} </div>
-                                        </td>
-                                        <td class="text-primary text-bold">{{$servers->pengadaan->thn_pengadaan}}</td>
-                                        <td>
-                                            @if ($servers->srv_status == 'Aktif')
-                                            <div class="badge badge-success">{{$servers->srv_status}}</div></td>
-                                        @else
-                                            <div class="badge badge-secondary">{{$servers->srv_status}}</div>
-                                        @endif
-                                    </tr>
+                                            @endif
+                                        </tr>
 
                                     @empty
                                         <tr>
@@ -158,7 +159,7 @@
                             <div class="float-right">
                                 <nav>
                                     <ul class="pagination">
-                                        {{$server->withQueryString()->links()}}
+                                        {{$instance->withQueryString()->links()}}
                                     </ul>
                                 </nav>
                             </div>

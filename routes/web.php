@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\HostController;
+use App\Http\Controllers\InstanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::middleware(['auth','verified'])->group(function () {
 
    Route::resource('server', ServerController::class);
    Route::resource('host', HostController::class);
+   Route::resource('instance', InstanceController::class);
 });
 
 

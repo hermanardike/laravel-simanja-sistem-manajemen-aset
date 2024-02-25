@@ -19,4 +19,8 @@ class Os extends Model
       return $this->hasMany(Host::class, 'id_os', 'id_os');
   }
 
+  public function instance(){
+      return $this->hasMany(Instance::class, 'id_os', 'id_os');
+  }
+
 }

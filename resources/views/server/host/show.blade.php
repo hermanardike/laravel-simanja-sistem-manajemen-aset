@@ -40,15 +40,15 @@
                         <div class="card">
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"> Nama Server <span class="tab1"> : &nbsp;{{$host->host_name}}</span> </li>
-                                    <li class="list-group-item">IP Address <span class="tab2"> : &nbsp;{{$host->host_ip}}</span> </li>
-                                    <li class="list-group-item">Server Auth <span class="tab3"> :  <input style="border: #c9d7e0" type="password" value="{{$host->host_auth}} " id="myInput" disabled>
+                                    <li class="list-group-item"> Nama Server <span class="tabh1"> : &nbsp;{{$host->host_name}}</span> </li>
+                                    <li class="list-group-item">IP Address <span class="tabh2"> : &nbsp;{{$host->host_ip}}</span> </li>
+                                    <li class="list-group-item">Server Auth <span class="tabh3"> :  <input style="border: #c9d7e0" type="password" value="{{$host->host_auth}} " id="myInputHost" disabled>
                                            &nbsp;
 
-                                                <input type="checkbox" onclick="myFunction()"> &nbsp;Show Password</span>
+                                                <input type="checkbox" onclick="myFunctionHost()"> &nbsp;Show Password</span>
                                     </li>
-                                    <li class="list-group-item">Host Os <span class="tab4"> : &nbsp;{{$host->os->os_name}}</span></li>
-                                    <li class="list-group-item"> Status <span class="tab5"> : &nbsp;
+                                    <li class="list-group-item">Host Os <span class="tabh4"> : &nbsp;{{$host->os->os_name}}</span></li>
+                                    <li class="list-group-item"> Status <span class="tabh5"> : &nbsp;
                                              @if ($host->status == 'Active')
                                                 <div class="badge badge-success">{{$host->status}}</div>
                                             @else
@@ -59,8 +59,8 @@
 
 
 
-                                    <li class="list-group-item">Tanggal Input  <span class="tab8"> : &nbsp; {{ \Carbon\Carbon::parse($host->created_at)->format('d F, Y')}}</span> </li>
-                                    <li class="list-group-item">Tanggal Update <span class="tab9"> : &nbsp;{{\Carbon\Carbon::parse($host->updated_at)->format('d F,Y')}}</span> </li>
+                                    <li class="list-group-item">Tanggal Input  <span class="tabh8"> : &nbsp; {{ \Carbon\Carbon::parse($host->created_at)->format('d F, Y')}}</span> </li>
+                                    <li class="list-group-item">Tanggal Update <span class="tabh9"> : &nbsp;{{\Carbon\Carbon::parse($host->updated_at)->format('d F,Y')}}</span> </li>
                                 </ul>
                             </div>
                         </div>
@@ -75,31 +75,32 @@
                         <div class="card ">
                             <div class="card-body ">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"> Nama Server <span class="tab1"> : &nbsp;{{$host->server->srv_name}}</span> </li>
-                                    <li class="list-group-item">IP Address <span class="tab2"> : &nbsp;{{$host->server->srv_ip}}</span> </li>
-                                    <li class="list-group-item">Server Auth <span class="tab3"> :  <input style="border: #c9d7e0" type="password" value="{{$host->server->srv_auth}} " id="device" disabled>
-                                           &nbsp;
-
-                                                <input type="checkbox" onclick="myDevice()"> &nbsp;Show Password</span>
+                                    <li class="list-group-item"> Nama Server <span class="tabs1"> : &nbsp;{{$host->server->srv_name}}</span> </li>
+                                    <li class="list-group-item">IP Address <span class="tabs2"> : &nbsp;{{$host->server->srv_ip}}</span> </li>
+                                    <li class="list-group-item">Server Auth <span class="tabs3"> :  <input style="border: #c9d7e0" type="password" value="{{$host->server->srv_auth}} " id="myInputSrv" disabled>
+                                           &nbsp
+                                                <input type="checkbox" onclick="myFunctionSrv()"> &nbsp;Show Password</span>
                                     </li>
 
-                                    <li class="list-group-item">Owner <span class="tab4"> : &nbsp;{{$host->server->srv_owner}}</span></li>
-                                    <li class="list-group-item"> Status <span class="tab5"> : &nbsp;
+                                    <li class="list-group-item">Owner <span class="tabs4"> : &nbsp;{{$host->server->srv_owner}}</span></li>
+                                    <li class="list-group-item"> Status <span class="tabs5"> : &nbsp;
                                              @if ($host->server->srv_status == 'Aktif')
                                                 <div class="badge badge-success">{{$host->server->srv_status}}</div>
                                             @else
                                                 <div class="badge badge-secondary">{{$host->server->srv_status}}</div>
                                             @endif
 
-                                            </span></li>
+                                            </span>
+                                    </li>
+
                                     @foreach($pengadaan  as $thn)
-                                        <li class="list-group-item">Tahun Pengadaan <span class="tab6"> :  &nbsp;{{$thn->thn_pengadaan}}</span></li>
+                                        <li class="list-group-item">Tahun Pengadaan <span class="tabs6"> :  &nbsp;{{$thn->thn_pengadaan}}</span></li>
                                     @endforeach
                                     @foreach ($rack as $racks)
-                                        <li class="list-group-item">Nomor Rack <span class="tab7"> : &nbsp; {{$racks->rack_number}}</span></li>
+                                        <li class="list-group-item">Nomor Rack <span class="tabs7"> : &nbsp; {{$racks->rack_number}}</span></li>
                                     @endforeach
-                                    <li class="list-group-item">Tanggal Input  <span class="tab8"> : &nbsp; {{ \Carbon\Carbon::parse($host->server->created_at)->format('d F, Y')}}</span> </li>
-                                    <li class="list-group-item">Tanggal Update <span class="tab9"> : &nbsp;{{\Carbon\Carbon::parse($host->server->updated_at)->format('d F,Y')}}</span> </li>
+                                    <li class="list-group-item">Tanggal Input  <span class="tabs8"> : &nbsp; {{ \Carbon\Carbon::parse($host->server->created_at)->format('d F, Y')}}</span> </li>
+                                    <li class="list-group-item">Tanggal Update <span class="tabs9"> : &nbsp;{{\Carbon\Carbon::parse($host->server->updated_at)->format('d F,Y')}}</span> </li>
                                 </ul>
                             </div>
                         </div>
@@ -150,8 +151,8 @@
 @push('devicesauth')
 
     <script>
-        function myFunction() {
-            var x = document.getElementById("myInput");
+        function myFunctionHost() {
+            var x = document.getElementById("myInputHost");
             if (x.type === "password") {
                 x.type = "text";
             } else {
@@ -162,8 +163,19 @@
 
 
     <script>
-        function myDevice() {
-            var x = document.getElementById("device");
+        function myFunctionSrv() {
+            var x = document.getElementById("myInputSrv");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+
+    <script>
+        function myFunctionInstance() {
+            var x = document.getElementById("myInputInstance");
             if (x.type === "password") {
                 x.type = "text";
             } else {
