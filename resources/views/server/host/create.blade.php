@@ -4,13 +4,13 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{route('host.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
             <h1>Add New Host Server</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Posts</a></div>
-                <div class="breadcrumb-item">Create New Post</div>
+                <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{route('host.index')}}}}">Posts</a></div>
+                <div class="breadcrumb-item">Create New Host</div>
             </div>
         </div>
 
@@ -125,7 +125,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary" type="submit">Add Server Device</button>
+                                        <button class="btn btn-primary" type="submit">Add Server Host</button>
                                     </div>
                                 </div>
                             </form>

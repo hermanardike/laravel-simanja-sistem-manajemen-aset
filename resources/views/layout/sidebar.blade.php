@@ -1,18 +1,25 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">SIMANJA</a>
+            <a href="{{route('home')}}">SIMANJA</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">INF</a>
         </div>
         <ul class="sidebar-menu">
-            <li class="menu-header">DATA SERVER</li>
+            <li class="menu-header">Data Perangkat Server</li>
             <li >
-                <a href="{{route('server.index')}}"><i class=" fa fa-server"></i><span>Data Server</span></a>
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-server"></i> <span>Server Asset</span></a>
+                <ul class="dropdown-menu">
+                   <li> <a href="{{route('server.index')}}">Physical Server</a></li>
+                   <li> <a href="{{route('host.index')}}">Host Server</a></li>
+                   <li> <a href="{{route('instance.index')}}">Guest VM Server</a></li>
+
+                </ul>
+
             </li>
-            <li class="menu-header">DATA PERANGKAT JARINGAN</li>
-            <li class="nav-item dropdown active">
+            <li class="menu-header">Data Perangkat Jaringan</li>
+            <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Networking</span></a>
                 <ul class="dropdown-menu">
                     <li class="active"><a class="nav-link" href="layout-default.html">Acces Point</a></li>

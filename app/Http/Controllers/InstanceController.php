@@ -22,10 +22,13 @@ class InstanceController extends Controller
         $jumlahserver = Server::all()->count();
         $jumlahhost = Host::all()->count();
         $jumlahinstance = Instance::all()->count();
-        $instance = Instance::query()
+        $instance = Instance::with('host')
                     ->when($request->input('search'), function($query, $search){
                         $query->where('instance_name','like' ,  "%" . $search . "%")
-                            ->orWhere('instance_ip', 'like',  "%" . $search . "%");
+                            ->orWhere('instance_ip', 'like',  "%" . $search . "%")
+                            ->orwhereHas('host', function ($query) use ($search) {
+                                $query->where('host_name','like',"%" . $search . "%");
+                            });
                     })->paginate('5');
         return view('server.instance.index', [
             'jumlahserver' => $jumlahserver,

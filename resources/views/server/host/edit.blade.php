@@ -4,18 +4,18 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{route('host.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Add New Host Server</h1>
+            <h1>Edit Host Server</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Posts</a></div>
-                <div class="breadcrumb-item">Create New Post</div>
+                <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{route('host.index')}}">Host Server</a></div>
+                <div class="breadcrumb-item">Edit Host Server</div>
             </div>
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Edit Server Host  </h2>
+            <h2 class="section-title">Edit Data : {{$host->host_name}} </h2>
             <p class="section-lead">
                Halaman Edit Server Host
             </p>

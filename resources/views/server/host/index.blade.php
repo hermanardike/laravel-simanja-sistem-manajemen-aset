@@ -5,24 +5,21 @@
         <div class="section-header">
             <h1>Host Server</h1>
             <div class="section-header-button">
-                <a href="{{route('server.create')}}" class="btn btn-outline-primary">Add Server</a>
-                <a href="{{route('host.create')}}" class="btn btn-outline-primary">Add Host</a>
-                <a href="features-post-create.html" class="btn btn-outline-primary">Add Instance</a>
+                <a href="{{route('host.create')}}" class="btn btn-outline-primary">Add Host Server</a>
             </div>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Posts</a></div>
-                <div class="breadcrumb-item">All Posts</div>
+                <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{route('host.index')}}">Host Server</a></div>
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Data Host Server</h2>
+            <h2 class="section-title"> Data Host Server</h2>
             <p class="section-lead">
-                Server Management UPT TIK Universitas Lampung
+                Host Server Management UPT TIK Universitas Lampung
             </p>
 
             @if (session('status'))
-                <div class="alert alert-info alert-has-icon">
+                <div class="alert alert-success alert-has-icon">
                     <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
                     <div class="alert-body">
                         <div class="alert-title">Success</div>
@@ -36,16 +33,7 @@
                         <div class="card-body">
                             <ul class="nav nav-pills">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="{{route('server.index')}}">Physical Server <span class="badge badge-primary">{{$jumlahserver}}</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('host.index')}}">Host Server <span class="badge badge-primary">{{$jmlhost}}</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Guest Server <span class="badge badge-primary">1</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Trash <span class="badge badge-primary">0</span></a>
+                                    <a class="nav-link " href="{{route('server.index')}}"><h2> <i class="fas fa-server"></i> Total Data Host Server : <span class="badge badge-success">{{$jmlhost}}</span> Host</h2> </a>
                                 </li>
                             </ul>
                         </div>

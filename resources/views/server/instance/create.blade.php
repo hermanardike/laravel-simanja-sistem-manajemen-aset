@@ -4,12 +4,12 @@
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="features-posts.html" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{route('instance.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Add New Instance Device</h1>
+            <h1>Add New VM Instance</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Server</a></div>
-                <div class="breadcrumb-item"><a href="#">Instance</a></div>
+                <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{route('instance.index')}}">Instance</a></div>
                 <div class="breadcrumb-item">Create New Instance</div>
             </div>
         </div>

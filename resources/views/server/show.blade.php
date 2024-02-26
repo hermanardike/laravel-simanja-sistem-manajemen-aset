@@ -3,17 +3,19 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Details Data Server : {{$server->srv_name}}</h1>
+            <div class="section-header-back">
+                <a href="{{route('server.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+            </div>
+            <h1>Details Physical Server </h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Home</a></div>
-                <div class="breadcrumb-item"><a href="#">Servers</a></div>
-                <div class="breadcrumb-item">Details Data Server</div>
+                <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{route('server.index')}}">Physical Server</a></div>
+                <div class="breadcrumb-item">Details Server</div>
             </div>
         </div>
-
         <div class="section-body">
-            <h2 class="section-title">Data Server </h2>
-            <p class="section-lead"> Menampilkan Details Data Server .</p>
+            <h2 class="section-title">Details : {{$server->srv_name}} </h2>
+            <p class="section-lead"> Menampilkan Details Data Physical Server .</p>
 
             <div class="row">
                 <div class="col-12 col-sm-6 col-lg-6">

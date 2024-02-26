@@ -3,22 +3,19 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>instances</h1>
+            <h1>VM Instance Server</h1>
             <div class="section-header-button">
-                <a href="{{route('instance.create')}}" class="btn btn-outline-primary">Add instance</a>
-                <a href="{{route('host.create')}}" class="btn btn-outline-primary">Add Host</a>
-                <a href="{{route('instance.create')}}" class="btn btn-outline-primary">Add Instance</a>
+                <a href="{{route('instance.create')}}" class="btn btn-outline-primary">Add VM Instance Server</a>
             </div>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="#">Posts</a></div>
-                <div class="breadcrumb-item">All Posts</div>
+                <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{route('instance.index')}}">VM Instance Server</a></div>
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Data Instance instance</h2>
+            <h2 class="section-title">Data Instance Server</h2>
             <p class="section-lead">
-                instance Instance Management UPT TIK Universitas Lampung
+                Management Instance VM Server UPT TIK Universitas Lampung
             </p>
 
             @if (session('status'))
@@ -36,13 +33,7 @@
                         <div class="card-body">
                             <ul class="nav nav-pills">
                                 <li class="nav-item">
-                                    <a class="nav-link " href="{{route('instance.index')}}">Physical instance <span class="badge badge-primary">{{$jumlahinstance}}</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('host.index')}}">Host instance <span class="badge badge-primary">{{$jumlahhost}}</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{route('instance.index')}}">Instance instance <span class="badge badge-primary">{{$jumlahinstance}}</span></a>
+                                    <a class="nav-link " href="{{route('server.index')}}"><h2> <i class="fas fa-server"></i> Total Data VM Instance Server : <span class="badge badge-success">{{$jumlahinstance}}</span> Instance</h2> </a>
                                 </li>
                             </ul>
                         </div>
@@ -96,7 +87,7 @@
                                             <td class="text-bold text-center "> {{$index + $instance->firstItem()}}
 
                                             </td>
-                                            <td class="text-bold"> {{$instances->instance_name}}
+                                            <td class="text-bold menu-header" style="text-transform: uppercase"> {{$instances->instance_name}}
                                                 <div class="table-links">
                                                     <a href="instance/{{$instances->id_instance}}">View</a>
                                                     <div class="bullet"></div>

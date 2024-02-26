@@ -3,18 +3,18 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Details Data instance Server : {{$instance->instance_name}}</h1>
+            <h1>Details VM Instance Server</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Home</a></div>
-                <div class="breadcrumb-item"><a href="#">Servers</a></div>
-                <div class="breadcrumb-item">Details Data Host Server</div>
+                <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{route('instance.index')}}">VM Instance</a></div>
+                <div class="breadcrumb-item">Details VM Instance</div>
             </div>
         </div>
 
 
 
         <div class="section-body">
-            <h2 class="section-title">Dat Guest Server </h2>
+            <h2 class="section-title">VM Instance : {{$instance->instance_name}}</h2>
             <p class="section-lead"> Menampilkan Details Data Server .</p>
 
             <div class="row">
@@ -36,7 +36,7 @@
                 <div class="col-12 col-sm-6 col-lg-6">
                     <div class="card card-primary">
                         <div class="card-header bg-whitesmoke">
-                            <h4> Instance Server Details</h4>
+                            <h4> VM Instance Server Details</h4>
                         </div>
                         <div class="card">
                             <div class="card-body">

@@ -6,16 +6,16 @@
             <div class="section-header-back">
                 <a href="{{route('instance.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Add New Instance Device</h1>
+            <h1>Edit VM Instance Server</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Server</a></div>
-                <div class="breadcrumb-item"><a href="#">Instance</a></div>
-                <div class="breadcrumb-item">Create New Instance</div>
+                <div class="breadcrumb-item active"><a href="{{route('home')}}">Dasboard</a></div>
+                <div class="breadcrumb-item"><a href="{{route('instance.index')}}">Instance VM Server</a></div>
+                <div class="breadcrumb-item">Edit Instance</div>
             </div>
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Add New Instance VM Server </h2>
+            <h2 class="section-title">Edit Vm Instance : {{$instance->instance_name}} </h2>
             <p class="section-lead">
                 Halaman menambahkan Instance VM Server
             </p>
@@ -34,7 +34,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Edit Instance VM : {{$instance->instance_name}}</h4>
+                            <h4>Details Edit  VM Instance</h4>
                         </div>
                         <div class="card-body" >
                             <form METHOD="POST" action="/instance/{{$instance->id_instance}}">

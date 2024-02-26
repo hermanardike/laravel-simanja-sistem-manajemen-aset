@@ -3,18 +3,21 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Details Data Server : {{$host->host_name}}</h1>
+            <div class="section-header-back">
+                <a href="{{route('host.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+            </div>
+            <h1>Details Host Server</h1>
             <div class="section-header-breadcrumb">
-                <div class="breadcrumb-item active"><a href="#">Home</a></div>
-                <div class="breadcrumb-item"><a href="#">Servers</a></div>
-                <div class="breadcrumb-item">Details Data Host Server</div>
+                <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
+                <div class="breadcrumb-item"><a href="{{route('host.index')}}">Host Server</a></div>
+                <div class="breadcrumb-item">Details Host Server</div>
             </div>
         </div>
 
 
         <div class="section-body">
-            <h2 class="section-title">Data Host Server </h2>
-            <p class="section-lead"> Menampilkan Details Data Server .</p>
+            <h2 class="section-title">Data Host  : {{$host->host_name}} </h2>
+            <p class="section-lead"> Menampilkan Details Data Host Server .</p>
 
             <div class="row">
                 <div class="col-12 col-sm-6 col-lg-6">
