@@ -73,7 +73,6 @@ class InstanceController extends Controller
             'instance_status' => ['required',],
             'instance_keterangan' => ['required','string','max:255']
         ]);
-
         $instance =  new Instance();
         $instance->instance_name = $request->instance_name;
         $instance->instance_ip = $request->instance_ip;
@@ -86,10 +85,7 @@ class InstanceController extends Controller
         $instance->instance_status = $request->instance_status;
         $instance->instance_keterangan = $request->instance_keterangan;
         $instance->save();
-
         return redirect()->route('instance.index')->with('status','Berhasil Menambah VM Instance');
-
-
     }
 
     /**
@@ -163,7 +159,6 @@ class InstanceController extends Controller
         $instance->instance_keterangan = $request->instance_keterangan;
         $instance->save();
         return redirect()->back()->with('status',"Berhasil Merubah Data VM $instance->instance_name");
-
     }
 
     /**

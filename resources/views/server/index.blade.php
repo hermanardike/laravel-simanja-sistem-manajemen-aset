@@ -91,7 +91,10 @@
                                         </td>
                                         <td class="text-bold"> {{$servers->srv_name}}
                                             <div class="table-links">
+                                                @can('show-server')
                                                 <a href="server/{{$servers->id_srv}}">View</a>
+                                                @endcan
+                                                @can('edit-server')
                                                 <div class="bullet"></div>
                                                 <a href="server/{{$servers->id_srv}}/edit">Edit</a>
                                                 <div class="bullet"></div>
@@ -104,6 +107,7 @@
                                                     @method('DELETE')
                                                     @csrf
                                                 </form>
+                                                    @endcan
                                             </div>
                                         </td>
                                         <td>

@@ -18,17 +18,33 @@ class UserSeeder extends Seeder
     {
         User::factory(10)->create();
         User::create([
-            'name' => 'Super Admin',
-            'email' => 'superadmin@gmail.com',
+            'name' => 'Administrator',
+            'email' => 'administrator@gmail.com',
             'email_verified_at' => now(),
-            'role' =>'superadmin',
+            'role' =>'administrator',
             'password' =>Hash::make('password'),
         ]);
         User::create([
-            'name' => 'Administrator',
-            'email' => 'admin@gmail.com',
+            'name' => 'System Admin Server',
+            'email' => 'sysadmin@gmail.com',
             'email_verified_at' => now(),
-            'role' => 'admin',
+            'role' => 'sysadmin',
+            'password' =>Hash::make('password'),
+        ]);
+
+        User::create([
+            'name' => 'Network Engineering',
+            'email' => 'network@gmail.com',
+            'email_verified_at' => now(),
+            'role' => 'networking',
+            'password' =>Hash::make('password'),
+        ]);
+
+        User::create([
+            'name' => 'Operator',
+            'email' => 'operator@gmail.com',
+            'email_verified_at' => now(),
+            'role' => 'operator',
             'password' =>Hash::make('password'),
         ]);
     }

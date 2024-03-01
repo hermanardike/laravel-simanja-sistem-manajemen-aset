@@ -98,6 +98,7 @@
 @stack('js-owl')
 @stack('devicesauth')
 <!-- Template JS File -->
+<script src="https://kit.fontawesome.com/0fec2dd060.js" crossorigin="anonymous"></script>
 <script src="{{asset('assets/js/scripts.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
 

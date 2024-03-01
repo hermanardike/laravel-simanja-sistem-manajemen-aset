@@ -36,7 +36,7 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Name</label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror"  name="name">
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror"  name="name" value="{{old('name')}}">
                                     @error('name')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email"  name="email" class="form-control @error('email') is-invalid @enderror" >
+                                    <input type="email"  name="email" class="form-control @error('email') is-invalid @enderror"  value="{{old('email')}}">
                                     @error('email')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password">
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{old('password')}}">
                                     @error('password')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -72,9 +72,10 @@
                                 <div class="form-group">
                                     <label>Select Role</label>
                                     <select name="role" class="form-control" id="role">
-                                        <option value="superadmin">superadmin</option>
-                                        <option value="admin">admin</option>
-                                        <option value="operator">operator</option>
+                                        <option value="administrator">Administrator</option>
+                                        <option value="sysadmin">Sysadmin</option>
+                                        <option value="networking">Networking</option>
+                                        <option value="operator">Operator</option>
                                     </select>
                                 </div>
                             </div>

@@ -11,12 +11,31 @@ class AuthServiceProvider extends ServiceProvider
 {
 
     public static $permission = [
-        'dashboard' => ['superadmin','admin',],
-        'index-user' => ['superadmin','admin',],
-        'create-user' => ['superadmin','admin',],
-        'edit-user' => ['superadmin','admin',],
-        'update-user' => ['superadmin','admin',],
-        'destroy-user' => ['superadmin','admin',],
+        //USER AUTHENTICATION
+        'dashboard' => ['administrator','admin',],
+        'index-user' => ['administrator','admin',],
+        'create-user' => ['administrator','admin',],
+        'edit-user' => ['administrator','admin',],
+        'update-user' => ['administrator','admin',],
+        'destroy-user' => ['administrator','admin',],
+
+        //SERVER ASSET AUTHENTICATION
+        'index-server' => ['administrator','sysadmin','operator'],
+        'create-server' => ['administrator','sysadmin',],
+        'show-server' => ['administrator','sysadmin','operator'],
+        'edit-server' => ['administrator','sysadmin',],
+        'delete-server' => ['administrator','sysadmin',],
+        'auth-server' => ['administrator','sysadmin',],
+
+        //NETWORK ASSET AUTHENTICATION
+        'index-network' => ['administrator','networking'],
+        'create-network' => ['administrator','networking'],
+        'show-network' => ['administrator','networking'],
+        'edit-network' => ['administrator','networking'],
+        'delete-network' => ['administrator','networking'],
+
+
+
 
     ];
     /**

@@ -43,11 +43,13 @@
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"> Nama Instance <span class="tabi1"> : &nbsp;{{$instance->instance_name}}</span> </li>
                                     <li class="list-group-item">IP Address <span class="tabi2"> : &nbsp;{{$instance->instance_ip}}</span> </li>
+                                    @can('auth-server')
                                     <li class="list-group-item">Server Auth <span class="tabi3"> :  <input style="border: #c9d7e0" type="password" value="{{$instance->instance_auth}} " id="myInputInstance" disabled>
                                            &nbsp;
 
                                                 <input type="checkbox" onclick="myFunctionInstance()"> &nbsp;Show Password</span>
                                     </li>
+                                    @endcan
                                     <li class="list-group-item">Instance Os <span class="tabi4"> : &nbsp;{{$instance->os->os_name}}</span></li>
                                     <li class="list-group-item">Owner <span class="tabi5"> : &nbsp;{{$instance->instance_owner}}</span></li>
                                     <li class="list-group-item">Domain <span class="tabi6"> : &nbsp;{{$instance->instance_domain}}</span></li>
@@ -103,11 +105,13 @@
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"> Nama Server <span class="tabs1"> : &nbsp;{{$servers->srv_name}}</span> </li>
                                     <li class="list-group-item">IP Address <span class="tabs2"> : &nbsp;{{$servers->srv_ip}}</span> </li>
+                                    @can('auth-server')
                                     <li class="list-group-item">Server Auth <span class="tabs3"> :  <input style="border: #c9d7e0" type="password" value="{{$servers->srv_auth}} " id="myInputSrv" disabled>
                                            &nbsp;
 
                                                 <input type="checkbox" onclick="myFunctionSrv()"> &nbsp;Show Password</span>
                                     </li>
+                                    @endcan
 
                                     <li class="list-group-item">Owner <span class="tabs4"> : &nbsp;{{$servers->srv_owner}}</span></li>
                                     <li class="list-group-item"> Status <span class="tabs5"> : &nbsp;
@@ -162,11 +166,13 @@
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"> Nama Server <span class="tabh1"> : &nbsp;{{$instance->host->host_name}}</span> </li>
                                     <li class="list-group-item">IP Address <span class="tabh2"> : &nbsp;{{$instance->host->host_ip}}</span> </li>
+                                    @can('auth-server')
                                     <li class="list-group-item">Server Auth <span class="tabh3"> :  <input style="border: #c9d7e0" type="password" value="{{$instance->host->host_auth}} " id="myInputHost" disabled>
                                            &nbsp;
 
                                                 <input type="checkbox" onclick="myFunctionHost()"> &nbsp;Show Password</span>
                                     </li>
+                                    @endcan
                                     @foreach($os as $oss)
                                     <li class="list-group-item">Host Os <span class="tabh4"> : &nbsp;{{$oss->os_name}}</span></li>
                                     @endforeach

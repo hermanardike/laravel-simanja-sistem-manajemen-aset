@@ -45,11 +45,13 @@
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"> Nama Server <span class="tabh1"> : &nbsp;{{$host->host_name}}</span> </li>
                                     <li class="list-group-item">IP Address <span class="tabh2"> : &nbsp;{{$host->host_ip}}</span> </li>
+                                    @can('auth-server')
                                     <li class="list-group-item">Server Auth <span class="tabh3"> :  <input style="border: #c9d7e0" type="password" value="{{$host->host_auth}} " id="myInputHost" disabled>
                                            &nbsp;
 
                                                 <input type="checkbox" onclick="myFunctionHost()"> &nbsp;Show Password</span>
                                     </li>
+                                    @endcan
                                     <li class="list-group-item">Host Os <span class="tabh4"> : &nbsp;{{$host->os->os_name}}</span></li>
                                     <li class="list-group-item"> Status <span class="tabh5"> : &nbsp;
                                              @if ($host->status == 'Active')
@@ -80,10 +82,12 @@
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"> Nama Server <span class="tabs1"> : &nbsp;{{$host->server->srv_name}}</span> </li>
                                     <li class="list-group-item">IP Address <span class="tabs2"> : &nbsp;{{$host->server->srv_ip}}</span> </li>
+                                    @can('auth-server')
                                     <li class="list-group-item">Server Auth <span class="tabs3"> :  <input style="border: #c9d7e0" type="password" value="{{$host->server->srv_auth}} " id="myInputSrv" disabled>
                                            &nbsp
                                                 <input type="checkbox" onclick="myFunctionSrv()"> &nbsp;Show Password</span>
                                     </li>
+                                    @endcan
 
                                     <li class="list-group-item">Owner <span class="tabs4"> : &nbsp;{{$host->server->srv_owner}}</span></li>
                                     <li class="list-group-item"> Status <span class="tabs5"> : &nbsp;

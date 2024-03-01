@@ -121,7 +121,6 @@ class HostController extends Controller
                 'device' => $device,
                 'os' => $os,
             ]);
-
     }
 
     /**
@@ -149,7 +148,6 @@ class HostController extends Controller
         $host->status = $request->status;
         $host->save();
         return redirect()->back()->with('status','Berhasil Merubah Data Server');
-
     }
 
     /**

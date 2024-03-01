@@ -87,9 +87,14 @@
                                             <td class="text-bold text-center "> {{$index + $instance->firstItem()}}
 
                                             </td>
-                                            <td class="text-bold menu-header" style="text-transform: uppercase"> {{$instances->instance_name}}
+                                            <td class="text-bold menu-header" style="text-transform: uppercase"><i class="fa fa-window-restore" aria-hidden="true"></i>
+                                                {{$instances->instance_name}}
                                                 <div class="table-links">
+                                                    @can('show-server')
                                                     <a href="instance/{{$instances->id_instance}}">View</a>
+                                                    @endcan
+                                                    @can('edit-server')
+
                                                     <div class="bullet"></div>
                                                     <a href="instance/{{$instances->id_instance}}/edit">Edit</a>
                                                     <div class="bullet"></div>
@@ -102,6 +107,7 @@
                                                         @method('DELETE')
                                                         @csrf
                                                     </form>
+                                                        @endcan
                                                 </div>
                                             </td>
                                             <td>

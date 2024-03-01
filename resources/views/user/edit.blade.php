@@ -153,9 +153,10 @@
                                         <div class="form-group col-md-6 col-12">
                                             <label>Role : <div class="badge badge-success">{{$user->role}}</div></label>
                                             <select name="role" class="form-control" id="role" >
-                                                <option value="superadmin">superadmin</option>
-                                                <option value="admin">admin</option>
-                                                <option value="operator">operator</option>
+                                                <option value="administrator">Administrator</option>
+                                                <option value="sysadmin">Sysadmin</option>
+                                                <option value="networking">Networking</option>
+                                                <option value="operator">Operator</option>
                                             </select>
                                         </div>
                                     </div>

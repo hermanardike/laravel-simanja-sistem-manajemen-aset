@@ -6,6 +6,7 @@ use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\HostController;
 use App\Http\Controllers\InstanceController;
+use App\Http\Controllers\OsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,6 +38,9 @@ Route::middleware(['auth','verified'])->group(function () {
    Route::resource('server', ServerController::class);
    Route::resource('host', HostController::class);
    Route::resource('instance', InstanceController::class);
+
+   //OS settings
+   Route::resource('os', OsController::class);
 });
 
 
