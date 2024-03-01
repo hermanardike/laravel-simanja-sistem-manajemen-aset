@@ -17,55 +17,6 @@
     <link rel="stylesheet" href="{{asset('assets/css/tab/tab-host.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/tab/tab-instance.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/tab/tab-srv.css')}}">
-{{--    <style>--}}
-{{--        .tab1 {--}}
-{{--            display: inline-block;--}}
-{{--            margin-left: 63px;--}}
-{{--        }--}}
-
-{{--        .tab2 {--}}
-{{--            display: inline-block;--}}
-{{--            margin-left: 75px;--}}
-{{--        }--}}
-{{--        .tab3 {--}}
-{{--            display: inline-block;--}}
-{{--            margin-left: 65px;--}}
-{{--        }--}}
-{{--        .tab4 {--}}
-{{--            display: inline-block;--}}
-{{--            margin-left: 100px;--}}
-{{--        }--}}
-{{--        .tab5 {--}}
-{{--            display: inline-block;--}}
-{{--            margin-left: 100px;--}}
-{{--        }--}}
-{{--        .tab6 {--}}
-{{--            display: inline-block;--}}
-{{--            margin-left: 25px;--}}
-{{--        }--}}
-{{--        .tab7 {--}}
-{{--            display: inline-block;--}}
-{{--            margin-left: 60px;--}}
-{{--        }--}}
-{{--        .tab8 {--}}
-{{--            display: inline-block;--}}
-{{--            margin-left: 50px;--}}
-{{--        }--}}
-{{--        .tab9 {--}}
-{{--            display: inline-block;--}}
-{{--            margin-left: 35px;--}}
-{{--        }--}}
-{{--        .tab10 {--}}
-{{--            display: inline-block;--}}
-{{--            margin-left: 50px;--}}
-{{--        }--}}
-{{--        .tab11 {--}}
-{{--            display: inline-block;--}}
-{{--            margin-left: 50px;--}}
-{{--        }--}}
-
-{{--    </style>--}}
-
 </head>
 
 <body>

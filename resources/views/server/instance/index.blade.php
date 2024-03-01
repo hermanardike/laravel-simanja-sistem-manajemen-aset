@@ -97,7 +97,9 @@
 
                                                     <div class="bullet"></div>
                                                     <a href="instance/{{$instances->id_instance}}/edit">Edit</a>
-                                                    <div class="bullet"></div>
+                                                    <div class="bullet">
+
+                                                    </div>
                                                     <a href="/instance/{{$instances->id_instance}}"  class="text-danger"
                                                        onclick="event.preventDefault(); document.getElementById('del-{{$instances->id_instance}}')"
 

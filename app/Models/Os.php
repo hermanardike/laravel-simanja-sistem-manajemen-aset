@@ -11,7 +11,7 @@ class Os extends Model
     use HasFactory;
 
     protected $table = 'os';
-    protected $fillable = ['id_os','os_name'];
+    protected $fillable = ['id_os','os_name','os_type'];
     protected $primaryKey = 'id_os';
 
   public function host()

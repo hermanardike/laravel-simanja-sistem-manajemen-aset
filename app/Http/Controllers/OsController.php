@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Os;
 use Illuminate\Http\Request;
+use MongoDB\Driver\Query;
 
 class OsController extends Controller
 {
@@ -11,9 +13,14 @@ class OsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view ('settings.os.index');
+    $os = Os::query()->when($request->input('search'), function ($query, $search){
+        $query->where('os_name', 'like', "%" . $search . "%");
+    })->paginate('5');
+        return view ('settings.os.index', [
+            'os' => $os,
+        ]);
     }
 
     /**
@@ -23,7 +30,7 @@ class OsController extends Controller
      */
     public function create()
     {
-        //
+        return view('settings.os.create');
     }
 
     /**
@@ -34,7 +41,14 @@ class OsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'os_name' => ['required','string','max:255'],
+        ]);
+
+        $os = new Os();
+        $os->os_name = $request->os_name;
+        $os->save();
+        return redirect()->back()->with('status','Berhasil Menambahkan Sistem Operasi');
     }
 
     /**
@@ -56,7 +70,10 @@ class OsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $os = Os::find($id);
+        return view('settings.os.edit', [
+            'os' => $os,
+        ]);
     }
 
     /**
@@ -68,7 +85,13 @@ class OsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'os_name' => ['required','string','max:255'],
+        ]);
+        $os = Os::find($id);
+        $os->os_name = $request->os_name;
+        $os->save();
+        return redirect()->back()->with('status','Berhasil Mengubah Sistem Operasi');
     }
 
     /**
@@ -79,6 +102,7 @@ class OsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Os::destroy($id);
+        return redirect()->route('os.index')->with('status','Berhasil Menghapus Sistem Operasi');
     }
 }
