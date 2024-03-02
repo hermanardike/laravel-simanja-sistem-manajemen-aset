@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Os;
+use App\Models\Pengadaan;
 use Illuminate\Http\Request;
-use MongoDB\Driver\Query;
+use Illuminate\Validation\Rule;
 
-class OsController extends Controller
+class PengadaanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +15,14 @@ class OsController extends Controller
      */
     public function index(Request $request)
     {
-    $os = Os::query()->when($request->input('search'), function ($query, $search){
-        $query->where('os_name', 'like', "%" . $search . "%");
-    })->paginate('5');
-        return view ('settings.os.index', [
-            'os' => $os,
-        ]);
+        $pengadaan = Pengadaan::query()
+            ->when($request->input('search'), function ($query, $search)
+            {
+                $query->where('thn_pengadaan', 'like' , "%" . $search . "%");
+            })->paginate('5');
+        return view('settings.pengadaan.index', [
+            'pengadaan' => $pengadaan
+        ] );
     }
 
     /**
@@ -30,7 +32,7 @@ class OsController extends Controller
      */
     public function create()
     {
-        return view('settings.os.create');
+       return view('settings.pengadaan.create');
     }
 
     /**
@@ -42,15 +44,12 @@ class OsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'os_name' => ['required','string','max:255'],
-            'os_type' => ['required','string','max:255'],
+            'thn_pengadaan' => ['required','unique:pengadaan','string','max:4'],
         ]);
-
-        $os = new Os();
-        $os->os_name = $request->os_name;
-        $os->os_type = $request->os_type;
-        $os->save();
-        return redirect()->back()->with('status','Berhasil Menambahkan Sistem Operasi');
+        $pengadaan = new Pengadaan();
+        $pengadaan->thn_pengadaan = $request->thn_pengadaan;
+        $pengadaan->save();
+        return redirect()->back()->with('status','Berhasil Menambahkan Tahun Pengadaan');
     }
 
     /**
@@ -72,9 +71,9 @@ class OsController extends Controller
      */
     public function edit($id)
     {
-        $os = Os::find($id);
-        return view('settings.os.edit', [
-            'os' => $os,
+        $pengadaan = Pengadaan::find($id);
+        return view('settings.pengadaan.edit', [
+            'pengadaan' => $pengadaan
         ]);
     }
 
@@ -85,17 +84,14 @@ class OsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pengadaan $pengadaan)
     {
         $request->validate([
-            'os_name' => ['required','string','max:255'],
-            'os_type' => ['required','string','max:255'],
+            'thn_pengadaan' => ['required',Rule::unique('pengadaan','thn_pengadaan')->ignore($pengadaan)],
         ]);
-        $os = Os::find($id);
-        $os->os_name = $request->os_name;
-        $os->os_type = $request->os_type;
-        $os->save();
-        return redirect()->back()->with('status','Berhasil Mengubah Sistem Operasi');
+        $pengadaan->thn_pengadaan = $request->thn_pengadaan;
+        $pengadaan->save();
+        return redirect()->back()->with('status','Berhasil Mengubah Tahun Pengadaan');
     }
 
     /**
@@ -106,7 +102,7 @@ class OsController extends Controller
      */
     public function destroy($id)
     {
-        Os::destroy($id);
-        return redirect()->route('os.index')->with('status','Berhasil Menghapus Sistem Operasi');
+        Pengadaan::destroy($id);
+        return redirect()->back()->with('status','Berhasil Menghapus Tahun Pengadaan');
     }
 }

@@ -54,6 +54,22 @@
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <select class="form-control  @error('os_type') is-invalid @enderror selectric" name="os_type" id="os_type">
+                                            <option value="linux" @selected($os->os_type =='linux' )>linux</option>
+                                            <option value="windows" @selected($os->os_type =='windows' )>windows</option>
+                                            <option value="vmware" @selected($os->os_type =='vmware' )>vmware</option>
+
+                                        </select>
+                                        @error('os_type')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
                                         <button class="btn btn-primary" type="submit">Save Configuration</button>

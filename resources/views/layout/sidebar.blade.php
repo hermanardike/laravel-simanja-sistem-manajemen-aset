@@ -51,8 +51,8 @@
                     <a href="#" class="nav-link has-dropdown"><i class="fas fa-cog"></i> <span>Setting</span></a>
                     <ul class="dropdown-menu">
                         <li><a class="nav-link" href="{{route('os.index')}}">Operating System</a></li>
-                        <li><a class="nav-link " href="components-avatar.html">Tahun Pengadaan </a></li>
-                        <li><a class="nav-link" href="components-chat-box.html">Rack Number</a></li>
+                        <li><a class="nav-link " href="{{route('pengadaan.index')}}">Tahun Pengadaan </a></li>
+                        <li><a class="nav-link" href="{{route('rack.index')}}">Rack Number</a></li>
                     </ul>
                 </li>
 

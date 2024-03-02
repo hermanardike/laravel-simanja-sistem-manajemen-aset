@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Os;
+use App\Models\Rack;
 use Illuminate\Http\Request;
-use MongoDB\Driver\Query;
 
-class OsController extends Controller
+class RackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +14,11 @@ class OsController extends Controller
      */
     public function index(Request $request)
     {
-    $os = Os::query()->when($request->input('search'), function ($query, $search){
-        $query->where('os_name', 'like', "%" . $search . "%");
-    })->paginate('5');
-        return view ('settings.os.index', [
-            'os' => $os,
-        ]);
+        $rack = Rack::query()
+            ->when($request->input('search'), function ($query, $search) {
+             $query->where('rack_number', 'like' , "%" . $search . "%");
+            })->paginate('10');
+        return  view('settings.rack.index', compact('rack'));
     }
 
     /**
@@ -30,7 +28,7 @@ class OsController extends Controller
      */
     public function create()
     {
-        return view('settings.os.create');
+        return view('setting.rack.create');
     }
 
     /**
@@ -41,16 +39,7 @@ class OsController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'os_name' => ['required','string','max:255'],
-            'os_type' => ['required','string','max:255'],
-        ]);
-
-        $os = new Os();
-        $os->os_name = $request->os_name;
-        $os->os_type = $request->os_type;
-        $os->save();
-        return redirect()->back()->with('status','Berhasil Menambahkan Sistem Operasi');
+        //
     }
 
     /**
@@ -72,10 +61,7 @@ class OsController extends Controller
      */
     public function edit($id)
     {
-        $os = Os::find($id);
-        return view('settings.os.edit', [
-            'os' => $os,
-        ]);
+        //
     }
 
     /**
@@ -87,15 +73,7 @@ class OsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'os_name' => ['required','string','max:255'],
-            'os_type' => ['required','string','max:255'],
-        ]);
-        $os = Os::find($id);
-        $os->os_name = $request->os_name;
-        $os->os_type = $request->os_type;
-        $os->save();
-        return redirect()->back()->with('status','Berhasil Mengubah Sistem Operasi');
+        //
     }
 
     /**
@@ -106,7 +84,6 @@ class OsController extends Controller
      */
     public function destroy($id)
     {
-        Os::destroy($id);
-        return redirect()->route('os.index')->with('status','Berhasil Menghapus Sistem Operasi');
+        //
     }
 }

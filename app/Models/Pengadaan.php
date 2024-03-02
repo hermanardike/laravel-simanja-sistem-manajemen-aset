@@ -14,6 +14,7 @@ class Pengadaan extends Model
 
     protected $table = 'pengadaan';
     protected $fillable = ['id_pengadaan', 'thn_pengadaan'];
+    protected $primaryKey = 'id_pengadaan';
 
     public function server()
     {

@@ -7,6 +7,8 @@ use App\Http\Controllers\ServerController;
 use App\Http\Controllers\HostController;
 use App\Http\Controllers\InstanceController;
 use App\Http\Controllers\OsController;
+use App\Http\Controllers\PengadaanController;
+use App\Http\Controllers\RackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,8 +41,12 @@ Route::middleware(['auth','verified'])->group(function () {
    Route::resource('host', HostController::class);
    Route::resource('instance', InstanceController::class);
 
-   //OS settings
+    //Menu Settings
    Route::resource('os', OsController::class);
+   Route::resource('pengadaan', PengadaanController::class);
+   Route::resource('rack', RackController::class);
+
+
 });
 
 
