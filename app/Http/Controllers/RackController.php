@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rack;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class RackController extends Controller
 {
@@ -28,7 +29,7 @@ class RackController extends Controller
      */
     public function create()
     {
-        return view('setting.rack.create');
+        return view('settings.rack.create');
     }
 
     /**
@@ -39,7 +40,13 @@ class RackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'rack_number' => ['required','string','max:255','unique:rack'],
+        ]);
+        $rack = new Rack();
+        $rack->rack_number = $request->input('rack_number');
+        $rack->save();
+        return redirect()->back()->with('status', 'Berhasil Menambahkan Data Rack');
     }
 
     /**
@@ -61,7 +68,8 @@ class RackController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rack = Rack::find($id);
+        return view('settings.rack.edit', compact('rack'));
     }
 
     /**
@@ -71,9 +79,14 @@ class RackController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Rack $rack)
     {
-        //
+        $request->validate([
+            'rack_number' => ['required','string','max:255', Rule::unique('rack','rack_number')->ignore($rack)],
+        ]);
+        $rack->rack_number = $request->input('rack_number');
+        $rack->save();
+        return redirect()->back()->with('status','Berhasil Merubah Data Rack');
     }
 
     /**
@@ -84,6 +97,7 @@ class RackController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Rack::destroy($id);
+        return redirect()->back()->with('status','Berhasil Menghapus Data Rack');
     }
 }

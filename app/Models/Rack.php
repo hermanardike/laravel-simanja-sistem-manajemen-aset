@@ -13,6 +13,7 @@ class Rack extends Model
     use HasFactory;
     protected $table = 'rack';
     protected $fillable = ['id_rack','rack_number'];
+    protected $primaryKey = 'id_rack';
 
     public function server()
     {
