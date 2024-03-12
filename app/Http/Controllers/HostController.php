@@ -11,6 +11,7 @@ use App\Models\Server;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Auth;
 
 class HostController extends Controller
 {
@@ -77,6 +78,7 @@ class HostController extends Controller
         $host->id_os = $request->id_os;
         $host->id_srv = $request->id_srv;
         $host->status  = $request->status;
+        $host->author  = Auth::user()->name;
         $host->save();
         return redirect()->route('host.index')->with('status', 'Berhasil Menambahkan Data Host');
 
@@ -146,6 +148,7 @@ class HostController extends Controller
         $host->id_os = $request->id_os;
         $host->id_srv = $request->id_srv;
         $host->status = $request->status;
+        $host->author = Auth::user()->name;
         $host->save();
         return redirect()->back()->with('status','Berhasil Merubah Data Server');
     }

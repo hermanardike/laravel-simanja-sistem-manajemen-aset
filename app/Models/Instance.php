@@ -22,6 +22,7 @@ class Instance extends Model
         'instance_keterangan',
         'id_os',
         'id_host',
+        'author',
         ];
 
     protected $primaryKey = 'id_instance';

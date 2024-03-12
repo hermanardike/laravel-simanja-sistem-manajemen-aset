@@ -23,13 +23,18 @@
                         <div class="card-header bg-whitesmoke">
                             <h4>Server Images</h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body container">
+                            @foreach($server as $images)
                             <div class="owl-carousel owl-theme slider" id="slider1">
-                                <div><img alt="image" src="../assets/img/news/img01.jpg"></div>
-                                <div><img alt="image" src="../assets/img/news/img08.jpg"></div>
-                                <div><img alt="image" src="../assets/img/news/img10.jpg"></div>
-                                <div><img alt="image" src="../assets/img/news/img09.jpg"></div>
+{{--                                <div><img alt="image" src="{{asset('storage/servers/' . $images->srv_image)}}"></div>--}}
+                                <a class="example-image-link" href="{{asset('storage/servers/' . $images->srv_image)}}" data-lightbox="example-1">
+                                    <img class="image" src="{{asset('storage/servers/thumbnails/' . $images->srv_image)}} " alt="image-1" />
+                                    <div class="middle">
+                                        <div class="text">Tampilkan Gambar</div>
+                                    </div>
+                                </a>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -65,6 +70,7 @@
                                             @endif
 
                                             </span></li>
+                                    <li class="list-group-item">Tanggal Input  <span class="tabi8"> : &nbsp; {{$instance->author}}</span> </li>
                                     <li class="list-group-item">Tanggal Input  <span class="tabi8"> : &nbsp; {{ \Carbon\Carbon::parse($instance->created_at)->format('d F, Y')}}</span> </li>
                                     <li class="list-group-item">Tanggal Update <span class="tabi9"> : &nbsp;{{\Carbon\Carbon::parse($instance->updated_at)->format('d F,Y')}}</span> </li>
                                     <li class="list-group-item">
@@ -126,6 +132,7 @@
 
 
                                         <li class="list-group-item">Nomor Rack <span class="tabs7"> : &nbsp; {{$servers->rack->rack_number}}</span></li>
+                                         <li class="list-group-item">Author <span class="tabs10"> : &nbsp;{{$servers->author}}</span></li>
 
                                     <li class="list-group-item">Tanggal Input  <span class="tabs8"> : &nbsp; {{ \Carbon\Carbon::parse($servers->created_at)->format('d F, Y')}}</span> </li>
                                     <li class="list-group-item">Tanggal Update <span class="tabs9"> : &nbsp;{{\Carbon\Carbon::parse($servers->updated_at)->format('d F,Y')}}</span> </li>
@@ -183,6 +190,7 @@
                                                 <div class="badge badge-secondary">{{$instance->host->status}}</div>
                                             @endif
                                             </span></li>
+                                    <li class="list-group-item">Author <span class="tabh10"> : &nbsp;{{$instance->host->author}}</span></li>
                                     <li class="list-group-item">Tanggal Input  <span class="tabh6"> : &nbsp; {{ \Carbon\Carbon::parse($instance->host->created_at)->format('d F, Y')}}</span> </li>
                                     <li class="list-group-item">Tanggal Update <span class="tabh7"> : &nbsp;{{\Carbon\Carbon::parse($instance->host->updated_at)->format('d F,Y')}}</span> </li>
                                 </ul>

@@ -19,10 +19,12 @@ class Server extends Model
         'srv_auth',
         'srv_spec',
         'srv_owner',
+        'srv_image',
         'srv_status',
         'srv_keterangan',
         'id_pengadaan',
-        'id_rack'
+        'id_rack',
+        'author'
     ];
     protected $primaryKey = 'id_srv';
     public function pengadaan(){

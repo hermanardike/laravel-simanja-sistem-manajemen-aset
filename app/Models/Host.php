@@ -19,7 +19,8 @@ class Host extends Model
         'host_ip',
         'host_auth',
         'id_srv',
-        'status'
+        'status',
+        'author',
     ];
     protected $primaryKey = 'id_host';
 

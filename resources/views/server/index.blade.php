@@ -86,7 +86,8 @@
 
 
                                     <tr>
-                                        <td class="text-bold text-center "> {{$index + $server->firstItem()}}
+                                        <td class="text-bold text-center ">
+                                            {{$index + $server->firstItem()}}
 
                                         </td>
                                         <td class="text-bold"> {{$servers->srv_name}}

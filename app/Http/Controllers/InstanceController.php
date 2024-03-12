@@ -9,6 +9,7 @@ use App\Models\Rack;
 use App\Models\Server;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Auth;
 
 class InstanceController extends Controller
 {
@@ -84,6 +85,7 @@ class InstanceController extends Controller
         $instance->id_host = $request->id_host;
         $instance->instance_status = $request->instance_status;
         $instance->instance_keterangan = $request->instance_keterangan;
+        $instance->author = Auth::user()->name;
         $instance->save();
         return redirect()->route('instance.index')->with('status','Berhasil Menambah VM Instance');
     }
@@ -157,6 +159,7 @@ class InstanceController extends Controller
         $instance->id_host = $request->id_host;
         $instance->instance_status = $request->instance_status;
         $instance->instance_keterangan = $request->instance_keterangan;
+        $instance->author = Auth::user()->name;
         $instance->save();
         return redirect()->back()->with('status',"Berhasil Merubah Data VM $instance->instance_name");
     }
