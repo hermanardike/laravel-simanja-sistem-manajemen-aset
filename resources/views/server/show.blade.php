@@ -32,7 +32,6 @@
                                     <div class="text">Tampilkan Gambar</div>
                                 </div>
                             </a>
-
                                 </div>
                             </div>
                         </div>

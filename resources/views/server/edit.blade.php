@@ -163,14 +163,23 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Server Image</label>
+                                    <div class="col-sm-20 col-md-7 border-0">
+                                        <div class="editimagebox container">
+                                            <a class="example-image-link" href="{{asset('storage/servers/' . $server->srv_image)}}" data-lightbox="example-1">
+                                                <img class="editserver" src="{{asset('storage/servers/thumbnails/' . $server->srv_image)}} " alt="image-1" />
+                                                <div class="middleedit">
+                                                    <div class="text">Tampilkan Gambar</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Upload Image</label>
                                     <div class="col-sm-12 col-md-7">
-{{--                                        <div id="image-preview" class="image-preview">--}}
-{{--                                            <label for="image-upload" id="image-label">Choose File</label>--}}
-{{--                                            <input type="file" name="srv_image" id="image-upload" />--}}
-{{--                                        </div>--}}
                                         <div >
                                             <label for="image-upload" id="image-label"></label>
                                             <input type="file" name="image"/>

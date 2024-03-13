@@ -70,7 +70,7 @@
                                             @endif
 
                                             </span></li>
-                                    <li class="list-group-item">Tanggal Input  <span class="tabi8"> : &nbsp; {{$instance->author}}</span> </li>
+                                    <li class="list-group-item">Author  <span class="tabi10"> : &nbsp; {{$instance->author}}</span> </li>
                                     <li class="list-group-item">Tanggal Input  <span class="tabi8"> : &nbsp; {{ \Carbon\Carbon::parse($instance->created_at)->format('d F, Y')}}</span> </li>
                                     <li class="list-group-item">Tanggal Update <span class="tabi9"> : &nbsp;{{\Carbon\Carbon::parse($instance->updated_at)->format('d F,Y')}}</span> </li>
                                     <li class="list-group-item">

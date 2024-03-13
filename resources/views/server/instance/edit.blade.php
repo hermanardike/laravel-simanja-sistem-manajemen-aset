@@ -176,15 +176,6 @@
                                 </div>
 
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Server Image</label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <div id="image-preview" class="image-preview">
-                                            <label for="image-upload" id="image-label">Choose File</label>
-                                            <input type="file" name="srv_image" id="image-upload" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
                                         <button class="btn btn-primary" type="submit">Save Data Instance </button>

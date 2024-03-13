@@ -163,7 +163,7 @@ class ServerController extends Controller
             'srv_keterangan' => 'required|max:1000',
             'id_pengadaan' =>'required',
             'id_rack' =>'required',
-            'image' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' =>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ],[
             'srv_name.required' => 'Nama Server Harus Diisi',
             'srv_ip.required' => 'IP Server Harus Diisi',
@@ -178,27 +178,45 @@ class ServerController extends Controller
             'id_pengadaan.required' => 'Tambahkan Tahun Pengadaan Server',
             'id_rack.required' => 'Tambahkan Rack Server',
         ]);
-        //mengambil data image lama untuk di hapus
-        $oldImage = $server->srv_image;
-        //upload file ke public storage image
-        $request->file('image')->store('public/servers');
 
-        //update Data Server
-        $server->srv_name = $request->srv_name;
-        $server->srv_ip = $request->srv_ip;
-        $server->srv_auth = $request->srv_auth;
-        $server->srv_spec = $request->srv_spec;
-        $server->srv_owner = $request->srv_owner;
-        $server->srv_image = $request->file('image')->hashName();
-        $server->srv_status    = $request->srv_status;
-        $server->srv_keterangan = $request->srv_keterangan;
-        $server->id_pengadaan = $request->id_pengadaan;
-        $server->id_rack = $request->id_rack;
-        $server->author = Auth::user()->name;
-        $server->save();
-
-        Storage::disk('public')->delete('servers/' . $oldImage);
-
+        if ($request->hasFile('image'))
+        {
+            //mengambil data image lama untuk di hapus
+            $oldImage = $server->srv_image;
+            //upload file ke public storage image
+            $request->file('image')->store('public/servers');
+            $img = Image::make(storage_path('app/public/servers/' . $request->file('image')->hashName()))
+                ->fit(671, 485);
+            Storage::disk('public')->put('/servers/thumbnails/' . $request->file('image')->hashName(), $img->encode());
+            //update Data Server
+            $server->srv_name = $request->srv_name;
+            $server->srv_ip = $request->srv_ip;
+            $server->srv_auth = $request->srv_auth;
+            $server->srv_spec = $request->srv_spec;
+            $server->srv_owner = $request->srv_owner;
+            $server->srv_image = $request->file('image')->hashName();
+            $server->srv_status    = $request->srv_status;
+            $server->srv_keterangan = $request->srv_keterangan;
+            $server->id_pengadaan = $request->id_pengadaan;
+            $server->id_rack = $request->id_rack;
+            $server->author = Auth::user()->name;
+            $server->save();
+            Storage::disk('public')->delete('servers/' . $oldImage);
+            Storage::disk('public')->delete('servers/thumbnails/' . $oldImage);
+        }
+        else {
+            $server->srv_name = $request->srv_name;
+            $server->srv_ip = $request->srv_ip;
+            $server->srv_auth = $request->srv_auth;
+            $server->srv_spec = $request->srv_spec;
+            $server->srv_owner = $request->srv_owner;
+            $server->srv_status    = $request->srv_status;
+            $server->srv_keterangan = $request->srv_keterangan;
+            $server->id_pengadaan = $request->id_pengadaan;
+            $server->id_rack = $request->id_rack;
+            $server->author = Auth::user()->name;
+            $server->save();
+        }
         return redirect()->back()->with('status','Berhasil Merubah Data Server');
     }
 
