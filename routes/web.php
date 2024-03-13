@@ -9,6 +9,8 @@ use App\Http\Controllers\InstanceController;
 use App\Http\Controllers\OsController;
 use App\Http\Controllers\PengadaanController;
 use App\Http\Controllers\RackController;
+use App\Http\Controllers\FilepondController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +41,7 @@ Route::middleware(['auth','verified'])->group(function () {
    Route::resource('user', UserController::class);
    Route::put('update-password/{id}',[UserController::class,'UpdatePassword']);
 
+    // Menu Server
    Route::resource('server', ServerController::class);
    Route::resource('host', HostController::class);
    Route::resource('instance', InstanceController::class);
@@ -47,6 +50,11 @@ Route::middleware(['auth','verified'])->group(function () {
    Route::resource('os', OsController::class);
    Route::resource('pengadaan', PengadaanController::class);
    Route::resource('rack', RackController::class);
+
+    // ImageUPloadConfiguration
+    Route::post('file-pond', [FilepondController::class, 'store'])->name('filepond.store');
+    Route::delete('file-pond', [FilepondController::class, 'destroy'])->name('filepond.destroy');
+
 
 
 });

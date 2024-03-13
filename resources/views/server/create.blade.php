@@ -160,20 +160,12 @@
                                     @enderror
                                 </div>
                             </div>
-
-                            <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Server Image</label>
-                                <div class="col-sm-12 col-md-7">
-{{--                                    <div id="image-preview" class="image-preview">--}}
-{{--                                        <label for="image-upload" id="image-label">Choose File</label>--}}
-{{--                                        <input type="file" name="srv_image" id="image-upload" />--}}
-{{--                                    </div> --}}
-                                    <div >
-                                        <label for="image-upload" id="image-label">Choose File</label>
-                                        <input type="file" name="image"/>
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">upload_image</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="file" name="image" >
                                     </div>
                                 </div>
-                            </div>
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                 <div class="col-sm-12 col-md-7">
@@ -190,10 +182,27 @@
 @endsection
 
 @push('customCss')
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.css">
 @endpush
 
 @push('customJS')
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script>
+        const inputElement = document.querySelector('input[type="file"]');
+
+        const pond = FilePond.create( inputElement );
+        FilePond.setOptions({
+            server: {
+                process: '/file-pond',
+                revert: '/file-pond',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            },
+        });
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.js"></script>
 @endpush
