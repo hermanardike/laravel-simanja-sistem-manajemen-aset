@@ -40,9 +40,15 @@ class ServerController extends Controller
 
             })->paginate('10');
 
+        $srv_aktif = Server::where('srv_status', 'Aktif')->count();
+        $srv_rusak = Server::where('srv_status', 'Rusak')->count();
+        $srv_mati = Server::where('srv_status', 'Mati')->count();
         $jumlahServer = Server::all()->count();
         $jumlahHost = Host::all()->count();
             return view('server.index', [
+                'srv_aktif' => $srv_aktif,
+                'srv_rusak' => $srv_rusak,
+                'srv_mati' => $srv_mati,
                 'server' => $server,
                 'jumlahserver' => $jumlahServer,
                 'jumlahhost' => $jumlahHost,
@@ -78,10 +84,10 @@ class ServerController extends Controller
             'srv_name' => ['required','string','max:255'],
             'srv_ip' => 'required|ipv4|unique:servers',
             'srv_auth' => ['required','string','max:255'],
-            'srv_spec' => 'required|max:1000',
+            'srv_spec' => 'required|max:2000',
             'srv_owner' => ['required','string','max:255'],
             'srv_status' => 'required',
-            'srv_keterangan' => 'required|max:1000',
+            'srv_keterangan' => 'required|max:2000',
             'id_pengadaan' =>'required',
             'id_rack' =>'required',
             'image' =>'required|string',

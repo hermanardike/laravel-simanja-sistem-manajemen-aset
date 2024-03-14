@@ -22,6 +22,8 @@ class HostController extends Controller
      */
     public function index(Request $request)
     {
+        $active = Host::where('status',  'Active')->count();
+        $deactive = Host::where('status',  'Deactivate')->count();
         $jmlhost = Host::all()->count();
         $jumlahServer = Server::all()->count();
         $jumlahinstance = Instance::all()->count();
@@ -36,6 +38,8 @@ class HostController extends Controller
             'host' => $host,
             'jmlhost' => $jmlhost,
             'jumlahserver' => $jumlahServer,
+            'active' => $active,
+            'deactivate' => $deactive,
         ]);
     }
 

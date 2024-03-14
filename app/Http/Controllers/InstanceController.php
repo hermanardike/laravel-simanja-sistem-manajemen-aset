@@ -20,8 +20,10 @@ class InstanceController extends Controller
      */
     public function index(Request $request)
     {
-        $jumlahserver = Server::all()->count();
-        $jumlahhost = Host::all()->count();
+
+       $active =  Instance::where('instance_status', 'Active')->count();
+       $deactivate =  Instance::where('instance_status', 'Deactivate')->count();
+       $deleted = Instance::where('instance_status', 'Deleted')->count();
         $jumlahinstance = Instance::all()->count();
         $instance = Instance::with('host')
                     ->when($request->input('search'), function($query, $search){
@@ -32,10 +34,11 @@ class InstanceController extends Controller
                             });
                     })->paginate('5');
         return view('server.instance.index', [
-            'jumlahserver' => $jumlahserver,
-            'jumlahhost' => $jumlahhost,
             'jumlahinstance' => $jumlahinstance,
-            'instance' => $instance
+            'active' => $active,
+            'deactivate' => $deactivate,
+            'deleted' => $deleted,
+            'instance' => $instance,
         ]);
     }
 

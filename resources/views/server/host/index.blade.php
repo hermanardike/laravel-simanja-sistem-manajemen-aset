@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title"> Table Data Host Server</h2>
+            <h2 class="section-title"> Data Host Server</h2>
             <p class="section-lead">
                 Host Server Management UPT TIK Universitas Lampung
             </p>
@@ -24,62 +24,18 @@
                     </div>
                 </div>
             @endif
-{{--            <div class="row">--}}
-{{--                <div class="col-12">--}}
-{{--                    <div class="card mb-0">--}}
-{{--                        <div class="card-body">--}}
-{{--                            <ul class="nav nav-pills">--}}
-{{--                                <li class="nav-item">--}}
-{{--                                    <a class="nav-link " href="{{route('server.index')}}"><h2> <i class="fas fa-server"></i> Total Data Host Server : <span class="badge badge-success">{{$jmlhost}}</span> Host</h2> </a>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
-                            <i class="far fa-user"></i>
+                            <i class="fa fa-window-restore" style="font-size:36px; color:white"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Admin</h4>
+                                <h4>TOTAL HOST SERVER</h4>
                             </div>
                             <div class="card-body">
-                                10
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-danger">
-                            <i class="far fa-newspaper"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>News</h4>
-                            </div>
-                            <div class="card-body">
-                                42
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-                    <div class="card card-statistic-1">
-                        <div class="card-icon bg-warning">
-                            <i class="far fa-file"></i>
-                        </div>
-                        <div class="card-wrap">
-                            <div class="card-header">
-                                <h4>Reports</h4>
-                            </div>
-                            <div class="card-body">
-                                1,201
+                                {{$jmlhost}}
                             </div>
                         </div>
                     </div>
@@ -87,14 +43,29 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-success">
-                            <i class="fas fa-circle"></i>
+                            <i class="far fa-window-restore" style="font-size:36px; color:white"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header" style="font-size:16px">
+                                <h4>HOST ACTIVE</h4>
+                            </div>
+                            <div class="card-body">
+                                {{$active}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-danger">
+                            <i class="far fa-window-restore" style="font-size:36px; color:white"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Online Users</h4>
+                                <h4>HOST DEACTIVATE</h4>
                             </div>
                             <div class="card-body">
-                                47
+                                {{$deactivate}}
                             </div>
                         </div>
                     </div>
@@ -104,12 +75,12 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Total Host : {{$jmlhost}} Unit</h4>
+                            <h4><i class="fa fa-window-restore"></i> Table Data Host Server</h4>
                         </div>
                         <div class="card-body">
                             <div class="float-left">
                                 <div class="section-header-button">
-                                    <a href="{{route('host.create')}}" class="btn btn-primary">Add Host Server</a>
+                                    <a href="{{route('host.create')}}" class="btn btn-primary"><i class="fa fa-plus-square-o"></i> Add Host Server</a>
                                 </div>
                             </div>
                             <div class="float-right">
@@ -144,7 +115,8 @@
                                             <td class="text-bold text-center "> {{$index + $host->firstItem()}}
 
                                             </td>
-                                            <td class="text-bold"> {{$hosts->host_name}}
+                                            <td class="text-bold" style="text-transform: uppercase"> <i class="fa fa-window-restore" aria-hidden="true"></i>
+                                                 {{$hosts->host_name}}
                                                 <div class="table-links">
                                                     @can('show-server')
                                                     <a href="/host/{{$hosts->id_host}}">View</a>
@@ -179,7 +151,7 @@
                                                 @if ($hosts->status == 'Active')
                                                     <div class="badge badge-success">{{$hosts->status}}</div>
                                                 @else
-                                                    <div class="badge badge-dark">{{$hosts->status}}</div>
+                                                    <div class="badge badge-danger">{{$hosts->status}}</div>
                                                 @endif
                                             </td>
                                         </tr>

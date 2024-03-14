@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Table Data Server</h2>
+            <h2 class="section-title">Data Server </h2>
             <p class="section-lead">
                 Server Management UPT TIK Universitas Lampung
             </p>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>TOTAL DEVICE SERVER</h4>
+                                <h4>TOTAL SERVER</h4>
                             </div>
                             <div class="card-body">
                                 {{$jumlahserver}}
@@ -43,15 +43,15 @@
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
-                        <div class="card-icon bg-danger">
-                            <i class="far fa-newspaper"></i>
+                        <div class="card-icon bg-success">
+                            <i class="fa fa-server" style="font-size:36px; color:white"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>News</h4>
+                                <h4>SERVER AKTIF</h4>
                             </div>
                             <div class="card-body">
-                                42
+                                {{$srv_aktif}}
                             </div>
                         </div>
                     </div>
@@ -59,29 +59,29 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-warning">
-                            <i class="far fa-file"></i>
+                            <i class="fa fa-server" style="font-size:36px; color:white"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Reports</h4>
+                                <h4>SERVER ERROR</h4>
                             </div>
                             <div class="card-body">
-                                1,201
+                                {{$srv_rusak}}
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
-                        <div class="card-icon bg-success">
-                            <i class="fas fa-circle"></i>
+                        <div class="card-icon bg-danger">
+                            <i class="fa fa-server" style="font-size:36px; color:white"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Online Users</h4>
+                                <h4>SERVER OFF </h4>
                             </div>
                             <div class="card-body">
-                                47
+                                {{$srv_mati}}
                             </div>
                         </div>
                     </div>
@@ -91,12 +91,12 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4><i class="fa fa-server" aria-hidden="true"></i> Total   : {{$jumlahserver}} Unit</h4>
+                            <h4><i class="fa fa-server" aria-hidden="true"></i> Tabel Data Server</h4>
                         </div>
                         <div class="card-body">
                             <div class="float-left">
                                 <div class="section-header-button">
-                                    <a href="{{route('server.create')}}" class="btn btn-primary"><i class="fa fa-server" aria-hidden="true"></i> Add Physical Server</a>
+                                    <a href="{{route('server.create')}}" class="btn btn-primary"><i class="fa fa-plus-square-o"></i> Add Physical Server</a>
                                 </div>
                             </div>
                             <div class="float-right">
@@ -109,9 +109,7 @@
                                     </div>
                                 </form>
                             </div>
-
                             <div class="clearfix mb-3"></div>
-
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <tr>
@@ -161,8 +159,10 @@
                                         <td>
                                             @if ($servers->srv_status == 'Aktif')
                                             <div class="badge badge-success">{{$servers->srv_status}}</div></td>
-                                        @else
-                                            <div class="badge badge-secondary">{{$servers->srv_status}}</div>
+                                        @elseif($servers->srv_status == 'Rusak')
+                                            <div class="badge badge-warning">{{$servers->srv_status}}</div>
+                                            @else
+                                            <div class="badge badge-danger">{{$servers->srv_status}}</div>
                                         @endif
                                     </tr>
 

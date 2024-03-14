@@ -41,7 +41,7 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Server Name</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input type="text" class="form-control @error('srv_name') is-invalid @enderror" name="srv_name" value="{{old('srv_name')}}">
+                                    <input type="text" class="form-control @error('srv_name') is-invalid @enderror" name="srv_name" value="{{old('srv_name')}}" placeholder="Nama Server Anda">
                                     @error('srv_name')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -53,7 +53,7 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">IP Address</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input type="text" class="form-control @error('srv_ip') is-invalid @enderror" name="srv_ip"  value="{{old('srv_ip')}}">
+                                    <input type="text" class="form-control @error('srv_ip') is-invalid @enderror" name="srv_ip"  value="{{old('srv_ip')}}" placeholder="IPv4 Address Server">
                                     @error('srv_ip')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -62,9 +62,9 @@
                                 </div>
                             </div>
                             <div class="form-group row mb-4">
-                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">User : Password</label>
+                                <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Auth IDRACK </label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input type="text" class="form-control @error('srv_auth') is-invalid @enderror" name="srv_auth" value="{{old('srv_auth')}}">
+                                    <input type="text" class="form-control @error('srv_auth') is-invalid @enderror" name="srv_auth" value="{{old('srv_auth')}}" placeholder="User :      /    Password :                                         note :  jika tidak ada IDRACK atau Modul Management isikan 'NONE' ">
                                    @error('srv_auth')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -76,7 +76,7 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Server Specification</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <textarea class="summernote-simple form-control @error('srv_spec') is-invalid @enderror" name="srv_spec" >
+                                    <textarea class="summernote-simple form-control @error('srv_spec') is-invalid @enderror" name="srv_spec">
                                      {{old('srv_spec')}}
                                     </textarea>
                                     @error('srv_spec')
@@ -90,7 +90,7 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Owner</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <input type="text" class="form-control @error('srv_owner') is-invalid @enderror" name="srv_owner" value="{{old('srv_owner')}}">
+                                    <input type="text" class="form-control @error('srv_owner') is-invalid @enderror" name="srv_owner" value="{{old('srv_owner')}}" placeholder="Pengelola Server">
                                     @error('srv_owner')
                                     <div class="invalid-feedback">
                                         {{$message}}
@@ -149,7 +149,7 @@
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Details Server Information</label>
                                 <div class="col-sm-12 col-md-7">
-                                    <textarea class="summernote-simple form-control @error('srv_keterangan') is-invalid @enderror" name="srv_keterangan">
+                                    <textarea class="summernote-simple form-control @error('srv_keterangan') is-invalid @enderror" name="srv_keterangan" >
                                         {{old('srv_keterangan')}}
                                     </textarea>
                                     @error('srv_keterangan')
