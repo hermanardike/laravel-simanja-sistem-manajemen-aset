@@ -4,16 +4,13 @@
     <section class="section">
         <div class="section-header">
             <h1>Host Server</h1>
-            <div class="section-header-button">
-                <a href="{{route('host.create')}}" class="btn btn-outline-primary">Add Host Server</a>
-            </div>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="{{route('host.index')}}">Host Server</a></div>
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title"> Data Host Server</h2>
+            <h2 class="section-title"> Table Data Host Server</h2>
             <p class="section-lead">
                 Host Server Management UPT TIK Universitas Lampung
             </p>
@@ -27,15 +24,78 @@
                     </div>
                 </div>
             @endif
+{{--            <div class="row">--}}
+{{--                <div class="col-12">--}}
+{{--                    <div class="card mb-0">--}}
+{{--                        <div class="card-body">--}}
+{{--                            <ul class="nav nav-pills">--}}
+{{--                                <li class="nav-item">--}}
+{{--                                    <a class="nav-link " href="{{route('server.index')}}"><h2> <i class="fas fa-server"></i> Total Data Host Server : <span class="badge badge-success">{{$jmlhost}}</span> Host</h2> </a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
             <div class="row">
-                <div class="col-12">
-                    <div class="card mb-0">
-                        <div class="card-body">
-                            <ul class="nav nav-pills">
-                                <li class="nav-item">
-                                    <a class="nav-link " href="{{route('server.index')}}"><h2> <i class="fas fa-server"></i> Total Data Host Server : <span class="badge badge-success">{{$jmlhost}}</span> Host</h2> </a>
-                                </li>
-                            </ul>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-primary">
+                            <i class="far fa-user"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Total Admin</h4>
+                            </div>
+                            <div class="card-body">
+                                10
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-danger">
+                            <i class="far fa-newspaper"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>News</h4>
+                            </div>
+                            <div class="card-body">
+                                42
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-warning">
+                            <i class="far fa-file"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Reports</h4>
+                            </div>
+                            <div class="card-body">
+                                1,201
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-success">
+                            <i class="fas fa-circle"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>Online Users</h4>
+                            </div>
+                            <div class="card-body">
+                                47
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -44,19 +104,13 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Data Host Server  </h4>
+                            <h4>Total Host : {{$jmlhost}} Unit</h4>
                         </div>
                         <div class="card-body">
                             <div class="float-left">
-                                <select class="form-control selectric">
-                                    <option>Fillter By Rack</option>
-                                    <option>RACK 1</option>
-                                    <option>RACK 2</option>
-                                    <option>RACK 3</option>
-                                    <option>RACK 4</option>
-                                    <option>RACK 5</option>
-
-                                </select>
+                                <div class="section-header-button">
+                                    <a href="{{route('host.create')}}" class="btn btn-primary">Add Host Server</a>
+                                </div>
                             </div>
                             <div class="float-right">
                                 <form method="GET">

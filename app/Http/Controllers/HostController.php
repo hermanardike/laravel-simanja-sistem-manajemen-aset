@@ -29,7 +29,7 @@ class HostController extends Controller
             ->when($request->input('search'), function($query, $search) {
                $query->where('host_name', 'like', "%" . $search . "%")
                    ->orWhere('host_ip', 'like', "%". $search. "%");
-            })->paginate('5');
+            })->paginate('10');
 
         return  view('server.host.index', [
             'jumlahinstance' => $jumlahinstance,

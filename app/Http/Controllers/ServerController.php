@@ -101,6 +101,7 @@ class ServerController extends Controller
         ]);
 
         $tmp= Temporaryfiles::where('foldername', $request->image)->first();
+
     if ($validator->fails() && $tmp)
     {
         Storage::deleteDirectory('tmp/' . $tmp->foldername);
@@ -127,7 +128,6 @@ class ServerController extends Controller
         $server->id_rack = $request->id_rack;
         $server->author = Auth::user()->name;
         $server->save();
-
         Storage::deleteDirectory('tmp/' . $tmp->foldername);
         $tmp->delete();
 
@@ -167,7 +167,7 @@ class ServerController extends Controller
 
     public function update(Request $request, Server $server )
     {
-        $request->validate([
+        $validator = Validator::make($request->all(),[
             'srv_name' => ['required','string','max:255'],
             'srv_ip' => Rule::unique('servers','srv_ip')->ignore($server),
             'srv_auth' => ['required','string','max:255'],
@@ -177,7 +177,7 @@ class ServerController extends Controller
             'srv_keterangan' => 'required|max:1000',
             'id_pengadaan' =>'required',
             'id_rack' =>'required',
-            'image' =>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' =>'required|string',
         ],[
             'srv_name.required' => 'Nama Server Harus Diisi',
             'srv_ip.required' => 'IP Server Harus Diisi',
@@ -193,45 +193,63 @@ class ServerController extends Controller
             'id_rack.required' => 'Tambahkan Rack Server',
         ]);
 
-        if ($request->hasFile('image'))
+        //mengambil data image lama untuk di hapus
+        $oldImage = $server->srv_image;
+
+        //mengambil data image baru untuk di upload
+        $tmp= Temporaryfiles::where('foldername', $request->image)->first();
+
+        if ($validator->fails() && $tmp)
         {
-            //mengambil data image lama untuk di hapus
-            $oldImage = $server->srv_image;
-            //upload file ke public storage image
-            $request->file('image')->store('public/servers');
-            $img = Image::make(storage_path('app/public/servers/' . $request->file('image')->hashName()))
-                ->fit(671, 485);
-            Storage::disk('public')->put('/servers/thumbnails/' . $request->file('image')->hashName(), $img->encode());
-            //update Data Server
-            $server->srv_name = $request->srv_name;
-            $server->srv_ip = $request->srv_ip;
-            $server->srv_auth = $request->srv_auth;
-            $server->srv_spec = $request->srv_spec;
-            $server->srv_owner = $request->srv_owner;
-            $server->srv_image = $request->file('image')->hashName();
-            $server->srv_status    = $request->srv_status;
-            $server->srv_keterangan = $request->srv_keterangan;
-            $server->id_pengadaan = $request->id_pengadaan;
-            $server->id_rack = $request->id_rack;
-            $server->author = Auth::user()->name;
-            $server->save();
-            Storage::disk('public')->delete('servers/' . $oldImage);
-            Storage::disk('public')->delete('servers/thumbnails/' . $oldImage);
+            Storage::deleteDirectory('tmp/' . $tmp->foldername);
+            $tmp->delete();
+            return redirect()->back()->withErrors($validator)->withInput();
+        }elseif ($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
-        else {
-            $server->srv_name = $request->srv_name;
-            $server->srv_ip = $request->srv_ip;
-            $server->srv_auth = $request->srv_auth;
-            $server->srv_spec = $request->srv_spec;
-            $server->srv_owner = $request->srv_owner;
-            $server->srv_status    = $request->srv_status;
-            $server->srv_keterangan = $request->srv_keterangan;
-            $server->id_pengadaan = $request->id_pengadaan;
-            $server->id_rack = $request->id_rack;
-            $server->author = Auth::user()->name;
-            $server->save();
-        }
-        return redirect()->back()->with('status','Berhasil Merubah Data Server');
+
+            if($tmp->foldername != null)
+            {
+                //Mengambil data dari request image
+                $img = Image::make(storage_path('app/tmp/' . $tmp->foldername . '/' . $tmp->filename))
+                    ->fit(671, 485);
+                Storage::disk('public')->put('/servers/thumbnails/' . $tmp->filename, $img->encode());
+                Storage::copy('tmp/' . $tmp->foldername . '/' . $tmp->filename, 'public/servers/' . $tmp->filename);
+                //update Data Server
+                $server->srv_name = $request->srv_name;
+                $server->srv_ip = $request->srv_ip;
+                $server->srv_auth = $request->srv_auth;
+                $server->srv_spec = $request->srv_spec;
+                $server->srv_owner = $request->srv_owner;
+                $server->srv_image = $tmp->filename;
+                $server->srv_status = $request->srv_status;
+                $server->srv_keterangan = $request->srv_keterangan;
+                $server->id_pengadaan = $request->id_pengadaan;
+                $server->id_rack = $request->id_rack;
+                $server->author = Auth::user()->name;
+                $server->save();
+                Storage::deleteDirectory('tmp/' . $tmp->foldername);
+                $tmp->delete();
+                Storage::disk('public')->delete('servers/' . $oldImage);
+                Storage::disk('public')->delete('servers/thumbnails/' . $oldImage);
+            } else {
+                $server->srv_name = $request->srv_name;
+                $server->srv_ip = $request->srv_ip;
+                $server->srv_auth = $request->srv_auth;
+                $server->srv_spec = $request->srv_spec;
+                $server->srv_owner = $request->srv_owner;
+//                $server->srv_image = $tmp->filename;
+                $server->srv_status = $request->srv_status;
+                $server->srv_keterangan = $request->srv_keterangan;
+                $server->id_pengadaan = $request->id_pengadaan;
+                $server->id_rack = $request->id_rack;
+                $server->author = Auth::user()->name;
+                $server->save();
+            }
+
+
+            return redirect()->back()->with('status','Berhasil Merubah Data Server');
     }
 
     /**

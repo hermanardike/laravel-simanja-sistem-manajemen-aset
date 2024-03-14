@@ -181,7 +181,6 @@
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Upload Image</label>
                                     <div class="col-sm-12 col-md-7">
                                         <div >
-                                            <label for="image-upload" id="image-label"></label>
                                             <input type="file" name="image"/>
                                         </div>
                                     </div>
@@ -201,9 +200,31 @@
     </section>
 @endsection
 @push('customCss')
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.css">
 @endpush
 
 @push('customJS')
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script>
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        const inputElement = document.querySelector('input[type="file"]');
+        const pond = FilePond.create( inputElement );
+        FilePond.setOptions({
+            credits: false,
+            acceptedFileTypes: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'],
+            server: {
+                process: '/file-pond',
+                revert: '/file-pond',
+                headers: {
+                    'accept' : 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            },
+        });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.js"></script>
 @endpush

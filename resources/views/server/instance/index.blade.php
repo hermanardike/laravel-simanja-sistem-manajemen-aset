@@ -68,11 +68,8 @@
                                     </div>
                                 </form>
                             </div>
-
                             <div class="clearfix mb-3"></div>
-
-                            <div class="table-responsive">
-                                <table class="table table-striped">
+                                <table class="table table-striped" >
                                     <tr>
                                         <th class="text-center text-bold">No</th>
                                         <th>INSTANCE NAME</th>
