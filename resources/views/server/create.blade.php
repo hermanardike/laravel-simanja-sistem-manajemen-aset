@@ -163,9 +163,15 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">upload_image</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="file" name="image" >
+                                        <input type="file" name="image">
                                     </div>
+                                    @error('image')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
                                 </div>
+
                             <div class="form-group row mb-4">
                                 <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                 <div class="col-sm-12 col-md-7">
@@ -183,21 +189,28 @@
 
 @push('customCss')
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.css">
 @endpush
 
 @push('customJS')
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script>
+        FilePond.registerPlugin(FilePondPluginImagePreview);
         const inputElement = document.querySelector('input[type="file"]');
-
         const pond = FilePond.create( inputElement );
         FilePond.setOptions({
+            credits: false,
+            required: true,
+            acceptedFileTypes: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'],
             server: {
                 process: '/file-pond',
                 revert: '/file-pond',
                 headers: {
+                    'accept' : 'application/json',
                     'X-CSRF-TOKEN': '{{ csrf_token() }}'
                 }
             },

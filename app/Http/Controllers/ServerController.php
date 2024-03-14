@@ -7,12 +7,14 @@ use App\Models\Host;
 use App\Models\Pengadaan;
 use App\Models\Rack;
 use App\Models\Server;
+use App\Models\Temporaryfiles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Auth;
 use Intervention\Image\Facades\Image;
+
 
 
 class ServerController extends Controller
@@ -71,7 +73,8 @@ class ServerController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+
+        $validator = Validator::make($request->all(),[
             'srv_name' => ['required','string','max:255'],
             'srv_ip' => 'required|ipv4|unique:servers',
             'srv_auth' => ['required','string','max:255'],
@@ -81,42 +84,53 @@ class ServerController extends Controller
             'srv_keterangan' => 'required|max:1000',
             'id_pengadaan' =>'required',
             'id_rack' =>'required',
-            'image' =>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' =>'required|string',
         ],[
-              'srv_name.required' => 'Nama Server Harus Diisi',
-              'srv_ip.required' => 'IP Server Harus Diisi',
-                    'srv_ip.ipv4' => 'Masukan Alamat IPv4 Yang Valid',
-                    'srv_ip.unique' => 'IPv4 sudah digunakan',
+            'srv_name.required' => 'Nama Server Harus Diisi',
+            'srv_ip.required' => 'IP Server Harus Diisi',
+            'srv_ip.ipv4' => 'Masukan Alamat IPv4 Yang Valid',
+            'srv_ip.unique' => 'IPv4 sudah digunakan',
 
-              'srv_auth.required' => 'Server Username dan Password harus Diisi',
-               'srv_spec.required' => 'Spesifikasi Server Harus Diisi',
-               'srv_owner.required' => 'Pengelola Server Harus Diisi',
-               'srv_status.required' => 'Tambahkan Status Server ',
-              'srv_keterangan.required' => 'Tambahkan Keterangan Kondisi Server',
-               'id_pengadaan.required' => 'Tambahkan Tahun Pengadaan Server',
-              'id_rack.required' => 'Tambahkan Rack Server',
+            'srv_auth.required' => 'Server Username dan Password harus Diisi',
+            'srv_spec.required' => 'Spesifikasi Server Harus Diisi',
+            'srv_owner.required' => 'Pengelola Server Harus Diisi',
+            'srv_status.required' => 'Tambahkan Status Server ',
+            'srv_keterangan.required' => 'Tambahkan Keterangan Kondisi Server',
+            'id_pengadaan.required' => 'Tambahkan Tahun Pengadaan Server',
+            'id_rack.required' => 'Tambahkan Rack Server',
         ]);
 
-        $request->file('image')->store('public/servers');
-        $img = Image::make(storage_path('app/public/servers/' . $request->file('image')->hashName()))
+        $tmp= Temporaryfiles::where('foldername', $request->image)->first();
+    if ($validator->fails() && $tmp)
+    {
+        Storage::deleteDirectory('tmp/' . $tmp->foldername);
+        $tmp->delete();
+        return redirect()->back()->withErrors($validator)->withInput();
+    }elseif ($validator->fails())
+    {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+        $img = Image::make(storage_path('app/tmp/' . $tmp->foldername . '/' . $tmp->filename))
             ->fit(671, 485);
-
-        Storage::disk('public')->put('/servers/thumbnails/' . $request->file('image')->hashName(), $img->encode());
-
-
+        Storage::disk('public')->put('/servers/thumbnails/' . $tmp->filename, $img->encode());
+        Storage::copy('tmp/' . $tmp->foldername . '/' . $tmp->filename, 'public/servers/' . $tmp->filename);
         $server = new Server();
         $server->srv_name = $request->srv_name;
         $server->srv_ip = $request->srv_ip;
         $server->srv_auth = $request->srv_auth;
         $server->srv_spec = $request->srv_spec;
         $server->srv_owner = $request->srv_owner;
-        $server->srv_image = $request->file('image')->hashName();
+        $server->srv_image = $tmp->filename;
         $server->srv_status    = $request->srv_status;
         $server->srv_keterangan = $request->srv_keterangan;
         $server->id_pengadaan = $request->id_pengadaan;
         $server->id_rack = $request->id_rack;
         $server->author = Auth::user()->name;
         $server->save();
+
+        Storage::deleteDirectory('tmp/' . $tmp->foldername);
+        $tmp->delete();
+
         return redirect()->route('server.index')->with('status','Success adding new server Devices');
     }
 
