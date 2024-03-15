@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="{{route('instance.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Edit VM Instance Server</h1>
+            <h1>Edit Instance Server</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{route('home')}}">Dasboard</a></div>
                 <div class="breadcrumb-item"><a href="{{route('instance.index')}}">Instance VM Server</a></div>
@@ -15,9 +15,9 @@
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Edit Vm Instance : {{$instance->instance_name}} </h2>
+            <h2 class="section-title" >Edit Instance : <div class="badge badge-success" style="font-size: 14px">{{$instance->instance_name}}</div> </h2>
             <p class="section-lead">
-                Halaman menambahkan Instance VM Server
+                Halaman Mengubah Data Instance Server
             </p>
 
             @if (session('status'))
@@ -34,7 +34,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Details Edit  VM Instance</h4>
+                            <h4><i class="fa fa-files-o" aria-hidden="true"></i> Details Edit Instance</h4>
                         </div>
                         <div class="card-body" >
                             <form METHOD="POST" action="/instance/{{$instance->id_instance}}">

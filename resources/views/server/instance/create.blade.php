@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="{{route('instance.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Add New VM Instance</h1>
+            <h1>Create New Instance Server</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="{{route('instance.index')}}">Instance</a></div>
@@ -15,7 +15,7 @@
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Add New Instance VM Server </h2>
+            <h2 class="section-title">Add New Instance </h2>
             <p class="section-lead">
                 Halaman menambahkan Instance VM Server
             </p>
@@ -34,7 +34,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Add Server VM  Details</h4>
+                            <h4><i class="fa fa-files-o" aria-hidden="true"></i> Add Instance Server  Details</h4>
                         </div>
                         <div class="card-body" >
                             <form METHOD="POST" action="{{route('instance.store')}}">
@@ -42,7 +42,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Instance Name</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('instance_name') is-invalid @enderror" name="instance_name" value="{{old('instance_name')}}">
+                                        <input type="text" class="form-control @error('instance_name') is-invalid @enderror" name="instance_name" value="{{old('instance_name')}}" placeholder="Tambahkan data nama instance contoh  'VM-UPTTIK-2024'">
                                         @error('instance_name')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -54,7 +54,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">IP Address</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('instance_ip') is-invalid @enderror" name="instance_ip"  value="{{old('instance_ip')}}">
+                                        <input type="text" class="form-control @error('instance_ip') is-invalid @enderror" name="instance_ip"  value="{{old('instance_ip')}}" placeholder="Masukan IPv4 Address Yang Valid">
                                         @error('instance_ip')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -65,7 +65,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">User : Password</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('instance_auth') is-invalid @enderror" name="instance_auth" value="{{old('instance_auth')}}">
+                                        <input type="text" class="form-control @error('instance_auth') is-invalid @enderror" name="instance_auth" value="{{old('instance_auth')}}" placeholder="User :        /    Password :         ">
                                         @error('instance_auth')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -91,7 +91,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Owner</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('instance_owner') is-invalid @enderror" name="instance_owner" value="{{old('instance_owner')}}">
+                                        <input type="text" class="form-control @error('instance_owner') is-invalid @enderror" name="instance_owner" value="{{old('instance_owner')}}" placeholder="Data Pengelola Server">
                                         @error('instance_owner')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -103,7 +103,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Domain Instance</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('instance_domain') is-invalid @enderror" name="instance_domain" value="{{old('instance_domain')}}">
+                                        <input type="text" class="form-control @error('instance_domain') is-invalid @enderror" name="instance_domain" value="{{old('instance_domain')}}" placeholder="www.example.unila.ac.id">
                                         @error('instance_domain')
                                         <div class="invalid-feedback">
                                             {{$message}}
@@ -176,7 +176,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary" type="submit">Add VM Instance </button>
+                                        <button class="btn btn-primary" type="submit">Simpan Data Instance </button>
                                     </div>
                                 </div>
                             </form>

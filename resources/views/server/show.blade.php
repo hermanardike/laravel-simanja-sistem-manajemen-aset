@@ -21,7 +21,8 @@
                 <div class="col-12 col-sm-6 col-lg-6">
                     <div class="card card-primary ">
                         <div class="card-header bg-whitesmoke">
-                            <h4>Server Images</h4>
+                            <h4><i class="fa fa-picture-o" aria-hidden="true"></i>
+                                 Server Images</h4>
                         </div>
                         <div class="card-body container">
                             <div class="owl-carousel owl-theme slider " id="slider1">
@@ -40,7 +41,7 @@
                 <div class="col-12 col-sm-6 col-lg-6">
                     <div class="card card-primary">
                         <div class="card-header bg-whitesmoke">
-                            <h4>Data Server Details</h4>
+                            <h4><i class="fa fa-server"></i> Data Server Details</h4>
                         </div>
                             <div class="card card-primary">
                                 <div class="card-body">
@@ -73,7 +74,7 @@
                 <div class="col-12 col-sm-6 col-lg-6">
                 <div class="card card-primary">
                     <div class="card-header bg-whitesmoke">
-                        <h4>Details Server</h4>
+                        <h4><i class="fa fa-info-circle" aria-hidden="true"></i> Details Server</h4>
                     </div>
                     <div class="card-body card-primary ">
                         <div class="row">

@@ -21,7 +21,7 @@
                 <div class="col-12 col-sm-6 col-lg-6">
                     <div class="card card-primary ">
                         <div class="card-header bg-whitesmoke">
-                            <h4>Server Images</h4>
+                            <h4><i class="fa fa-images" aria-hidden="true"></i> Server Images</h4>
                         </div>
                         <div class="card-body container">
                             @foreach($server as $images)
@@ -41,7 +41,7 @@
                 <div class="col-12 col-sm-6 col-lg-6">
                     <div class="card card-primary">
                         <div class="card-header bg-whitesmoke">
-                            <h4> VM Instance Server Details</h4>
+                            <h4> <i class="fa fa-files-o" aria-hidden="true"></i> Instance Server Details</h4>
                         </div>
                         <div class="card">
                             <div class="card-body">
@@ -104,7 +104,7 @@
                 <div class="col-12 col-sm-6 col-lg-6">
                     <div class="card card-info ">
                         <div class="card-header bg-whitesmoke card-info ">
-                            <h4>Data Physical Server </h4>
+                            <h4><i class="fa fa-server" aria-hidden="true"></i>  Data Physical Server </h4>
                         </div>
                         <div class="card ">
                             <div class="card-body ">
@@ -166,7 +166,7 @@
                 <div class="col-12 col-sm-6 col-lg-6">
                     <div class="card card-primary">
                         <div class="card-header bg-whitesmoke">
-                            <h4>Host Server Details</h4>
+                            <h4><i class="fa fa-window-restore" aria-hidden="true"></i> Host Server Details</h4>
                         </div>
                         <div class="card">
                             <div class="card-body">

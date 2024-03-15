@@ -78,7 +78,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>SERVER OFF </h4>
+                                <h4>SERVER DEACTIVATE </h4>
                             </div>
                             <div class="card-body">
                                 {{$srv_mati}}
@@ -150,7 +150,8 @@
                                             </div>
                                         </td>
                                         <td>
-                                            {{$servers->srv_ip}}
+                                            <div class="badge  badge-primary">{{$servers->srv_ip}} </div>
+
                                         </td>
                                         <td>
                                             <div class="badge  text-bold">{{$servers->rack->rack_number}} </div>

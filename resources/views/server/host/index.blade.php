@@ -14,7 +14,6 @@
             <p class="section-lead">
                 Host Server Management UPT TIK Universitas Lampung
             </p>
-
             @if (session('status'))
                 <div class="alert alert-success alert-has-icon">
                     <div class="alert-icon"><i class="far fa-lightbulb"></i></div>

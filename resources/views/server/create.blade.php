@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title"><i class="fa fa-server" aria-hidden="true"></i>  Add New Server Physical Data </h2>
+            <h2 class="section-title">Add New Server Physical Data </h2>
             <p class="section-lead">
                Halaman menambahkan server fisik baru
             </p>
@@ -33,7 +33,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Add Server Details</h4>
+                            <h4><i class="fa fa-server" aria-hidden="true"></i> Add Server Details</h4>
                         </div>
                         <div class="card-body" >
                             <form METHOD="POST"  enctype="multipart/form-data"  action="{{route('server.store')}}">

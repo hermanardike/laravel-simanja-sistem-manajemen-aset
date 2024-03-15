@@ -36,7 +36,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Add Host Details</h4>
+                            <h4><i class="fa fa-window-restore"></i> Add Host Details</h4>
                         </div>
                         <div class="card-body" >
                             <form METHOD="POST" action="{{route('host.store')}}">
@@ -125,7 +125,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary" type="submit">Add Server Host</button>
+                                        <button class="btn btn-primary" type="submit">Save Host Server</button>
                                     </div>
                                 </div>
                             </form>
