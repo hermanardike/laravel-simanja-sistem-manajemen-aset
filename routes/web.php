@@ -10,6 +10,7 @@ use App\Http\Controllers\OsController;
 use App\Http\Controllers\PengadaanController;
 use App\Http\Controllers\RackController;
 use App\Http\Controllers\FilepondController;
+use App\Http\Controllers\NetworkingController;
 
 
 /*
@@ -22,24 +23,23 @@ use App\Http\Controllers\FilepondController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
-
-
 
 Route::middleware(['auth','verified'])->group(function () {
    Route::get('/',function () {
        return view('home.index');
    })->name('home');
 
-   Route::get('edit-profile', function () {
-        return view('home.profile');
-    })->name('profile.edit');
 
+   // Menu User
    Route::resource('user', UserController::class);
    Route::put('update-password/{id}',[UserController::class,'UpdatePassword']);
+    Route::get('edit-profile', function () {
+        return view('home.profile');
+    })->name('profile.edit');
 
     // Menu Server
    Route::resource('server', ServerController::class);
@@ -55,7 +55,13 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('file-pond', [FilepondController::class, 'store'])->name('filepond.store');
     Route::delete('file-pond', [FilepondController::class, 'destroy'])->name('filepond.destroy');
 
-
+    Route::resource('networking', NetworkingController::class);
+    Route::get('networking-sw', [NetworkingController::class, 'sw'])->name('networking.sw');
+    Route::get('networking-router', [NetworkingController::class, 'router'])->name('networking.router');
+    Route::get('networking-tv', [NetworkingController::class, 'tv'])->name('networking.tv');
+    Route::get('networking-domain', [NetworkingController::class, 'domain'])->name('networking.domain');
+    Route::get('networking-ip', [NetworkingController::class, 'ip'])->name('networking.ip ');
+    Route::get('networking-ls', [NetworkingController::class, 'ls'])->name('networking.ls');
 
 });
 

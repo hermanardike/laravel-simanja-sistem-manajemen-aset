@@ -55,11 +55,11 @@
                             </form>
                         </div>
                     </div>
-                    <div class="mt-5 text-muted text-center">
-                        Don't have an account? <a href="{{route('register')}}">Create One</a>
-                    </div>
+{{--                    <div class="mt-5 text-muted text-center">--}}
+{{--                        Don't have an account? <a href="{{route('register')}}">Create One</a>--}}
+{{--                    </div>--}}
                     <div class="simple-footer">
-                        Copyright &copy; Simanja 2024
+                        Copyright &copy; Inventori@TIK 2024
                     </div>
                 </div>
             </div>

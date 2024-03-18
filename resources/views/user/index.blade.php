@@ -13,11 +13,11 @@
         <div class="section-body">
             <h2 class="section-title">Users</h2>
             <p class="section-lead">
-                You can manage all posts, such as editing, deleting and more.
+                Halaman management user yang terdaftar di sistem.
             </p>
 
             @if (session('status'))
-                <div class="alert alert-warning alert-has-icon">
+                <div class="alert alert-success alert-has-icon">
                     <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
                     <div class="alert-body">
                         <div class="alert-title">Success</div>
@@ -25,16 +25,78 @@
                     </div>
                 </div>
             @endif
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-primary">
+                            <i class="fa fa-users" style="font-size:36px; color:white"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>TOTAL USER</h4>
+                            </div>
+                            <div class="card-body">
+                              10
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-success">
+                            <i class="fa fa-user" style="font-size:36px; color:white"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>SYSADMIN</h4>
+                            </div>
+                            <div class="card-body">
+                                10
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-warning">
+                            <i class="fa fa-user" style="font-size:36px; color:white"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>NETWORKING</h4>
+                            </div>
+                            <div class="card-body">
+                               10
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="card card-statistic-1">
+                        <div class="card-icon bg-danger">
+                            <i class="fa fa-user" style="font-size:36px; color:white"></i>
+                        </div>
+                        <div class="card-wrap">
+                            <div class="card-header">
+                                <h4>OPERATOR</h4>
+                            </div>
+                            <div class="card-body">
+                               10
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row mt-4">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>User Management</h4>
+                            <h4> <i class="fa fa-users"></i> User Management</h4>
                         </div>
                         <div class="card-body">
                             <div class="float-left">
                                 <div class="section-header-button">
-                                    <a href="{{route('user.create')}}" class="btn btn-primary">Add Users</a>
+                                    <a href="{{route('user.create')}}" class="btn btn-primary"> <i class="fa fa-plus-square-o"></i> Add Users</a>
                                 </div>
                             </div>
                             <div class="float-right">

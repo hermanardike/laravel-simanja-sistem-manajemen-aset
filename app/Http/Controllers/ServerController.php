@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Auth;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Gate;
 
 
 
@@ -26,6 +27,10 @@ class ServerController extends Controller
      */
     public function index(Request $request)
     {
+        if (Gate::denies('index-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
+
         $server = Server::with('pengadaan','rack')
             ->when($request->input('search'), function ($query, $search){
                 $query->where('srv_name', 'like',"%" .   $search . "%")
@@ -63,6 +68,9 @@ class ServerController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('create-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $pengadaan = Pengadaan::all();
         $rack = Rack::all();
         return view('server.create',[
@@ -79,6 +87,9 @@ class ServerController extends Controller
      */
     public function store(Request $request)
     {
+        if (Gate::denies('store-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
 
         $validator = Validator::make($request->all(),[
             'srv_name' => ['required','string','max:255'],
@@ -148,6 +159,9 @@ class ServerController extends Controller
      */
     public function show($id)
     {
+        if (Gate::denies('show-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         return view('server.show',
             ['server' => Server::find($id)]);
     }
@@ -161,6 +175,9 @@ class ServerController extends Controller
      */
     public function edit($id)
     {
+        if (Gate::denies('create-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $server = Server::find($id);
         $pengadaan = Pengadaan::all();
         $rack = Rack::all();
@@ -173,6 +190,9 @@ class ServerController extends Controller
 
     public function update(Request $request, Server $server )
     {
+        if (Gate::denies('update-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $validator = Validator::make($request->all(),[
             'srv_name' => ['required','string','max:255'],
             'srv_ip' => Rule::unique('servers','srv_ip')->ignore($server),
@@ -266,6 +286,9 @@ class ServerController extends Controller
      */
     public function destroy($id)
     {
+        if (Gate::denies('destroy-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $server = Server::find($id);
         Storage::disk('public')->delete('servers/' . $server->srv_image);
         Storage::disk('public')->delete('servers/thumbnails/' . $server->srv_image);

@@ -12,30 +12,29 @@ class AuthServiceProvider extends ServiceProvider
 
     public static $permission = [
         //USER AUTHENTICATION
-        'dashboard' => ['administrator','admin',],
-        'index-user' => ['administrator','admin',],
-        'create-user' => ['administrator','admin',],
-        'edit-user' => ['administrator','admin',],
-        'update-user' => ['administrator','admin',],
-        'destroy-user' => ['administrator','admin',],
+        'dashboard' => ['administrator',],
+        'index-user' => ['administrator',],
+        'create-user' => ['administrator',],
+        'edit-user' => ['administrator',],
+        'update-user' => ['administrator',],
+        'destroy-user' => ['administrator',],
 
-        //SERVER ASSET AUTHENTICATION
-        'index-server' => ['administrator','sysadmin','operator'],
+        //SERVER AUTHENTICATION
+        'index-server' => ['administrator','sysadmin',],
         'create-server' => ['administrator','sysadmin',],
-        'show-server' => ['administrator','sysadmin','operator'],
+        'store-server' => ['administrator','sysadmin',],
+        'show-server' => ['administrator','sysadmin',],
         'edit-server' => ['administrator','sysadmin',],
-        'delete-server' => ['administrator','sysadmin',],
+        'update-server' => ['administrator','sysadmin',],
+        'destroy-server' => ['administrator','sysadmin',],
         'auth-server' => ['administrator','sysadmin',],
 
-        //NETWORK ASSET AUTHENTICATION
+        //NETWORK AUTHENTICATION
         'index-network' => ['administrator','networking'],
         'create-network' => ['administrator','networking'],
         'show-network' => ['administrator','networking'],
         'edit-network' => ['administrator','networking'],
         'delete-network' => ['administrator','networking'],
-
-
-
 
     ];
     /**

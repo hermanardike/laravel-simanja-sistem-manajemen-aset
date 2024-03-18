@@ -26,7 +26,7 @@ class UserController extends Controller implements UpdatesUserPasswords
     public function index(Request $request)
     {
         if (Gate::denies('index-user')) {
-            abort(403,'Anda Tidak Memilki Akses');
+            abort(404,'Anda Tidak Memilki Akses');
         }
         $users = DB::table('users')
             ->when($request->input('search'), function($query, $search) {
@@ -45,6 +45,9 @@ class UserController extends Controller implements UpdatesUserPasswords
      */
     public function create()
     {
+        if (Gate::denies('index-user')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         return view('user.create');
     }
 
@@ -56,6 +59,9 @@ class UserController extends Controller implements UpdatesUserPasswords
      */
     public function store(Request $request)
     {
+        if (Gate::denies('index-user')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => [
@@ -88,6 +94,9 @@ class UserController extends Controller implements UpdatesUserPasswords
      */
     public function show($id)
     {
+        if (Gate::denies('index-user')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
        return view('user.show',['user' => User::find($id)]);
     }
 
@@ -99,6 +108,9 @@ class UserController extends Controller implements UpdatesUserPasswords
      */
     public function edit($id)
     {
+        if (Gate::denies('index-user')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $user = User::find($id);
         return view('user.edit',['user' => $user]);
     }
@@ -112,6 +124,9 @@ class UserController extends Controller implements UpdatesUserPasswords
      */
     public function update( Request $request, $id )
     {
+        if (Gate::denies('index-user')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $request->validate([
             'name' => ['required','string','max:255'],
             'email' => "required|email|unique:users,email,$id",
@@ -133,7 +148,12 @@ class UserController extends Controller implements UpdatesUserPasswords
         return redirect("/user/{$user->id}/edit")->with('status', 'Berhasil Update User');
     }
 
+
     public function UpdatePassword(Request $request, $id) {
+
+        if (Gate::denies('index-user')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $request->validate([
             'current_password' => ['required','string', 'current_password:web'],
             'current_password.current_password' =>__ ('The provided password does not match your current password.'),
@@ -155,6 +175,10 @@ class UserController extends Controller implements UpdatesUserPasswords
      */
     public function destroy($id)
     {
+
+        if (Gate::denies('index-user')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $user = User::find($id);
         $user->delete();
         return redirect()->back()->with('status', 'Berhasil Menghapus User');

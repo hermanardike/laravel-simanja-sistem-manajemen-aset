@@ -47,16 +47,48 @@
 
 
 <!-- JS Libraies -->
+@stack('customchartjs')
+
 <script src="{{asset('assets/js/lightbox.js')}}"></script>
 
 @stack('customJS')
 @stack('js-owl')
 @stack('devicesauth')
 <!-- Template JS File -->
+
 <script src="https://kit.fontawesome.com/0fec2dd060.js" crossorigin="anonymous"></script>
 <script src="{{asset('assets/js/scripts.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('myChart');
 
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                'Belum Digunakan',
+                'Aktif',
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [50, 50,],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 </body>
 </html>

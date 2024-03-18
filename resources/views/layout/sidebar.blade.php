@@ -24,10 +24,10 @@
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-sitemap"></i> <span>Networking</span></a>
                 <ul class="dropdown-menu">
-                    <li class="active"><a class="nav-link" href="layout-default.html">Acces Point</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Switch</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Router</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">CCTV</a></li>
+                    <li class="active"><a class="nav-link" href="{{route('networking.index')}}">Acces Point</a></li>
+                    <li><a class="nav-link" href="{{route('networking.sw')}}">Switch</a></li>
+                    <li><a class="nav-link" href="{{route('networking.router')}}">Router</a></li>
+                    <li><a class="nav-link" href="{{route('networking.tv')}}">CCTV</a></li>
                 </ul>
             </li>
 
@@ -35,9 +35,9 @@
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Digital Asset</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link" href="components-article.html">Domain Unila</a></li>
-                    <li><a class="nav-link beep beep-sidebar" href="components-avatar.html">IP Address</a></li>
-                    <li><a class="nav-link" href="components-chat-box.html">Lisensi</a></li>
+                    <li><a class="route(" href="{{route('networking.domain')}}">Domain Unila</a></li>
+                    <li><a class="nav-link beep beep-sidebar" href="{{route('networking.ip ')}}">IP Address</a></li>
+                    <li><a class="nav-link" href="{{ route('networking.ls') }}">Lisensi</a></li>
                 </ul>
             </li>
             @can('index-user')
