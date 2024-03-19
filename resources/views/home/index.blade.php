@@ -153,17 +153,17 @@
                         <div class="row">
                             <div class="col mb-4 mb-lg-0 text-center">
                                 <div ><img class="mr-3 rounded" width="55" src="{{asset('assets/img/dashboard/arubaimg.png')}}" alt="product" ></div>
-                                <div class="mt-2 font-weight-bold">PGN 2019</div>
+                                <div class="mt-2 font-weight-bold">PGN Aruba 2019</div>
                                 <div class="text-small "><span class="text-primary"><i class="fas fa-caret-up"></i></span> <i class="" style="color: green"> On : 100 Unit</i> / <i class="fas fa-caret-down"></i></span><i class="" style="color: red"> Off : 150 Unit</i></div>
                             </div>
                             <div class="col mb-4 mb-lg-0 text-center">
                                 <div ><img class="mr-3 rounded" width="55" src="{{asset('assets/img/dashboard/arubaimg.png')}}" alt="product" ></div>
-                                <div class="mt-2 font-weight-bold">PGN 2020</div>
+                                <div class="mt-2 font-weight-bold">PGN Aruba 2020</div>
                                 <div class="text-small "><span class="text-primary"><i class="fas fa-caret-up"></i></span> <i class="" style="color: green"> On : 100 Unit</i> / <i class="fas fa-caret-down"></i></span><i class="" style="color: red"> Off : 150 Unit</i></div>
                             </div>
                             <div class="col mb-4 mb-lg-0 text-center">
                                 <div ><img class="mr-3 rounded" width="55" src="{{asset('assets/img/dashboard/arubaimg.png')}}" alt="product" ></div>
-                                <div class="mt-2 font-weight-bold">PGN 2021</div>
+                                <div class="mt-2 font-weight-bold">PGN Aruba 2021</div>
                                 <div class="text-small "><span class="text-primary"><i class="fas fa-caret-up"></i></span> <i class="" style="color: green"> On : 100 Unit</i> / <i class="fas fa-caret-down"></i></span><i class="" style="color: red"> Off : 150 Unit</i></div>
                             </div>
 
