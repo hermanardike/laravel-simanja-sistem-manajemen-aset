@@ -11,6 +11,7 @@ use App\Http\Controllers\PengadaanController;
 use App\Http\Controllers\RackController;
 use App\Http\Controllers\FilepondController;
 use App\Http\Controllers\NetworkingController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -29,10 +30,11 @@ Route::get('/login', function () {
 })->name('login');
 
 Route::middleware(['auth','verified'])->group(function () {
-   Route::get('/',function () {
-       return view('home.index');
-   })->name('home');
+//   Route::get('/',function () {
+//       return view('home.index');
+//   })->name('home');
 
+   Route::get('/', [HomeController::class, 'index'])->name('home');
 
    // Menu User
    Route::resource('user', UserController::class);

@@ -48,10 +48,12 @@
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item"> Nama Server <span class="tabs1"> : &nbsp;{{$server->srv_name}}</span> </li>
                                         <li class="list-group-item">IP Address <span class="tabs2"> : &nbsp;{{$server->srv_ip}}</span> </li>
+                                        @can('edit-server')
                                         <li class="list-group-item">Server Auth <span class="tabs3"> :  <input style="border: #c9d7e0" type="password" value="{{$server->srv_auth}} " id="myInput" disabled>
                                            &nbsp;
                                                 <input type="checkbox" onclick="myFunction()"> &nbsp;Show Password</span>
                                         </li>
+                                        @endcan
                                         <li class="list-group-item">Owner <span class="tabs4"> : &nbsp;{{$server->srv_owner}}</span></li>
                                         <li class="list-group-item"> Status <span class="tabs5"> : &nbsp;
                                              @if ($server->srv_status == 'Aktif')

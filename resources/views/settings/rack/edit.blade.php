@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="{{route('rack.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Add New Tahun Pengadaan</h1>
+            <h1><i class="fa fa-cog"></i> Edit Rack Server</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="{{route('rack.index')}}}}">Rack Number</a></div>
@@ -15,7 +15,7 @@
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Edit Rack Numbers </h2>
+            <h2 class="section-title"> Rack Numbers </h2>
             <p class="section-lead">
                 Halaman Menambahkan Rack Numbers
             </p>

@@ -14,15 +14,15 @@
                         </div>
                         <div class="card-stats-items">
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count"> <i class="fa fa-server" style="font-size:16px; color:green"> 24</i></div>
+                                <div class="card-stats-item-count"> <i class="fa fa-server" style="font-size:16px; color:green"> {{$serveraktif}}</i></div>
                                 <div class="card-stats-item-label">Server Aktif</div>
                             </div>
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count"> <i class="fa fa-server" style="font-size:16px; color:orange"> 24</i></div>
+                                <div class="card-stats-item-count"> <i class="fa fa-server" style="font-size:16px; color:orange"> {{$serverrusak}}</i></div>
                                 <div class="card-stats-item-label">Server Error</div>
                             </div>
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count"> <i class="fa fa-server" style="font-size:16px; color:red"> 24</i></div>
+                                <div class="card-stats-item-count"> <i class="fa fa-server" style="font-size:16px; color:red"> {{$servermati}}</i></div>
                                 <div class="card-stats-item-label">Server Deactivate </div>
                             </div>
                         </div>
@@ -35,7 +35,7 @@
                             <h4>Total Server</h4>
                         </div>
                         <div class="card-body">
-                            59
+                            {{$totalserver}}
                         </div>
                     </div>
                 </div>

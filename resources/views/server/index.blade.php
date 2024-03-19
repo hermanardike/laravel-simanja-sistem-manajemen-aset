@@ -94,11 +94,13 @@
                             <h4><i class="fa fa-server" aria-hidden="true"></i> Tabel Data Server</h4>
                         </div>
                         <div class="card-body">
+                            @can('create-server')
                             <div class="float-left">
                                 <div class="section-header-button">
                                     <a href="{{route('server.create')}}" class="btn btn-primary"><i class="fa fa-plus-square-o"></i> Add Physical Server</a>
                                 </div>
                             </div>
+                            @endcan
                             <div class="float-right">
                                 <form method="GET">
                                     <div class="input-group">
@@ -131,7 +133,7 @@
                                             {{$servers->srv_name}}
                                             <div class="table-links">
                                                 @can('show-server')
-                                                <a href="server/{{$servers->id_srv}}">View</a>
+                                                <a href="server/{{$servers->id_srv}}"  class="text-info">View</a>
                                                 @endcan
                                                 @can('edit-server')
                                                 <div class="bullet"></div>

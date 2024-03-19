@@ -1,12 +1,12 @@
 @extends('layout.app')
-@section('title','Create Operating System')
+@section('title','Edit Operating System')
 @section('content')
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
                 <a href="{{route('os.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Add New Host Server</h1>
+            <h1>Edit Operating System </h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="{{route('host.index')}}}}">Posts</a></div>
@@ -15,13 +15,10 @@
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Edit Os  </h2>
+            <h2 class="section-title">Form OS Setting  </h2>
             <p class="section-lead">
-                Halaman Mengubah Sistem Operasi
+               Halaman Mengubah Sistem Operasi Setting Server
             </p>
-
-
-
             @if (session('status'))
                 <div class="alert alert-success alert-has-icon">
                     <div class="alert-icon"><i class="far fa-lightbulb"></i></div>
@@ -36,7 +33,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Edit OS Details</h4>
+                            <h4><i class="fa fa-circle-o-notch"> </i> Edit OS Details</h4>
                         </div>
                         <div class="card-body" >
                             <form METHOD="POST" action="/os/{{$os->id_os}}">

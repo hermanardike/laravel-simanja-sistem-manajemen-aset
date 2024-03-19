@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Os;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use MongoDB\Driver\Query;
 
 class OsController extends Controller
@@ -15,6 +16,9 @@ class OsController extends Controller
      */
     public function index(Request $request)
     {
+        if (Gate::denies('index-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
     $os = Os::query()->when($request->input('search'), function ($query, $search){
         $query->where('os_name', 'like', "%" . $search . "%");
     })->paginate('5');

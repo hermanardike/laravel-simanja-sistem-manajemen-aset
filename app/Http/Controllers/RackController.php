@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rack;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 
 class RackController extends Controller
@@ -15,6 +16,9 @@ class RackController extends Controller
      */
     public function index(Request $request)
     {
+        if(Gate::denies('index-server')){
+           abort('404','Anda Tidak Memiliki Akses');
+        }
         $rack = Rack::query()
             ->when($request->input('search'), function ($query, $search) {
              $query->where('rack_number', 'like' , "%" . $search . "%");
@@ -29,6 +33,9 @@ class RackController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('create-server')) {
+            abort('404', 'Anda Tidak Memiliki Akses');
+        }
         return view('settings.rack.create');
     }
 
@@ -40,6 +47,11 @@ class RackController extends Controller
      */
     public function store(Request $request)
     {
+
+        if (Gate::denies('store-server')) {
+            abort('404', 'Anda Tidak Memiliki Akses');
+        }
+
         $request->validate([
             'rack_number' => ['required','string','max:255','unique:rack'],
         ]);
@@ -57,7 +69,9 @@ class RackController extends Controller
      */
     public function show($id)
     {
-        //
+        if (Gate::denies('show-server')) {
+            abort('404', 'Anda Tidak Memiliki Akses');
+        }
     }
 
     /**
@@ -68,6 +82,9 @@ class RackController extends Controller
      */
     public function edit($id)
     {
+        if (Gate::denies('edit-server')) {
+            abort('404', 'Anda Tidak Memiliki Akses');
+        }
         $rack = Rack::find($id);
         return view('settings.rack.edit', compact('rack'));
     }
@@ -81,6 +98,10 @@ class RackController extends Controller
      */
     public function update(Request $request, Rack $rack)
     {
+        if (Gate::denies('update-server')) {
+            abort('404', 'Anda Tidak Memiliki Akses');
+        }
+
         $request->validate([
             'rack_number' => ['required','string','max:255', Rule::unique('rack','rack_number')->ignore($rack)],
         ]);
@@ -97,6 +118,9 @@ class RackController extends Controller
      */
     public function destroy($id)
     {
+        if (Gate::denies('destroy-server')) {
+            abort('404', 'Anda Tidak Memiliki Akses');
+        }
         Rack::destroy($id);
         return redirect()->back()->with('status','Berhasil Menghapus Data Rack');
     }

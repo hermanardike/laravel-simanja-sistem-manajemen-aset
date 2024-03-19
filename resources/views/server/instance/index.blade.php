@@ -95,9 +95,11 @@
                         </div>
                         <div class="card-body">
                             <div class="float-left">
+                                @can('create-server')
                                 <div class="section-header-button">
                                     <a href="{{route('instance.create')}}" class="btn btn-primary"><i class="fa fa-plus-square-o" aria-hidden="true"> </i> Add Instance Server </a>
                                 </div>
+                                @endcan
                             </div>
                             <div class="float-right">
                                 <form method="GET">
@@ -130,7 +132,7 @@
                                             {{$instances->instance_name}}
                                             <div class="table-links">
                                                 @can('show-server')
-                                                    <a href="instance/{{$instances->id_instance}}">View</a>
+                                                    <a href="instance/{{$instances->id_instance}}" class="text-info">View</a>
                                                 @endcan
                                                 @can('edit-server')
 

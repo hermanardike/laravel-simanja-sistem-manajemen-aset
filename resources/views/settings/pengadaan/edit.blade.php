@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="{{route('pengadaan.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Add New Host Server</h1>
+            <h1> <i class="fa fa-cog"></i> Edit Tahun Pengadaan Setting</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="{{route('pengadaan.index')}}">Tahun Pengadaan</a></div>
@@ -19,8 +19,6 @@
             <p class="section-lead">
                 Halaman Mengubah Tahun Pengadaan
             </p>
-
-
 
             @if (session('status'))
                 <div class="alert alert-success alert-has-icon">
@@ -36,7 +34,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Edit Tahun Pengadaan</h4>
+                            <h4>Edit Tahun Pengadaan Details</h4>
                         </div>
                         <div class="card-body" >
                             <form METHOD="POST" action="/pengadaan/{{$pengadaan->id_pengadaan}}">

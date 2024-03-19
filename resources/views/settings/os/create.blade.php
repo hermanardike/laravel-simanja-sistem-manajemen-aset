@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="{{route('os.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Add New Host Server</h1>
+            <h1>Create Operating System</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="{{route('host.index')}}}}">Posts</a></div>
@@ -17,7 +17,7 @@
         <div class="section-body">
             <h2 class="section-title">Add New OS </h2>
             <p class="section-lead">
-                Halaman Menamabhkan Sistem Operasi
+                <i class="fa fa-circle-o-notch"> </i> Halaman Menambahkan Sistem Operasi Setting
             </p>
 
 
@@ -36,7 +36,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Add OS Details</h4>
+                            <h4><i class="fa fa-circle-o-notch"> </i>  Add OS Details</h4>
                         </div>
                         <div class="card-body" >
                             <form METHOD="POST" action="{{route('os.store')}}">
@@ -70,7 +70,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary" type="submit">Add Operating System</button>
+                                        <button class="btn btn-primary" type="submit">Save Operating System</button>
                                     </div>
                                 </div>
                             </form>

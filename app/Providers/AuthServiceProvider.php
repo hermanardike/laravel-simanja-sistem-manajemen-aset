@@ -20,10 +20,10 @@ class AuthServiceProvider extends ServiceProvider
         'destroy-user' => ['administrator',],
 
         //SERVER AUTHENTICATION
-        'index-server' => ['administrator','sysadmin',],
+        'index-server' => ['administrator','sysadmin','operator'],
         'create-server' => ['administrator','sysadmin',],
         'store-server' => ['administrator','sysadmin',],
-        'show-server' => ['administrator','sysadmin',],
+        'show-server' => ['administrator','sysadmin','operator'],
         'edit-server' => ['administrator','sysadmin',],
         'update-server' => ['administrator','sysadmin',],
         'destroy-server' => ['administrator','sysadmin',],

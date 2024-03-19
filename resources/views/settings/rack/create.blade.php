@@ -6,7 +6,7 @@
             <div class="section-header-back">
                 <a href="{{route('rack.index')}}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Add New Tahun Pengadaan</h1>
+            <h1> <i class="fa fa-cog"> </i> Create Rack Number Server</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="{{route('pengadaan.index')}}}}">Rack Number</a></div>
@@ -52,7 +52,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary" type="submit">Add Rack Number</button>
+                                        <button class="btn btn-primary" type="submit">Save Setting</button>
                                     </div>
                                 </div>
                             </form>

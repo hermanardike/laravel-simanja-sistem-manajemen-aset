@@ -10,6 +10,7 @@ use App\Models\Rack;
 use App\Models\Server;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Auth;
 
@@ -22,6 +23,9 @@ class HostController extends Controller
      */
     public function index(Request $request)
     {
+        if (Gate::denies('index-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $active = Host::where('status',  'Active')->count();
         $deactive = Host::where('status',  'Deactivate')->count();
         $jmlhost = Host::all()->count();
@@ -50,6 +54,9 @@ class HostController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('create-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $device =  Server::all();
         $os =  Os::all();
         return view( 'server.host.create',
@@ -67,6 +74,9 @@ class HostController extends Controller
      */
     public function store(Request $request)
     {
+        if (Gate::denies('store-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $request->validate([
             'host_name' => ['required','string','max:255'],
             'host_ip' => ['required','ipv4','unique:hosts'],
@@ -96,6 +106,9 @@ class HostController extends Controller
      */
     public function show($id)
     {
+        if (Gate::denies('show-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
 
         $host = Host::find($id);
         $server = $host->server->id_srv;
@@ -118,6 +131,9 @@ class HostController extends Controller
      */
     public function edit($id)
     {
+        if (Gate::denies('edit-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $host = Host::find($id);
         $device =  Server::all();
         $os =  Os::all();
@@ -138,6 +154,9 @@ class HostController extends Controller
      */
     public function update(Request $request, Host $host)
     {
+        if (Gate::denies('update-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $request->validate([
             'host_name' => ['required','string','max:255'],
             'host_ip' => ['required','ipv4',Rule::unique('hosts','host_ip')->ignore($host)],
@@ -165,6 +184,9 @@ class HostController extends Controller
      */
     public function destroy($id)
     {
+        if (Gate::denies('destroy-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         Host::destroy($id);
             return redirect()->route('host.index')->with('status','Berhasil Menghapus Data');
     }

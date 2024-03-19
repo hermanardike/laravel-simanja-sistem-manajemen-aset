@@ -3,10 +3,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Table</h1>
-            <div class="section-header-button">
-                <a href="{{route('pengadaan.create')}}" class="btn btn-outline-primary">Add Tahun Pengadaan </a>
-            </div>
+            <h1><i class="fa fa-cog"></i> Tahun Pengadaan Setting </h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{route('home')}}">Dashboard</a></div>
                 <div class="breadcrumb-item"><a href="{{route('pengadaan.index')}}">Tahun Pengadaan</a></div>
@@ -14,13 +11,22 @@
         </div>
 
         <div class="section-body">
-            <h2 class="section-title">Table</h2>
-            <p class="section-lead">Example of some Bootstrap table components.</p>
+            <h2 class="section-title">Tahun Pengadaan </h2>
+            <p class="section-lead">Tahun Pengadaan Barang atau Unit Alat.</p>
             <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Advanced Table</h4>
+                            @if(Auth::user()->role == 'operator')
+                                <h4> Table Tahun Pengadaan</h4>
+                            @endif
+
+                            @can('create-server')
+                            <h4><div class="section-header-button">
+                                    <a href="{{route('pengadaan.create')}}" class="btn btn-primary"><i class="fa fa-plus"> </i> Add Tahun Pengadaan </a>
+                                </div>
+                            </h4>
+                            @endcan
                             <div class="card-header-form float-right">
                                 <form method="GET">
                                     <div class="input-group">
@@ -40,7 +46,9 @@
                                         <th>Tahun Pengadaan</th>
                                         <th>Create At</th>
                                         <th>Update At</th>
+                                        @can('create-server')
                                         <th>Action</th>
+                                        @endcan
                                     </tr>
                                     @forelse($pengadaan as $index => $thn_pengadaan)
                                         <tr>
@@ -53,18 +61,20 @@
                                             </td>
                                             <td>
                                             {{ \Carbon\Carbon::parse($thn_pengadaan->updated_at)->format('h M, Y')}}
-
+                                            </td>
+                                            @can('create-server')
                                             <td>
                                                 <a href="/pengadaan/{{$thn_pengadaan->id_pengadaan}}/edit" class="btn btn-primary">Edit</a>
                                                 <a href="/pengadaan/{{$thn_pengadaan->id_pengadaan}}" class="btn btn-danger"
                                                    onclick="event.preventDefault(); document.getElementById('del-{{$thn_pengadaan->id_pengadaan}}')"
-                                                   data-confirm="Hapus Data Operating System ? | Apakah Anda Yakin ingin Mengapus Operating System : {{$thn_pengadaan->thn_pengadaan}} "  data-confirm-yes="submit({{$thn_pengadaan->id_pengadaan}})">
+                                                   data-confirm="Hapus Data Operating System ? | Apakah Anda Yakin ingin Mengapus Tahun Pengadaan: {{$thn_pengadaan->thn_pengadaan}} "  data-confirm-yes="submit({{$thn_pengadaan->id_pengadaan}})">
                                                     Delete </a>
                                                 <form id="del-{{$thn_pengadaan->id_pengadaan}}" action="/pengadaan/{{$thn_pengadaan->id_pengadaan}}" method="POST" style="display: none;">
                                                     @method('DELETE')
                                                     @csrf
                                                 </form>
                                             </td>
+                                            @endcan
                                         </tr>
 
                                     @empty

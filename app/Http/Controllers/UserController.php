@@ -28,14 +28,26 @@ class UserController extends Controller implements UpdatesUserPasswords
         if (Gate::denies('index-user')) {
             abort(404,'Anda Tidak Memilki Akses');
         }
+        $administrator = User::where('role','administrator')->count();
+        $sysadmin = User::where('role','sysadmin')->count();
+        $networking = User::where('role','networking')->count();
+        $operator = User::where('role','operator')->count();
+        $totaluser = User::count();
         $users = DB::table('users')
             ->when($request->input('search'), function($query, $search) {
                 $query->where('name', 'like',"%" . $search . "%")
                     ->orWhere('email', 'like',"%" . $search . "%")
                     ->orWhere('role', 'like',"%" . $search . "%");
-            })->paginate(5);
-        return view('user.index',compact('users'));
-    }
+            })->paginate(10);
+        return view('user.index',[
+            'users' => $users,
+            'sysadmin' => $sysadmin,
+            'administrator' => $administrator,
+            'networking' => $networking,
+            'operator' => $operator,
+            'totaluser' => $totaluser,
+            ]);
+          }
 
 
     /**

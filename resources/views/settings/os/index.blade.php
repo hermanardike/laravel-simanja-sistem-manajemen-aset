@@ -3,25 +3,33 @@
 @section('content')
         <section class="section">
             <div class="section-header">
-                <h1>Table</h1>
-                <div class="section-header-button">
-                    <a href="{{route('os.create')}}" class="btn btn-outline-primary">Add Operating System </a>
-                </div>
+                <h1>Operating System Setting</h1>
+
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Components</a></div>
-                    <div class="breadcrumb-item">Table</div>
+                    <div class="breadcrumb-item"><a href="#">Os Setting</a></div>
                 </div>
             </div>
 
             <div class="section-body">
-                <h2 class="section-title">Table</h2>
-                <p class="section-lead">Example of some Bootstrap table components.</p>
+                <h2 class="section-title">Table Operating System </h2>
+                <p class="section-lead"><i class="fa fa-globe"></i> Operating System Option For Server State</p>
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>Advanced Table</h4>
+                                @if(Auth::user()->role == 'operator')
+                                    <h4><i class="fa fa-circle-o-notch"></i> Table Operating System</h4>
+                                @endif
+                                @can('create-server')
+                                <h4><div class="card-header-form note-float-left">
+                                        <div class="section-header-button">
+                                            <a href="{{route('os.create')}}" class="btn btn-primary"><i class="fa fa-plus"> </i> Add Operating System </a>
+                                        </div>
+                                    </div></h4>
+                                @endcan
+
+
                                 <div class="card-header-form float-right">
                                     <form method="GET">
                                         <div class="input-group">
@@ -42,7 +50,9 @@
                                             <th>Mark</th>
                                             <th>Create At</th>
                                             <th>Update At</th>
+                                            @can('edit-server')
                                             <th>Action</th>
+                                            @endcan
                                         </tr>
                                         @forelse($os as $index => $oss)
                                         <tr>
@@ -65,7 +75,8 @@
                                             </td>
                                             <td>
                                                 {{ \Carbon\Carbon::parse($oss->updated_at)->format('h M, Y')}}
-
+                                            </td>
+                                            @can('edit-server')
                                             <td>
                                                 <a href="/os/{{$oss->id_os}}/edit" class="btn btn-primary">Edit</a>
                                                 <a href="/os/{{$oss->id_os}}" class="btn btn-danger"
@@ -77,6 +88,7 @@
                                                     @csrf
                                                 </form>
                                             </td>
+                                            @endcan
                                         </tr>
 
                                         @empty

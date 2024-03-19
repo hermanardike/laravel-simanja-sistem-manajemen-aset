@@ -78,9 +78,11 @@
                         </div>
                         <div class="card-body">
                             <div class="float-left">
+                                @can('create-server')
                                 <div class="section-header-button">
                                     <a href="{{route('host.create')}}" class="btn btn-primary"><i class="fa fa-plus-square-o"></i> Add Host Server</a>
                                 </div>
+                                @endcan
                             </div>
                             <div class="float-right">
                                 <form method="GET">

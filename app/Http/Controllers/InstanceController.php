@@ -8,6 +8,7 @@ use App\Models\Os;
 use App\Models\Rack;
 use App\Models\Server;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Auth;
 
@@ -20,6 +21,9 @@ class InstanceController extends Controller
      */
     public function index(Request $request)
     {
+        if (Gate::denies('index-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
 
        $active =  Instance::where('instance_status', 'Active')->count();
        $deactivate =  Instance::where('instance_status', 'Deactivate')->count();
@@ -49,6 +53,9 @@ class InstanceController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('create-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $os = Os::all();
         $host = Host::all();
         return view('server.instance.create',[
@@ -65,6 +72,9 @@ class InstanceController extends Controller
      */
     public function store(Request $request)
     {
+        if (Gate::denies('store-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $request->validate([
             'instance_name' => ['required','max:255','string'],
             'instance_ip' => ['required','ipv4','unique:instance','string'],
@@ -101,6 +111,9 @@ class InstanceController extends Controller
      */
     public function show($id)
     {
+        if (Gate::denies('show-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $instance = Instance::find($id);
         $host = $instance->host->id_host;
         $servers = $instance->host->id_srv;
@@ -121,6 +134,9 @@ class InstanceController extends Controller
      */
     public function edit($id)
     {
+        if (Gate::denies('edit-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $instance = Instance::find($id);
         $os = Os::all();
         $host = Host::all();
@@ -140,6 +156,9 @@ class InstanceController extends Controller
      */
     public function update(Request $request, Instance $instance)
     {
+        if (Gate::denies('update-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         $request->validate([
             'instance_name' => ['required','max:255','string'],
             'instance_ip' => ['required','ipv4',Rule::unique('instance','instance_ip')->ignore($instance)],
@@ -175,6 +194,9 @@ class InstanceController extends Controller
      */
     public function destroy($id)
     {
+        if (Gate::denies('destroy-server')) {
+            abort(404,'Anda Tidak Memilki Akses');
+        }
         Instance::destroy($id);
         return redirect()->route('instance.index')->with('status','Berhasil Menghapus Data');
     }

@@ -29,14 +29,14 @@
                 <div class="col-lg-3 col-md-6 col-sm-6 col-12">
                     <div class="card card-statistic-1">
                         <div class="card-icon bg-primary">
-                            <i class="fa fa-users" style="font-size:36px; color:white"></i>
+                            <i class="fa fa-user" style="font-size:36px; color:white"></i>
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>TOTAL USER</h4>
+                                <h4>ADMINISTRATOR</h4>
                             </div>
                             <div class="card-body">
-                              10
+                              {{$administrator}}
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                                 <h4>SYSADMIN</h4>
                             </div>
                             <div class="card-body">
-                                10
+                                {{$sysadmin}}
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                                 <h4>NETWORKING</h4>
                             </div>
                             <div class="card-body">
-                               10
+                                {{$networking}}
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                                 <h4>OPERATOR</h4>
                             </div>
                             <div class="card-body">
-                               10
+                               {{$operator}}
                             </div>
                         </div>
                     </div>
@@ -91,7 +91,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4> <i class="fa fa-users"></i> User Management</h4>
+                            <h4> <i class="fa fa-users"></i> User Management | User : {{$totaluser}}</h4>
                         </div>
                         <div class="card-body">
                             <div class="float-left">
