@@ -203,13 +203,11 @@ class ServerController extends Controller
             'srv_keterangan' => 'required|max:1000',
             'id_pengadaan' =>'required',
             'id_rack' =>'required',
-            'image' =>'required|string',
         ],[
             'srv_name.required' => 'Nama Server Harus Diisi',
             'srv_ip.required' => 'IP Server Harus Diisi',
             'srv_ip.ipv4' => 'Masukan Alamat IPv4 Yang Valid',
             'srv_ip.unique' => 'IPv4 sudah digunakan',
-
             'srv_auth.required' => 'Server Username dan Password harus Diisi',
             'srv_spec.required' => 'Spesifikasi Server Harus Diisi',
             'srv_owner.required' => 'Pengelola Server Harus Diisi',
@@ -235,8 +233,21 @@ class ServerController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-            if($tmp->foldername != null)
+            if(empty($tmp->foldername))
             {
+                $server->srv_name = $request->srv_name;
+                $server->srv_ip = $request->srv_ip;
+                $server->srv_auth = $request->srv_auth;
+                $server->srv_spec = $request->srv_spec;
+                $server->srv_owner = $request->srv_owner;
+                $server->srv_status = $request->srv_status;
+                $server->srv_keterangan = $request->srv_keterangan;
+                $server->id_pengadaan = $request->id_pengadaan;
+                $server->id_rack = $request->id_rack;
+                $server->author = Auth::user()->name;
+                $server->save();
+
+            } else{
                 //Mengambil data dari request image
                 $img = Image::make(storage_path('app/tmp/' . $tmp->foldername . '/' . $tmp->filename))
                     ->fit(671, 485);
@@ -259,19 +270,6 @@ class ServerController extends Controller
                 $tmp->delete();
                 Storage::disk('public')->delete('servers/' . $oldImage);
                 Storage::disk('public')->delete('servers/thumbnails/' . $oldImage);
-            } else {
-                $server->srv_name = $request->srv_name;
-                $server->srv_ip = $request->srv_ip;
-                $server->srv_auth = $request->srv_auth;
-                $server->srv_spec = $request->srv_spec;
-                $server->srv_owner = $request->srv_owner;
-//                $server->srv_image = $tmp->filename;
-                $server->srv_status = $request->srv_status;
-                $server->srv_keterangan = $request->srv_keterangan;
-                $server->id_pengadaan = $request->id_pengadaan;
-                $server->id_rack = $request->id_rack;
-                $server->author = Auth::user()->name;
-                $server->save();
             }
 
 

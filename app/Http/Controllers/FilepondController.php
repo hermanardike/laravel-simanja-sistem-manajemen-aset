@@ -11,7 +11,7 @@ class FilepondController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
        // Membuat Unique Name Folder
         $foldername =  uniqid() . '-' . now()->timestamp;
