@@ -56,5 +56,13 @@ class DatabaseSeeder extends Seeder
             SwSeeder::class,
         ]);
 
+        $this->call([
+            LokasiSeeder::class,
+        ]);
+
+        $this->call([
+            VendorSeeder::class,
+        ]);
+
     }
 }
