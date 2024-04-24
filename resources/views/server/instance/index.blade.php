@@ -126,7 +126,6 @@
                                 @forelse($instance as $index => $instances)
                                     <tr>
                                         <td class="text-bold text-center "> {{$index + $instance->firstItem()}}
-
                                         </td>
                                         <td class="text-bold menu-header" style="text-transform: uppercase"><i class="fa fa-files-o" aria-hidden="true"></i>
                                             {{$instances->instance_name}}

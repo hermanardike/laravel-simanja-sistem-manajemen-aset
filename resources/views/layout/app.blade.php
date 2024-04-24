@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{asset('https://use.fontawesome.com/releases/v5.7.2/css/all.css')}}" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     @stack('customCss')
     @stack('custom-owl')
+    @stack('css-datatable')
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}">
@@ -48,18 +49,15 @@
 
 <!-- JS Libraies -->
 @stack('customchartjs')
-
 <script src="{{asset('assets/js/lightbox.js')}}"></script>
-
 @stack('customJS')
 @stack('js-owl')
 @stack('devicesauth')
+@stack('js-datatable')
 <!-- Template JS File -->
-
 <script src="https://kit.fontawesome.com/0fec2dd060.js" crossorigin="anonymous"></script>
 <script src="{{asset('assets/js/scripts.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('myChart');

@@ -25,5 +25,5 @@ class Sw extends Model
         'sw_backup',
     ];
 
-    protected $primaryKey = 'id_sw';
+    protected $primaryKey = 'id_switch';
 }

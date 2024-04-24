@@ -12,6 +12,7 @@ use App\Http\Controllers\RackController;
 use App\Http\Controllers\FilepondController;
 use App\Http\Controllers\NetworkingController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SwController;
 
 
 /*
@@ -56,6 +57,9 @@ Route::middleware(['auth','verified'])->group(function () {
     // ImageUPloadConfiguration
     Route::post('file-pond', [FilepondController::class, 'store'])->name('filepond.store');
     Route::delete('file-pond', [FilepondController::class, 'destroy'])->name('filepond.destroy');
+
+    // Switch Controller
+    Route::resource('switch', SwController::class);
 
     Route::resource('networking', NetworkingController::class);
     Route::get('networking-sw', [NetworkingController::class, 'sw'])->name('networking.sw');
