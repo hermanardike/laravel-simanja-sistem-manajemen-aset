@@ -50,7 +50,10 @@ class SwController extends Controller
      */
     public function show($id)
     {
-        //
+        $sw = Sw::find($id);
+        return view('networking.switch.show',[
+            'sw' => $sw,
+        ]);
     }
 
     /**

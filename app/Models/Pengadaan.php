@@ -21,4 +21,9 @@ class Pengadaan extends Model
         return $this->hasMany('id_pengadaan');
     }
 
+    public function sw()
+    {
+        return $this->hasMany('id_pengadaan');
+    }
+
 }

@@ -13,4 +13,9 @@ class Vendor extends Model
     ];
     protected $primaryKey = 'id_vendor';
     use HasFactory;
+
+    public function sw()
+    {
+        return $this->hasMany(Sw::class, 'id_vendor');
+    }
 }

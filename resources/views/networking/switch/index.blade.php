@@ -113,12 +113,11 @@
                             </td>
                             <td>{{$switch->sw_name}}</td>
                             <td>{{$switch->sw_ip}}</td>
-                            <td>{{$switch->id_lokasi}}</td>
+                            <td>{{$switch->location->nama_lokasi}}</td>
                             <td>{{$switch->sw_lokasi}}</td>
                             <td>{{$switch->sw_status}}</td>
                             <td>
-                                <a href='' class="btn btn-warning btn-sm">Edit</a>
-                                <a href='' class="btn btn-danger btn-sm">Del</a>
+                                <a href="switch/{{$switch->id_switch}}" class="btn btn-primary btn-sm">Detail</a>
                             </td>
                         </tr>
                         @empty
@@ -156,9 +155,6 @@
                     </table>
                 </div>
             </div>
-
-
-
         </div>
     </section>
 @endsection
@@ -178,11 +174,8 @@
                         },
 
                     }
-
-
                 }
             );
-
         } );
     </script>
 @endpush
