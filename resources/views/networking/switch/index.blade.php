@@ -87,10 +87,14 @@
                     </div>
                 </div>
             </div>
-
             <div class="card">
-                <div class="card-header">
-                    <h4>Basic DataTables</h4>
+                <div class="card-body">
+                    <div class="float-left">
+                        <h4 style="font-size: medium; color: blue"><i class="fa fa-server" aria-hidden="true"></i> Tabel Data Switch</h4>
+                        <div class="section-header-button">
+                            <a href="{{route('switch.create')}}" class="btn btn-primary"><i class="fa fa-plus-square-o"></i> Add Switch</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <table id="myTable" class="table table-striped table-bordered" style="width:100%">

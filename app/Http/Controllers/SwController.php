@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lokasi;
+use App\Models\Pengadaan;
 use App\Models\Server;
 use App\Models\Sw;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SwController extends Controller
 {
@@ -28,7 +33,14 @@ class SwController extends Controller
      */
     public function create()
     {
-        //
+        $lokasi  = Lokasi::all();
+        $vendor = Vendor::all();
+        $pengadaan = Pengadaan::all();
+        return view('networking.switch.create',[
+            'lokasi' => $lokasi,
+            'vendor' => $vendor,
+            'pengadaan' => $pengadaan,
+            ]);
     }
 
     /**
@@ -39,7 +51,39 @@ class SwController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+            $request->validate([
+                'sw_name' => 'required',
+                'sw_ip' => 'required',
+                'sw_auth' => 'required',
+                'sw_uplink' => 'required',
+                'id_lokasi' => 'required',
+                'sw_lokasi' => 'required',
+                'id_vendor' => 'required',
+                'id_pengadaan' => 'required',
+                'sw_keterangan' => 'required',
+                'sw_status' => 'required',
+                'sw_image' => 'required',
+                'sw_backup' => 'required',
+            ]);
+
+        Sw::create([
+            'sw_name' => $request->sw_name,
+            'sw_ip' => $request->sw_ip,
+            'sw_auth' => $request->sw_auth,
+            'sw_uplink' => $request->sw_uplink,
+            'id_lokasi' => $request->id_lokasi,
+            'sw_lokasi' => $request->sw_lokasi,
+            'id_vendor' => $request->id_vendor,
+            'id_pengadaan' => $request->id_pengadaan,
+            'sw_keterangan' => $request->sw_keterangan,
+            'sw_status' => $request->sw_status,
+            'sw_image' => $request->sw_image,
+            'sw_backup' => $request->sw_backup,
+            'sw_author' => Auth::user()->name,
+        ]);
+
+        return redirect()->route('switch.index')->with('success','Data Switch berhasil ditambahkan');
     }
 
     /**

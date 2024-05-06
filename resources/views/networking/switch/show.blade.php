@@ -46,21 +46,21 @@
                         <div class="card card-primary">
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item"> Nama Switch <span class="tabs1"> : &nbsp;{{$sw->sw_name}}</span> </li>
-                                    <li class="list-group-item">IP Address <span class="tabs2"> : &nbsp;{{$sw->sw_ip}}</span> </li>
+                                    <li class="list-group-item"> Nama Switch <span class="tabsw1"> : &nbsp;{{$sw->sw_name}}</span> </li>
+                                    <li class="list-group-item">IP Address <span class="tabsw2"> : &nbsp;{{$sw->sw_ip}}</span> </li>
                                     @can('edit-server')
-                                        <li class="list-group-item">Switch Auth <span class="tabs3"> :  <input style="border: #c9d7e0" type="password" value="{{$sw->sw_auth}} " id="myInput" disabled>
+                                        <li class="list-group-item">Switch Auth <span class="tabsw3"> :  <input style="border: #c9d7e0" type="password" value="{{$sw->sw_auth}} " id="myInput" disabled>
                                            &nbsp;
                                                 <input type="checkbox" onclick="myFunction()"> &nbsp;Show Password</span>
                                         </li>
                                     @endcan
-                                    <li class="list-group-item">Port Uplink<span class="tabs4"> : &nbsp;{{$sw->sw_uplink}}</span></li>
-                                    <li class="list-group-item">Lokasi<span class="tabs4"> : &nbsp;{{$sw->location->nama_lokasi}}</span></li>
-                                    <li class="list-group-item">Detail Lokasi<span class="tabs4"> : &nbsp;{{$sw->sw_lokasi}}</span></li>
+                                    <li class="list-group-item">Port Uplink<span class="tabsw4"> : &nbsp;{{$sw->sw_uplink}}</span></li>
+                                    <li class="list-group-item">Lokasi<span class="tabsw5"> : &nbsp;{{$sw->location->nama_lokasi}}</span></li>
+                                    <li class="list-group-item">Detail Lokasi<span class="tabsw6"> : &nbsp;{{$sw->sw_lokasi}}</span></li>
 
-                                    <li class="list-group-item">Vendor <span class="tabs6"> :  &nbsp;{{$sw->vendor->nama_vendor}}</span></li>
-                                    <li class="list-group-item">Pengadaan <span class="tabs10"> : &nbsp; {{$sw->pengadaan->thn_pengadaan}}</span></li>
-                                    <li class="list-group-item"> Status <span class="tabs5"> : &nbsp;
+                                    <li class="list-group-item">Vendor <span class="tabsw7"> :  &nbsp;{{$sw->vendor->nama_vendor}}</span></li>
+                                    <li class="list-group-item">Pengadaan <span class="tabsw8"> : &nbsp; {{$sw->pengadaan->thn_pengadaan}}</span></li>
+                                    <li class="list-group-item"> Status <span class="tabsw5"> : &nbsp;
                                              @if ($sw->sw_status == 'Aktif')
                                                 <div class="badge badge-success">{{$sw->sw_status}}</div>
                                             @else
@@ -68,9 +68,9 @@
                                             @endif
                                             </span>
                                     </li>
-                                    <li class="list-group-item">Author <span class="tabs10"> : &nbsp; {{$sw->author}}</span></li>
-                                    <li class="list-group-item">Tanggal Input  <span class="tabs8"> : &nbsp; {{ \Carbon\Carbon::parse($sw->created_at)->format('d F, Y')}}</span> </li>
-                                    <li class="list-group-item">Tanggal Update <span class="tabs9"> : &nbsp;{{\Carbon\Carbon::parse($sw->updated_at)->format('d F,Y')}}</span> </li>
+                                    <li class="list-group-item">Author <span class="tabsw9"> : &nbsp; {{$sw->sw_author}}</span></li>
+                                    <li class="list-group-item">Tanggal Input  <span class="tabsw10"> : &nbsp; {{ \Carbon\Carbon::parse($sw->created_at)->format('d F, Y')}}</span> </li>
+                                    <li class="list-group-item">Tanggal Update <span class="tabsw11"> : &nbsp;{{\Carbon\Carbon::parse($sw->updated_at)->format('d F,Y')}}</span> </li>
                                 </ul>
                             </div>
                         </div>
@@ -103,6 +103,9 @@
         </div>
     </section>
 @endsection
+@push('css-tab')
+    <link rel="stylesheet" href="{{asset('assets/css/tab/switch/tab-switch.css')}}">
+@endpush
 @push('custom-owl')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
