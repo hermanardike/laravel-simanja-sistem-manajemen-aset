@@ -121,7 +121,7 @@
                             <td>{{$switch->sw_lokasi}}</td>
                             <td>{{$switch->sw_status}}</td>
                             <td>
-                                <a href="switch/{{$switch->id_switch}}" class="btn btn-primary btn-sm">Detail</a>
+                                <a href="switch/{{$switch->id_switch}}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Detail</a>
                             </td>
                         </tr>
                         @empty
