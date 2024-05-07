@@ -9,7 +9,7 @@ use App\Models\Sw;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\SwitchStoreRequest;
 
 class SwController extends Controller
 {
@@ -49,23 +49,9 @@ class SwController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SwitchStoreRequest $request)
     {
-
-            $request->validate([
-                'sw_name' => 'required',
-                'sw_ip' => 'required',
-                'sw_auth' => 'required',
-                'sw_uplink' => 'required',
-                'id_lokasi' => 'required',
-                'sw_lokasi' => 'required',
-                'id_vendor' => 'required',
-                'id_pengadaan' => 'required',
-                'sw_keterangan' => 'required',
-                'sw_status' => 'required',
-                'sw_image' => 'required',
-                'sw_backup' => 'required',
-            ]);
+            $request->validated();
 
         Sw::create([
             'sw_name' => $request->sw_name,

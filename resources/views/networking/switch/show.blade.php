@@ -22,7 +22,8 @@
                     <div class="card card-primary ">
                         <div class="card-header bg-whitesmoke">
                             <h4><i class="fa fa-picture-o" aria-hidden="true"></i>
-                                Switch Images</h4>
+                                Switch Images
+                            </h4>
                         </div>
                         <div class="card-body container">
                             <div class="owl-carousel owl-theme slider " id="slider1">
@@ -41,7 +42,21 @@
                 <div class="col-12 col-sm-6 col-lg-6">
                     <div class="card card-primary">
                         <div class="card-header bg-whitesmoke">
-                            <h4><i class="fa fa-server"></i> Data Switch Details</h4>
+                            <h4 ><i class="fa fa-server"></i> Data Switch Details </h4>
+
+                            <a href="#"> <button type="button" class="btn btn-sm btn-primary mt-3 mr-2" style="position: absolute; margin-left: 570px; top: 0px; right: 100px;">
+                                <i class="fa fa-edit"></i> Edit
+                            </button>
+                            </a>
+
+                            <a href="#"> <button type="button" class="btn btn-sm btn-danger mt-3 mr-2" style="position: absolute;  top: 0; right: 0">
+                                    <i class="fa fa-trash"></i> Delete
+                            </button>
+                            </a>
+
+
+
+
                         </div>
                         <div class="card card-primary">
                             <div class="card-body">
@@ -54,7 +69,7 @@
                                                 <input type="checkbox" onclick="myFunction()"> &nbsp;Show Password</span>
                                         </li>
                                     @endcan
-                                    <li class="list-group-item">Port Uplink<span class="tabsw4"> : &nbsp;{{$sw->sw_uplink}}</span></li>
+                                    <li class="list-group-item">Port Uplink<span class="tabsw4"> : &nbsp;{{!! $sw->sw_uplink !!}}</span></li>
                                     <li class="list-group-item">Lokasi<span class="tabsw5"> : &nbsp;{{$sw->location->nama_lokasi}}</span></li>
                                     <li class="list-group-item">Detail Lokasi<span class="tabsw6"> : &nbsp;{{$sw->sw_lokasi}}</span></li>
 
