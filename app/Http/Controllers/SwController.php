@@ -81,8 +81,15 @@ class SwController extends Controller
     public function show($id)
     {
         $sw = Sw::find($id);
+        $lokasi = Lokasi::all();
+        $vendor =  Vendor::all();
+        $pengadaan =  Pengadaan::all();
+
         return view('networking.switch.show',[
             'sw' => $sw,
+            'lokasi' => $lokasi,
+            'vendor' => $vendor,
+            'pengadaan' => $pengadaan,
         ]);
     }
 
@@ -106,7 +113,34 @@ class SwController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'sw_name' => 'required',
+            'sw_ip' => 'ipv4',
+            'sw_uplink' => 'required',
+            'id_lokasi' => 'required',
+            'sw_lokasi' => 'required',
+            'id_vendor' => 'required',
+            'id_pengadaan' => 'required',
+            'sw_keterangan' => 'required',
+            'sw_status' => 'required',
+        ]);
+        $sw = Sw::find($id);
+        $sw->update([
+            'sw_name' => $request->sw_name,
+            'sw_ip' => $request->sw_ip,
+            'sw_auth' => $request->sw_auth,
+            'sw_uplink' => $request->sw_uplink,
+            'id_lokasi' => $request->id_lokasi,
+            'sw_lokasi' => $request->sw_lokasi,
+            'id_vendor' => $request->id_vendor,
+            'id_pengadaan' => $request->id_pengadaan,
+            'sw_keterangan' => $request->sw_keterangan,
+            'sw_status' => $request->sw_status,
+            'sw_image' => $request->sw_image,
+            'sw_backup' => $request->sw_backup,
+            'sw_author' => Auth::user()->name,
+        ]);
+        return redirect()->back()->with('success','Data Switch berhasil diubah');
     }
 
     /**
