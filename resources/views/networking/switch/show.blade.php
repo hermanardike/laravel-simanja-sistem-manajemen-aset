@@ -43,18 +43,15 @@
                     <div class="card card-primary">
                         <div class="card-header bg-whitesmoke">
                             <h4 ><i class="fa fa-server"></i> Data Switch Details </h4>
-
-                            <a href="#"> <button type="button" class="btn btn-sm btn-primary mt-3 mr-2" style="position: absolute; margin-left: 570px; top: 0px; right: 100px;">
-                                <i class="fa fa-edit"></i> Edit
-                            </button>
-                            </a>
-
-                            <a href="#"> <button type="button" class="btn btn-sm btn-danger mt-3 mr-2" style="position: absolute;  top: 0; right: 0">
-                                    <i class="fa fa-trash"></i> Delete
-                            </button>
-                            </a>
+{{--                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">--}}
+{{--                                Launch demo modal--}}
+{{--                            </button>--}}
 
 
+
+                       <button type="button" class="btn btn-sm btn-primary mt-3 mr-2" style="position: absolute;  top: 0; right: 0" data-toggle="modal" data-target="#updateModal">
+                                    <i class="fa fa-edit"></i> Edit Data
+                      </button>
 
 
                         </div>
@@ -116,6 +113,195 @@
                 </div>
             </div>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="updateModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Edit Data Switch</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                            <form METHOD="POST"  enctype="multipart/form-data"  action="{{route('switch.store')}}">
+                                @csrf
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Switch Name</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="text" class="form-control @error('sw_name') is-invalid @enderror" name="sw_name" value="{{old('sw_name')}}" placeholder="Masukan Nama Switch ">
+                                        @error('sw_name')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">IP Address</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="text" class="form-control @error('sw_ip') is-invalid @enderror" name="sw_ip"  value="{{old('sw_ip')}}" placeholder="IPv4 Address Switch ">
+                                        @error('sw_ip')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Auth Switch</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="text" class="form-control @error('sw_auth') is-invalid @enderror" name="sw_auth" value="{{old('sw_auth')}}" placeholder="User :      /    Password :     ">
+                                        @error('sw_auth')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Port Link</label>
+                                    <div class="col-sm-12 col-md-7">
+                                    <textarea class="summernote-simple form-control @error('sw_uplink') is-invalid @enderror" name="sw_uplink">
+                                     {{old('sw_uplink')}}
+                                    </textarea>
+                                        @error('sw_uplink')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+{{--                                <div class="form-group row mb-4">--}}
+{{--                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Lokasi</label>--}}
+{{--                                    <div class="col-sm-12 col-md-7">--}}
+{{--                                        <select class="form-control selectric @error('id_lokasi')  is-invalid @enderror" name="id_lokasi" id="id_lokasi" >--}}
+{{--                                            @foreach($lokasi as $data)--}}
+{{--                                                <option value="{{$data->id_lokasi}}" @selected(old('id_lokasi') == $data->id_lokasi)>{{$data->nama_lokasi}}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                        @error('id_lokasi')--}}
+{{--                                        <div class="invalid-feedback">--}}
+{{--                                            {{$message}}--}}
+{{--                                        </div>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Details Lokasi</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="text" class="form-control @error('sw_lokasi') is-invalid @enderror" name="sw_lokasi" value="{{old('sw_lokasi')}}" placeholder="Lokasi Lengkap Device">
+                                        @error('sw_lokasi')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+{{--                                <div class="form-group row mb-4">--}}
+{{--                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Vendor</label>--}}
+{{--                                    <div class="col-sm-12 col-md-7">--}}
+{{--                                        <select class="form-control @error('id_vendor') is-invalid @enderror selectric" name="id_vendor" id="id_vendor">--}}
+{{--                                            @foreach($vendor as $vendors)--}}
+{{--                                                <option value="{{$vendors->id_vendor}}" @selected(old('id_vendor') == $vendors->id_vendor)>{{$vendors->nama_vendor}}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                        @error('id_vendor')--}}
+{{--                                        <div class="invalid-feedback">--}}
+{{--                                            {{$message}}--}}
+{{--                                        </div>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+
+{{--                                <div class="form-group row mb-4">--}}
+{{--                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Tahun Pengadaan</label>--}}
+{{--                                    <div class="col-sm-12 col-md-7">--}}
+{{--                                        <select class="form-control @error('id_pengadaan') is-invalid @enderror selectric" name="id_pengadaan" id="id_pengadaan">--}}
+{{--                                            @foreach($pengadaan as $thn)--}}
+{{--                                                <option value="{{$thn->id_pengadaan}}" @selected(old('id_pengadaan') == $thn->id_pengadaan)>{{$thn->thn_pengadaan}}</option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                        @error('id_pengadaan')--}}
+{{--                                        <div class="invalid-feedback">--}}
+{{--                                            {{$message}}--}}
+{{--                                        </div>--}}
+{{--                                        @enderror--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <select class="form-control  @error('sw_status') is-invalid @enderror selectric" name="sw_status" id="sw_status">
+                                            <option value="Aktif" @selected(old('sw_status') =='Aktif' )>Aktif</option>
+                                            <option value="Rusak" @selected(old('sw_status') =='Rusak' )>Rusak</option>
+                                            <option value="Mati" @selected(old('sw_status') =='Mati>' )>Mati</option>
+                                        </select>
+                                        @error('sw_status')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Details Switch</label>
+                                    <div class="col-sm-12 col-md-7">
+                                    <textarea class="summernote-simple form-control @error('sw_keterangan') is-invalid @enderror" name="sw_keterangan" >
+                                        {{old('sw_keterangan')}}
+                                    </textarea>
+                                        @error('sw_keterangan')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Upload Backup Switch</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="file" name="sw_backup">
+                                    </div>
+                                    @error('sw_backup')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Upload Image</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="file" name="sw_image">
+                                    </div>
+                                    @error('sw_image')
+                                    <div class="invalid-feedback">
+                                        {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+{{--                                <div class="form-group row mb-4">--}}
+{{--                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>--}}
+{{--                                    <div class="col-sm-12 col-md-7">--}}
+{{--                                        <button class="btn btn-primary" type="submit"><i class="fa fa-save" aria-hidden="true"></i> Save Data Server</button>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-save" aria-hidden="true"></i> Save Data Switch</button>
+                    </div>
+                    </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </section>
 @endsection
 @push('css-tab')
@@ -131,6 +317,9 @@
 @endpush
 
 @push('devicesauth')
+    <script>
+        $('#updateModal').appendTo("body").modal('hide');
+    </script>
     <script>
         function myFunction() {
             var x = document.getElementById("myInput");
