@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Lokasi;
 use App\Models\Pengadaan;
-use App\Models\Server;
 use App\Models\Sw;
 use App\Models\Temporaryfiles;
 use App\Models\Vendor;
@@ -64,7 +63,7 @@ class SwController extends Controller
                 'id_pengadaan' => 'required',
                 'sw_keterangan' => 'required',
                 'sw_status' => 'required',
-                'image' => 'required|string',
+                'sw_image' => 'required|string',
             ]);
 
         $tmp= Temporaryfiles::where('foldername', $request->image)->first();
@@ -82,22 +81,23 @@ class SwController extends Controller
             ->fit(671, 485);
         Storage::disk('public')->put('/switch/thumbnails/' . $tmp->filename, $img->encode());
         Storage::copy('tmp/' . $tmp->foldername . '/' . $tmp->filename, 'public/switch/' . $tmp->filename);
-        Sw::create([
-            'sw_name' => $request->sw_name,
-            'sw_ip' => $request->sw_ip,
-            'sw_auth' => $request->sw_auth,
-            'sw_uplink' => $request->sw_uplink,
-            'id_lokasi' => $request->id_lokasi,
-            'sw_lokasi' => $request->sw_lokasi,
-            'id_vendor' => $request->id_vendor,
-            'id_pengadaan' => $request->id_pengadaan,
-            'sw_keterangan' => $request->sw_keterangan,
-            'sw_status' => $request->sw_status,
-            'image' => $request->$tmp->filename,
-            'sw_backup' => $request->sw_backup,
-            'sw_author' => Auth::user()->name,
-        ]);
+        $switch = new Sw();
+        $switch->sw_name = $request->sw_name;
+        $switch->sw_ip =  $request->sw_ip;
+        $switch->sw_auth =  $request->sw_auth;
+        $switch->sw_uplink = $request->sw_uplink;
+        $switch->id_lokasi =  $request->id_lokasi;
+        $switch->sw_lokasi = $request->sw_lokasi;
+        $switch->id_vendor =  $request->id_vendor;
+        $switch->id_pengadaan =  $request->id_pengadaan;
+        $switch->sw_keterangan = $request->sw_keterangan;
+        $switch->sw_status =  $request->sw_status;
+        $switch->sw_image = $tmp->filename;
+        $switch->sw_backup = $request->sw_backup;
+        $switch->sw_author = Auth::user()->name;
+        $switch->save();
 
+        Storage::deleteDirectory('tmp/' . $tmp->foldername);
         return redirect()->route('switch.index')->with('success','Data Switch berhasil ditambahkan');
     }
 

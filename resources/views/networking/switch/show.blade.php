@@ -37,8 +37,8 @@
                         <div class="card-body container">
                             <div class="owl-carousel owl-theme slider " id="slider1">
                                 <div>
-                                    <a class="example-image-link" href="{{asset('storage/servers/' . $sw->sw_image)}}" data-lightbox="example-1">
-                                        <img class="image" src="{{asset('storage/servers/thumbnails/' . $sw->sw_image)}} " alt="image-1" />
+                                    <a class="example-image-link" href="{{asset('storage/switch/' . $sw->sw_image)}}" data-lightbox="example-1">
+                                        <img class="image" src="{{asset('storage/switch/thumbnails/' . $sw->sw_image)}} " alt="image-1" />
                                         <div class="middle">
                                             <div class="text">Tampilkan Gambar</div>
                                         </div>
