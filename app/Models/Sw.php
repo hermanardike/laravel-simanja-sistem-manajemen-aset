@@ -21,7 +21,7 @@ class Sw extends Model
         'id_vendor',
         'id_pengadaan',
         'sw_keterangan',
-        'sw_image',
+        'image',
         'sw_status',
         'sw_backup',
         'sw_author',

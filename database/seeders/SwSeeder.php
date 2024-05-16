@@ -25,7 +25,7 @@ class SwSeeder extends Seeder
             'id_vendor' => '2',
             'id_pengadaan' => '4',
             'sw_keterangan' => 'bagus',
-            'sw_image' => 'gambar switch',
+            'image' => 'gambar switch',
             'sw_backup' => 'file backup',
             ]);
 
@@ -39,7 +39,7 @@ class SwSeeder extends Seeder
             'id_vendor' => '2',
             'id_pengadaan' => '4',
             'sw_keterangan' => 'bagus',
-            'sw_image' => 'gambar switch',
+            'image' => 'gambar switch',
             'sw_backup' => 'file backup',
         ]);
 
@@ -53,22 +53,7 @@ class SwSeeder extends Seeder
             'id_vendor' => '2',
             'id_pengadaan' => '4',
             'sw_keterangan' => 'bagus',
-            'sw_image' => 'gambar switch',
-            'sw_backup' => 'file backup',
-        ]);
-
-
-        Sw::create([
-            'sw_name' => 'Switch Cisco',
-            'sw_ip' => '10.10.220.31',
-            'sw_auth' => 'root / Password ',
-            'sw_uplink' => 'eth 12',
-            'id_lokasi' => '1',
-            'sw_lokasi' => 'Lantai 4 Ruang Kudang',
-            'id_vendor' => '2',
-            'id_pengadaan' => '4',
-            'sw_keterangan' => 'bagus',
-            'sw_image' => 'gambar switch',
+            'image' => 'gambar switch',
             'sw_backup' => 'file backup',
         ]);
 
@@ -83,7 +68,7 @@ class SwSeeder extends Seeder
             'id_vendor' => '2',
             'id_pengadaan' => '4',
             'sw_keterangan' => 'bagus',
-            'sw_image' => 'gambar switch',
+            'image' => 'gambar switch',
             'sw_backup' => 'file backup',
         ]);
 
@@ -98,7 +83,22 @@ class SwSeeder extends Seeder
             'id_vendor' => '2',
             'id_pengadaan' => '4',
             'sw_keterangan' => 'bagus',
-            'sw_image' => 'gambar switch',
+            'image' => 'gambar switch',
+            'sw_backup' => 'file backup',
+        ]);
+
+
+        Sw::create([
+            'sw_name' => 'Switch Cisco',
+            'sw_ip' => '10.10.220.31',
+            'sw_auth' => 'root / Password ',
+            'sw_uplink' => 'eth 12',
+            'id_lokasi' => '1',
+            'sw_lokasi' => 'Lantai 4 Ruang Kudang',
+            'id_vendor' => '2',
+            'id_pengadaan' => '4',
+            'sw_keterangan' => 'bagus',
+            'image' => 'gambar switch',
             'sw_backup' => 'file backup',
         ]);
 
@@ -112,7 +112,7 @@ class SwSeeder extends Seeder
             'id_vendor' => '2',
             'id_pengadaan' => '4',
             'sw_keterangan' => 'bagus',
-            'sw_image' => 'gambar switch',
+            'image' => 'gambar switch',
             'sw_backup' => 'file backup',
         ]);
 
@@ -126,7 +126,7 @@ class SwSeeder extends Seeder
             'id_vendor' => '2',
             'id_pengadaan' => '4',
             'sw_keterangan' => 'bagus',
-            'sw_image' => 'gambar switch',
+            'image' => 'gambar switch',
             'sw_backup' => 'file backup',
         ]);
 
@@ -140,7 +140,7 @@ class SwSeeder extends Seeder
             'id_vendor' => '2',
             'id_pengadaan' => '4',
             'sw_keterangan' => 'bagus',
-            'sw_image' => 'gambar switch',
+            'image' => 'gambar switch',
             'sw_backup' => 'file backup',
         ]);
 
@@ -154,7 +154,7 @@ class SwSeeder extends Seeder
             'id_vendor' => '2',
             'id_pengadaan' => '4',
             'sw_keterangan' => 'bagus',
-            'sw_image' => 'gambar switch',
+            'image' => 'gambar switch',
             'sw_backup' => 'file backup',
         ]);
 

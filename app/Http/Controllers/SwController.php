@@ -6,11 +6,14 @@ use App\Models\Lokasi;
 use App\Models\Pengadaan;
 use App\Models\Server;
 use App\Models\Sw;
+use App\Models\Temporaryfiles;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SwitchStoreRequest;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 class SwController extends Controller
 {
     /**
@@ -49,10 +52,36 @@ class SwController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SwitchStoreRequest $request)
+    public function store(Request $request)
     {
-            $request->validated();
+            $validator = Validator::make($request->all(), [
+                'sw_name' => 'required',
+                'sw_ip' => 'ipv4',
+                'sw_uplink' => 'required',
+                'id_lokasi' => 'required',
+                'sw_lokasi' => 'required',
+                'id_vendor' => 'required',
+                'id_pengadaan' => 'required',
+                'sw_keterangan' => 'required',
+                'sw_status' => 'required',
+                'image' => 'required|string',
+            ]);
 
+        $tmp= Temporaryfiles::where('foldername', $request->image)->first();
+
+        if ($validator->fails() && $tmp)
+        {
+            Storage::deleteDirectory('tmp/' . $tmp->foldername);
+            $tmp->delete();
+            return redirect()->back()->withErrors($validator)->withInput();
+        }elseif ($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $img = Image::make(storage_path('app/tmp/' . $tmp->foldername . '/' . $tmp->filename))
+            ->fit(671, 485);
+        Storage::disk('public')->put('/switch/thumbnails/' . $tmp->filename, $img->encode());
+        Storage::copy('tmp/' . $tmp->foldername . '/' . $tmp->filename, 'public/switch/' . $tmp->filename);
         Sw::create([
             'sw_name' => $request->sw_name,
             'sw_ip' => $request->sw_ip,
@@ -64,7 +93,7 @@ class SwController extends Controller
             'id_pengadaan' => $request->id_pengadaan,
             'sw_keterangan' => $request->sw_keterangan,
             'sw_status' => $request->sw_status,
-            'sw_image' => $request->sw_image,
+            'image' => $request->$tmp->filename,
             'sw_backup' => $request->sw_backup,
             'sw_author' => Auth::user()->name,
         ]);
@@ -151,6 +180,7 @@ class SwController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Sw::find($id)->delete();
+        return redirect()->back()->with('status','Data Switch berhasil dihapus');
     }
 }

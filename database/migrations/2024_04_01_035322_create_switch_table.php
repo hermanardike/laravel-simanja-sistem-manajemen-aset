@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('id_vendor');
             $table->integer('id_pengadaan');
             $table->text('sw_keterangan')->nullable();
-            $table->string('sw_image')->nullable();
+            $table->string('image')->nullable();
             $table->string('sw_backup')->nullable();
             $table->timestamps();
         });

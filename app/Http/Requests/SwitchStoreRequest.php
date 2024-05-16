@@ -33,6 +33,7 @@ class SwitchStoreRequest extends FormRequest
             'id_pengadaan' => 'required',
             'sw_keterangan' => 'required',
             'sw_status' => 'required',
+            'image' =>'required|string',
         ];
     }
 

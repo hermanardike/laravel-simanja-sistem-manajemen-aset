@@ -72,6 +72,17 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Port Link</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="text" class="form-control @error('sw_uplink') is-invalid @enderror" name="sw_uplink" value="{{old('sw_lokasi')}}" placeholder="Lokasi Lengkap Device">
+                                        @error('sw_lokasi')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
 
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Port Link</label>
@@ -174,23 +185,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Upload Backup Switch</label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <input type="file" name="sw_backup">
-                                    </div>
-                                    @error('sw_backup')
-                                    <div class="invalid-feedback">
-                                        {{$message}}
-                                    </div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Upload Image</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="file" name="sw_image">
+                                        <input type="file" name="image">
                                     </div>
-                                    @error('sw_image')
+                                    @error('image')
                                     <div class="invalid-feedback">
                                         {{$message}}
                                     </div>
@@ -219,17 +218,18 @@
 @endpush
 
 @push('customJS')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.js"></script>
     <script src="https://unpkg.com/filepond-plugin-sw_backup-preview/dist/filepond-plugin-sw_backup-preview.js"></script>
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script>
-        FilePond.registerPlugin(FilePondPluginsw_backupPreview);
         const inputElement = document.querySelector('input[type="file"]');
         const pond = FilePond.create( inputElement );
         FilePond.setOptions({
             credits: false,
             required: true,
-            acceptedFileTypes: ['sw_backup/jpg', 'sw_backup/jpeg', 'sw_backup/png', 'sw_backup/gif'],
+            acceptedFileTypes: ['image/jpg', 'image/jpeg', 'image/png', 'image/gif'],
             server: {
                 process: '/file-pond',
                 revert: '/file-pond',
@@ -239,7 +239,7 @@
                 }
             },
         });
+
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.js"></script>
 @endpush

@@ -71,7 +71,7 @@
                                                 <input type="checkbox" onclick="myFunction()"> &nbsp;Show Password</span>
                                         </li>
                                     @endcan
-                                    <li class="list-group-item">Port Uplink<span class="tabsw4"> : &nbsp;{{$sw->sw_uplink}}</span></li>
+                                    <li class="list-group-item">Port Uplink<span class="tabsw4"> : &nbsp {{ $sw->sw_uplink }}</span></li>
                                     <li class="list-group-item">Lokasi<span class="tabsw5"> : &nbsp;{{$sw->location->nama_lokasi}}</span></li>
                                     <li class="list-group-item">Detail Lokasi<span class="tabsw6"> : &nbsp;{{$sw->sw_lokasi}}</span></li>
 

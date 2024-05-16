@@ -121,7 +121,16 @@
                             <td>{{$switch->sw_lokasi}}</td>
                             <td>{{$switch->sw_status}}</td>
                             <td>
-                                <a href="switch/{{$switch->id_switch}}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> Detail</a>
+                                <a href="switch/{{$switch->id_switch}}" class="btn btn-primary btn-sm"><i class="fa fa-eye"></i> </a>
+                                <a href="switch/{{$switch->id_switch}}"  class="btn btn-danger btn-sm"
+                                   onclick="event.preventDefault(); document.getElementById('del-{{$switch->id_switch}}')"
+
+                                   data-confirm="Hapus Data Server ? | Apakah Anda Yakin ingin Mengapus Switch : {{$switch->sw_name}} "  data-confirm-yes="submit({{$switch->id_switch}})">
+                                    <i class="fa fa-trash"></i> </a>
+                                <form id="del-{{$switch->id_switch}}" action="/switch/{{$switch->id_switch}}" method="POST" style="display: none;">
+                                    @method('DELETE')
+                                    @csrf
+                                </form>
                             </td>
                         </tr>
                         @empty
