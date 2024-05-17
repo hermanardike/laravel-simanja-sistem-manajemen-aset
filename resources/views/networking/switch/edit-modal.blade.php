@@ -144,21 +144,34 @@
                         </div>
                     </div>
                     <div class="form-group row mb-4">
-                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Upload Backup Switch</label>
-                        <div class="col-sm-12 col-md-7">
-                            <input type="file" name="sw_backup">
+                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Server Image</label>
+                        <div class="col-sm-20 col-md-7 border-0">
+                            <div class="editimagebox container">
+                                <a class="example-image-link" href="{{asset('storage/switch/' . $sw->sw_image)}}" data-lightbox="example-1">
+                                    <img class="editserver" src="{{asset('storage/switch/thumbnails/' . $sw->sw_image)}} " alt="image-1" />
+                                    <div class="middleedit">
+                                        <div class="text">Tampilkan Gambar</div>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                        @error('sw_backup')
-                        <div class="invalid-feedback">
-                            {{$message}}
-                        </div>
-                        @enderror
                     </div>
+{{--                    <div class="form-group row mb-4">--}}
+{{--                        <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Upload Backup Switch</label>--}}
+{{--                        <div class="col-sm-12 col-md-7">--}}
+{{--                            <input type="file" name="sw_backup">--}}
+{{--                        </div>--}}
+{{--                        @error('sw_backup')--}}
+{{--                        <div class="invalid-feedback">--}}
+{{--                            {{$message}}--}}
+{{--                        </div>--}}
+{{--                        @enderror--}}
+{{--                    </div>--}}
 
                     <div class="form-group row mb-4">
                         <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Upload Image</label>
                         <div class="col-sm-12 col-md-7">
-                            <input type="file" name="sw_image">
+                            <input type="file" name="image">
                         </div>
                         @error('sw_image')
                         <div class="invalid-feedback">

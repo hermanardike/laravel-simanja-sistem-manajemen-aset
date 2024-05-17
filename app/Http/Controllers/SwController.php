@@ -10,8 +10,10 @@ use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\SwitchStoreRequest;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Intervention\Image\Facades\Image;
 class SwController extends Controller
 {
@@ -63,10 +65,11 @@ class SwController extends Controller
                 'id_pengadaan' => 'required',
                 'sw_keterangan' => 'required',
                 'sw_status' => 'required',
-                'sw_image' => 'required|string',
+//                'sw_image' => 'required|string',
             ]);
 
         $tmp= Temporaryfiles::where('foldername', $request->image)->first();
+
 
         if ($validator->fails() && $tmp)
         {
@@ -77,6 +80,7 @@ class SwController extends Controller
         {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
         $img = Image::make(storage_path('app/tmp/' . $tmp->foldername . '/' . $tmp->filename))
             ->fit(671, 485);
         Storage::disk('public')->put('/switch/thumbnails/' . $tmp->filename, $img->encode());
@@ -140,36 +144,77 @@ class SwController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sw $switch)
     {
-        $request->validate([
-            'sw_name' => 'required',
-            'sw_ip' => 'ipv4',
-            'sw_uplink' => 'required',
-            'id_lokasi' => 'required',
+
+        $validator = Validator::make($request->all(),[
+            'sw_name' => ['required','string',],
+            'sw_ip' => Rule::unique('switch','sw_ip')->ignore($switch),
+            'sw_auth' => ['required','string','max:255'],
+            'sw_uplink' => 'required|max:1000',
+            'id_lokasi' => ['required','string','max:255'],
             'sw_lokasi' => 'required',
-            'id_vendor' => 'required',
-            'id_pengadaan' => 'required',
-            'sw_keterangan' => 'required',
-            'sw_status' => 'required',
+            'id_vendor' => 'required|max:1000',
+            'id_pengadaan' =>'required',
+            'sw_keterangan' =>'required',
+            'sw_status' =>'required',
         ]);
-        $sw = Sw::find($id);
-        $sw->update([
-            'sw_name' => $request->sw_name,
-            'sw_ip' => $request->sw_ip,
-            'sw_auth' => $request->sw_auth,
-            'sw_uplink' => $request->sw_uplink,
-            'id_lokasi' => $request->id_lokasi,
-            'sw_lokasi' => $request->sw_lokasi,
-            'id_vendor' => $request->id_vendor,
-            'id_pengadaan' => $request->id_pengadaan,
-            'sw_keterangan' => $request->sw_keterangan,
-            'sw_status' => $request->sw_status,
-            'sw_image' => $request->sw_image,
-            'sw_backup' => $request->sw_backup,
-            'sw_author' => Auth::user()->name,
-        ]);
-        return redirect()->back()->with('success','Data Switch berhasil diubah');
+
+        //mengambil data image lama untuk di hapus
+        $oldImage = $switch->sw_image;
+
+        //mengambil data image baru untuk di upload
+        $tmp= Temporaryfiles::where('foldername', $request->image)->first();
+
+        if ($validator->fails() && $tmp)
+        {
+            Storage::deleteDirectory('tmp/' . $tmp->foldername);
+            $tmp->delete();
+            return redirect()->back()->withErrors($validator)->withInput();
+        }elseif ($validator->fails())
+        {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        if(empty($tmp->foldername))
+        {
+            $switch->sw_name = $request->sw_name;
+            $switch->sw_ip = $request->sw_ip;
+            $switch->sw_auth = $request->sw_auth;
+            $switch->sw_uplink = $request->sw_uplink;
+            $switch->id_lokasi = $request->id_lokasi;
+            $switch->sw_lokasi = $request->sw_lokasi;
+            $switch->id_vendor = $request->id_vendor;
+            $switch->id_pengadaan = $request->id_pengadaan;
+            $switch->sw_keterangan = $request->sw_keterangan;
+            $switch->sw_status = $request->sw_status;
+            $switch->save();
+
+        } else{
+            //Mengambil data dari request image
+            $img = Image::make(storage_path('app/tmp/' . $tmp->foldername . '/' . $tmp->filename))
+                ->fit(671, 485);
+            Storage::disk('public')->put('/switch/thumbnails/' . $tmp->filename, $img->encode());
+            Storage::copy('tmp/' . $tmp->foldername . '/' . $tmp->filename, 'public/switch/' . $tmp->filename);
+            //update Data Server
+            $switch->sw_name = $request->sw_name;
+            $switch->sw_ip = $request->sw_ip;
+            $switch->sw_auth = $request->sw_auth;
+            $switch->id_lokasi = $request->id_lokasi;
+            $switch->sw_lokasi = $request->sw_lokasi;
+            $switch->id_vendor = $request->id_vendor;
+            $switch->id_pengadaan = $request->id_pengadaan;
+            $switch->sw_keterangan = $request->sw_keterangan;
+            $switch->sw_status = $request->sw_status;
+            $switch->sw_image = $tmp->filename;
+            $switch->sw_author = Auth::user()->name;
+            $switch->save();
+            Storage::deleteDirectory('tmp/' . $tmp->foldername);
+            $tmp->delete();
+            Storage::disk('public')->delete('switch/' . $oldImage);
+            Storage::disk('public')->delete('switch/thumbnails/' . $oldImage);
+        }
+        return redirect()->back()->with('status','Data Switch berhasil diubah');
     }
 
     /**
@@ -180,7 +225,10 @@ class SwController extends Controller
      */
     public function destroy($id)
     {
-        Sw::find($id)->delete();
-        return redirect()->back()->with('status','Data Switch berhasil dihapus');
+        $switch = Sw::find($id);
+        Storage::disk('public')->delete('switch/' . $switch->sw_image);
+        Storage::disk('public')->delete('switch/thumbnails/' . $switch->sw_image);
+        $switch->delete();
+        return redirect()->route('switch.index')->with('status','Berhasil Menghapus Data');
     }
 }
