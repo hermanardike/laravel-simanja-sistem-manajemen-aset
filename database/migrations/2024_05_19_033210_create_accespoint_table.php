@@ -15,12 +15,17 @@ return new class extends Migration
     {
         Schema::create('accespoint', function (Blueprint $table) {
             $table->id('id_ap');
-            $table->string('id_kode')->nullable()->default('1');
-            $table->string('ap_number')->nullable()->default('0');
-            $table->string('mac_address')->nullable()->unique();
-            $table->string('id_lokasi')->nullable()->default('0');
-            $table->string('ap_lokasi')->nullable()->default('UnDeployed  4');
-
+            $table->integer('id_kode')->nullable()->default('24PGN');
+            $table->string('ap_number')->nullable()->default('30');
+            $table->string('ap_mac')->nullable()->unique();
+            $table->integer('id_lokasi')->nullable()->default('1');
+            $table->string('ap_lokasi')->nullable()->default('UnDeployed');
+            $table->integer('id_vendor')->nullable()->default('1');
+            $table->integer('id_pengadaan')->nullable()->default('1');
+            $table->string('ap_image')->nullable();
+            $table->enum('ap_status',['Aktif','Rusak','Mati'])->nullable()->default('Aktif');
+            $table->text('ap_keterangan')->nullable()->default('Tidak Ada Keterangan');
+            $table->string('ap_author')->nullable()->default('Admin');
             $table->timestamps();
         });
     }
