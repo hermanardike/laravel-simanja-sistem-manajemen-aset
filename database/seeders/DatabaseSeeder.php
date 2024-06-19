@@ -64,5 +64,9 @@ class DatabaseSeeder extends Seeder
             VendorSeeder::class,
         ]);
 
+        $this->call([
+            AccespointSeeder::class,
+        ]);
+
     }
 }

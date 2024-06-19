@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('accespoint', function (Blueprint $table) {
             $table->id('id_ap');
-            $table->integer('id_kode')->nullable()->default('24PGN');
+            $table->integer('id_kode')->nullable()->default('1');
             $table->string('ap_number')->nullable()->default('30');
             $table->string('ap_mac')->nullable()->unique();
             $table->integer('id_lokasi')->nullable()->default('1');
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->integer('id_pengadaan')->nullable()->default('1');
             $table->string('ap_image')->nullable();
             $table->enum('ap_status',['Aktif','Rusak','Mati'])->nullable()->default('Aktif');
-            $table->text('ap_keterangan')->nullable()->default('Tidak Ada Keterangan');
+            $table->text('ap_keterangan')->nullable();
             $table->string('ap_author')->nullable()->default('Admin');
             $table->timestamps();
         });
