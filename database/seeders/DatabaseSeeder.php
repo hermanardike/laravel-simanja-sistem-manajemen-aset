@@ -68,5 +68,9 @@ class DatabaseSeeder extends Seeder
             AccespointSeeder::class,
         ]);
 
+        $this->call([
+            RouterSeeder::class,
+        ]);
+
     }
 }
