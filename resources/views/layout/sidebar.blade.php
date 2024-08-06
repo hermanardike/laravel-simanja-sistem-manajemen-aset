@@ -24,7 +24,7 @@
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-sitemap"></i> <span>Networking</span></a>
                 <ul class="dropdown-menu">
-                    <li class="active"><a class="nav-link" href="{{route('networking.index')}}">Acces Point</a></li>
+                    <li class="active"><a class="nav-link" href="{{route('accespoint.index')}}">Acces Point</a></li>
                     <li><a class="nav-link" href="{{route('switch.index')}}">Switch</a></li>
                     <li><a class="nav-link" href="{{route('networking.tv')}}">Router</a></li>
                     <li><a class="nav-link" href="{{route('networking.tv')}}">CCTV</a></li>

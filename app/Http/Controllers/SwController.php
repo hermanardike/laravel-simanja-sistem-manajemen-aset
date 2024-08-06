@@ -24,9 +24,17 @@ class SwController extends Controller
      */
     public function index()
     {
+
+        
         $sw = Sw::all();
+        $swActive = Sw::where('sw_status', 'Aktif')->count();
+        $swRusak = Sw::where('sw_status', 'Rusak')->count();
+        $swtMati = Sw::where('sw_status', 'Mati')->count();
         return view('networking.switch.index',[
-            'sw' => $sw
+            'sw' => $sw,
+            'swAktif' => $swActive,
+            'swRusak' => $swRusak,
+            'swMati' => $swtMati,
         ]);
     }
 
@@ -69,6 +77,8 @@ class SwController extends Controller
             ]);
 
         $tmp= Temporaryfiles::where('foldername', $request->image)->first();
+        // dd($tmp);
+
 
 
         if ($validator->fails() && $tmp)
@@ -114,6 +124,7 @@ class SwController extends Controller
     public function show($id)
     {
         $sw = Sw::find($id);
+        // dd($sw);
         $lokasi = Lokasi::all();
         $vendor =  Vendor::all();
         $pengadaan =  Pengadaan::all();

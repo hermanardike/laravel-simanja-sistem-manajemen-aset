@@ -25,4 +25,19 @@ class Accespoint extends Model
         'ap_author'
     ];
 
+    public function location()
+    {
+        return $this->belongsTo(Lokasi::class, 'id_lokasi', 'id_lokasi');
+    }
+
+    public function pengadaan()
+    {
+        return $this->belongsTo(Pengadaan::class, 'id_pengadaan', 'id_pengadaan');
+    }
+
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class, 'id_vendor', 'id_vendor');
+    }
+
 }

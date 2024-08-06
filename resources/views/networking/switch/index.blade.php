@@ -36,7 +36,7 @@
                                 <h4>TOTAL SWITCH</h4>
                             </div>
                             <div class="card-body">
-                                50
+                                {{$sw->count()}}
                             </div>
                         </div>
                     </div>
@@ -51,7 +51,7 @@
                                 <h4>SWITCH AKTIF</h4>
                             </div>
                             <div class="card-body">
-                                50
+                                {{$swAktif}}
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                                 <h4>SWITCH ERROR</h4>
                             </div>
                             <div class="card-body">
-                                50
+                                {{$swRusak}}
                             </div>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                                 <h4>SWITCH DEACTIVATE </h4>
                             </div>
                             <div class="card-body">
-                                50
+                                {{$swMati}}
                             </div>
                         </div>
                     </div>
