@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PasswordController;
@@ -60,6 +61,7 @@ Route::middleware(['auth','verified'])->group(function () {
 
     // Switch Controller
     Route::resource('switch', SwController::class);
+    Route::resource('accespoint', ApController::class);
 
     Route::resource('networking', NetworkingController::class);
     Route::get('networking-sw', [NetworkingController::class, 'sw'])->name('networking.sw');
