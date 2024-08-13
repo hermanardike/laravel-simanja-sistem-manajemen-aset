@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Kodecctv;
 use App\Models\Rack;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -70,6 +71,15 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             RouterSeeder::class,
+        ]);
+
+
+        $this->call([
+            CctvSeeder::class,
+        ]);
+
+        $this->call([
+           KodecctvSeeder::class,
         ]);
 
     }
