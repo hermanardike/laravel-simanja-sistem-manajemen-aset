@@ -6,10 +6,11 @@
             <div class="section-header-back">
                 <a href="{{ route('router.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
+            
             <h1>Details Router </h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('home') }}">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="{{ route('router.index') }}">Router   Management</a></div>
+                <div class="breadcrumb-item"><a href="{{ route('router.index') }}">Router Management</a></div>
                 <div class="breadcrumb-item">Details Router</div>
             </div>
         </div>
@@ -40,7 +41,8 @@
                                     <a class="example-image-link" href="{{ asset('storage/router/' . $router->r_image) }}"
                                         data-lightbox="example-1">
 
-                                        <img class="image" src="{{ asset('storage/router/thumbnails/' . $router->r_image) }} "
+                                        <img class="image"
+                                            src="{{ asset('storage/router/thumbnails/' . $router->r_image) }} "
                                             alt="image-1" />
                                         <div class="middle">
                                             <div class="text">Tampilkan Gambar</div>
@@ -75,7 +77,8 @@
                                         <li class="list-group-item grid grid-cols-2 gap-4">
                                             <span class="font-medium col-span-1">Router Auth :</span>
                                             <span class="text-gray-700 col-span-1 flex items-center">
-                                                <input class="border border-gray-300 rounded px-2 py-1" type="password" value="{{ $router->r_auth }}" id="myInput" disabled>
+                                                <input class="border border-gray-300 rounded px-2 py-1" type="password"
+                                                    value="{{ $router->r_auth }}" id="myInput" disabled>
                                                 <input type="checkbox" id="showPasswordCheckbox" class="ml-2">
                                                 <label for="showPasswordCheckbox" class="ml-1"></label>
                                             </span>
@@ -95,15 +98,18 @@
                                     </li>
                                     <li class="list-group-item grid grid-cols-2 gap-4">
                                         <span class="font-medium col-span-1">Pengadaan :</span>
-                                        <span class="text-gray-700 col-span-1">{{ $router->pengadaan->thn_pengadaan }}</span>
+                                        <span
+                                            class="text-gray-700 col-span-1">{{ $router->pengadaan->thn_pengadaan }}</span>
                                     </li>
                                     <li class="list-group-item grid grid-cols-2 gap-4">
                                         <span class="font-medium col-span-1">Status :</span>
                                         <span class="text-gray-700 col-span-1">
                                             @if ($router->r_status == 'Aktif')
-                                                <span class="bg-green-500 text-white px-2 py-1 rounded">{{ $router->r_status }}</span>
+                                                <span
+                                                    class="bg-green-500 text-white px-2 py-1 rounded">{{ $router->r_status }}</span>
                                             @else
-                                                <span class="bg-gray-500 text-white px-2 py-1 rounded">{{ $router->r_status }}</span>
+                                                <span
+                                                    class="bg-gray-500 text-white px-2 py-1 rounded">{{ $router->r_status }}</span>
                                             @endif
                                         </span>
                                     </li>
@@ -117,19 +123,21 @@
                                     </li>
                                     <li class="list-group-item grid grid-cols-2 gap-4">
                                         <span class="font-medium col-span-1">Tanggal Input :</span>
-                                        <span class="text-gray-700 col-span-1">{{ \Carbon\Carbon::parse($router->created_at)->format('d F, Y') }}</span>
+                                        <span
+                                            class="text-gray-700 col-span-1">{{ \Carbon\Carbon::parse($router->created_at)->format('d F, Y') }}</span>
                                     </li>
                                     <li class="list-group-item grid grid-cols-2 gap-4">
                                         <span class="font-medium col-span-1">Tanggal Update :</span>
-                                        <span class="text-gray-700 col-span-1">{{ \Carbon\Carbon::parse($router->updated_at)->format('d F, Y') }}</span>
+                                        <span
+                                            class="text-gray-700 col-span-1">{{ \Carbon\Carbon::parse($router->updated_at)->format('d F, Y') }}</span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
-                
+
                 <div class="col-12 col-sm-6 col-lg-6">
                     <div class="card card-primary">
                         <div class="card-header bg-whitesmoke">
@@ -140,7 +148,8 @@
                                 <div class="col-4">
                                     <div class="list-group" id="list-tab" role="tablist">
                                         <a class="list-group-item list-group-item-action active" id="list-home-list"
-                                            data-toggle="list" href="#list-spesifikasi" role="tab">Keterangan Router</a>
+                                            data-toggle="list" href="#list-spesifikasi" role="tab">Keterangan
+                                            Router</a>
                                     </div>
                                 </div>
                                 <div class="col-8">
@@ -190,7 +199,7 @@
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script>
-         document.addEventListener('DOMContentLoaded', (event) => {
+        document.addEventListener('DOMContentLoaded', (event) => {
             const checkbox = document.getElementById('showPasswordCheckbox');
             const passwordInput = document.getElementById('myInput');
 
@@ -219,8 +228,7 @@
         });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-bs4.min.js"></script>
-
 @endpush
-    <!-- Modal -->
-    {{-- </section> --}}
-    {{-- @endsection --}}
+<!-- Modal -->
+{{-- </section> --}}
+{{-- @endsection --}}
