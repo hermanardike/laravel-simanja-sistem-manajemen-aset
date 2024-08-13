@@ -124,7 +124,6 @@ class SwController extends Controller
     public function show($id)
     {
         $sw = Sw::find($id);
-        // dd($sw);
         $lokasi = Lokasi::all();
         $vendor =  Vendor::all();
         $pengadaan =  Pengadaan::all();

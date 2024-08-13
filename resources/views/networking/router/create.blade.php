@@ -1,23 +1,22 @@
 @extends('layout.app')
-@section('title', 'Simanja : Add New Acces Point')
+@section('title', 'Simanja : Add New Router')
 @section('content')
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ route('accespoint.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('router.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Create New Acces Point </h1>
+            <h1>Create New Router </h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('home') }}">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="{{ route('accespoint.index') }}">Acces Point Server</a></div>
-                <div class="breadcrumb-item">Add New Acces Point</div>
+                <div class="breadcrumb-item"><a href="{{ route('router.index') }}">Router Server</a></div>
+                <div class="breadcrumb-item">Add New Router</div>
             </div>
-            
         </div>
         <div class="section-body">
-            <h2 class="section-title">Add New Acces Point </h2>
+            <h2 class="section-title">Add New Router </h2>
             <p class="section-lead">
-                Halaman menambahkan Acces Point Server Baru
+                Halaman menambahkan Router Server Baru
             </p>
 
             @if (session('status'))
@@ -34,149 +33,136 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4><i class="fa fa-server" aria-hidden="true"></i> Add Acces Point Details</h4>
+                            <h4><i class="fa fa-server" aria-hidden="true"></i> Add Router Details</h4>
                         </div>
                         <div class="card-body" >
-                            <form METHOD="POST"  enctype="multipart/form-data"  action="{{route('accespoint.store')}}">
+                            <form method="POST" enctype="multipart/form-data" action="{{ route('router.store') }}">
                                 @csrf
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kode</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Router Name</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="number" class="form-control @error('id_kode') is-invalid @enderror" name="id_kode" value="{{old('id_kode')}}" placeholder="Masukan Kode ID ">
-                                        @error('id_kode')
+                                        <input type="text" class="form-control @error('r_name') is-invalid @enderror" name="r_name" value="{{ old('r_name') }}" placeholder="Masukkan Nama Router">
+                                        @error('r_name')
                                         <div class="invalid-feedback">
-                                            {{$message}}
+                                            {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
                                 </div>
+                            
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Ap Number</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">IP Router</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('ap_number') is-invalid @enderror" name="ap_number" value="{{old('ap_number')}}" placeholder="Masukan Ap Number">
-                                        @error('ap_number')
+                                        <input type="text" class="form-control @error('r_ip') is-invalid @enderror" name="r_ip" value="{{ old('r_ip') }}" placeholder="Masukkan IP Router">
+                                        @error('r_ip')
                                         <div class="invalid-feedback">
-                                            {{$message}}
+                                            {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
                                 </div>
+                            
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Ap Mac</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Auth Router</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('ap_mac') is-invalid @enderror" name="ap_mac" value="{{old('ap_mac')}}" placeholder="Masukan Ap Mac ">
-                                        @error('ap_mac')
+                                        <input type="text" class="form-control @error('r_auth') is-invalid @enderror" name="r_auth" value="{{ old('r_auth') }}" placeholder="User: / Password:">
+                                        @error('r_auth')
                                         <div class="invalid-feedback">
-                                            {{$message}}
+                                            {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
                                 </div>
-        
-
-                                {{-- <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Port Link</label>
-                                    <div class="col-sm-12 col-md-7">
-                                    <textarea class="summernote-simple form-control @error('sw_uplink') is-invalid @enderror" name="sw_uplink">
-                                     {{old('sw_uplink')}}
-                                    </textarea>
-                                        @error('sw_uplink')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div> --}}
-
-
+                            
+                            
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Lokasi</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <select class="form-control selectric @error('id_lokasi')  is-invalid @enderror" name="id_lokasi" id="id_lokasi" >
+                                        <select class="form-control selectric @error('id_lokasi') is-invalid @enderror" name="id_lokasi" id="id_lokasi">
                                             @foreach($lokasi as $data)
-                                                <option value="{{$data->id_lokasi}}" @selected(old('id_lokasi') == $data->id_lokasi)>{{$data->nama_lokasi}}</option>
+                                                <option value="{{ $data->id_lokasi }}" @selected(old('id_lokasi') == $data->id_lokasi)>{{ $data->nama_lokasi }}</option>
                                             @endforeach
                                         </select>
                                         @error('id_lokasi')
                                         <div class="invalid-feedback">
-                                            {{$message}}
+                                            {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
                                 </div>
-
-
+                            
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Details Lokasi</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('ap_lokasi') is-invalid @enderror" name="ap_lokasi" value="{{old('ap_lokasi')}}" placeholder="Lokasi Lengkap Device">
-                                        @error('ap_lokasi')
+                                        <input type="text" class="form-control @error('r_lokasi') is-invalid @enderror" name="r_lokasi" value="{{ old('r_lokasi') }}" placeholder="Lokasi Lengkap Router">
+                                        @error('r_lokasi')
                                         <div class="invalid-feedback">
-                                            {{$message}}
+                                            {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
                                 </div>
+                            
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Vendor</label>
                                     <div class="col-sm-12 col-md-7">
                                         <select class="form-control @error('id_vendor') is-invalid @enderror selectric" name="id_vendor" id="id_vendor">
                                             @foreach($vendor as $vendors)
-                                                <option value="{{$vendors->id_vendor}}" @selected(old('id_vendor') == $vendors->id_vendor)>{{$vendors->nama_vendor}}</option>
+                                                <option value="{{ $vendors->id_vendor }}" @selected(old('id_vendor') == $vendors->id_vendor)>{{ $vendors->nama_vendor }}</option>
                                             @endforeach
                                         </select>
                                         @error('id_vendor')
                                         <div class="invalid-feedback">
-                                            {{$message}}
+                                            {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
                                 </div>
-
-
+                            
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Tahun Pengadaan</label>
                                     <div class="col-sm-12 col-md-7">
                                         <select class="form-control @error('id_pengadaan') is-invalid @enderror selectric" name="id_pengadaan" id="id_pengadaan">
                                             @foreach($pengadaan as $thn)
-                                                <option value="{{$thn->id_pengadaan}}" @selected(old('id_pengadaan') == $thn->id_pengadaan)>{{$thn->thn_pengadaan}}</option>
+                                                <option value="{{ $thn->id_pengadaan }}" @selected(old('id_pengadaan') == $thn->id_pengadaan)>{{ $thn->thn_pengadaan }}</option>
                                             @endforeach
                                         </select>
                                         @error('id_pengadaan')
                                         <div class="invalid-feedback">
-                                            {{$message}}
+                                            {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
                                 </div>
+                            
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <select class="form-control  @error('ap_status') is-invalid @enderror selectric" name="ap_status" id="ap_status">
-                                            <option value="Aktif" @selected(old('ap_status') =='Aktif' )>Aktif</option>
-                                            <option value="Rusak" @selected(old('ap_status') =='Rusak' )>Rusak</option>
-                                            <option value="Mati" @selected(old('ap_status') =='Mati>' )>Mati</option>
+                                        <select class="form-control @error('r_status') is-invalid @enderror selectric" name="r_status" id="r_status">
+                                            <option value="Aktif" @selected(old('r_status') =='Aktif' )>Aktif</option>
+                                            <option value="Rusak" @selected(old('r_status') =='Rusak' )>Rusak</option>
+                                            <option value="Mati" @selected(old('r_status') =='Mati>' )>Mati</option>
                                         </select>
-                                        @error('ap_status')
+                                        @error('r_status')
                                         <div class="invalid-feedback">
-                                            {{$message}}
+                                            {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
                                 </div>
+                            
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Details Switch</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Details Router</label>
                                     <div class="col-sm-12 col-md-7">
-                                    <textarea class="summernote-simple form-control @error('ap_keterangan') is-invalid @enderror" name="ap_keterangan" >
-                                        {{old('ap_keterangan')}}
-                                    </textarea>
-                                        @error('ap_keterangan')
+                                        <textarea class="summernote-simple form-control @error('r_keterangan') is-invalid @enderror" name="r_keterangan">{{ old('r_keterangan') }}</textarea>
+                                        @error('r_keterangan')
                                         <div class="invalid-feedback">
-                                            {{$message}}
+                                            {{ $message }}
                                         </div>
                                         @enderror
                                     </div>
                                 </div>
+                            
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Upload Image</label>
                                     <div class="col-sm-12 col-md-7">
@@ -184,28 +170,19 @@
                                     </div>
                                     @error('image')
                                     <div class="invalid-feedback">
-                                        {{$message}}
+                                        {{ $message }}
                                     </div>
                                     @enderror
                                 </div>
-                                {{-- <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Ap Author</label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('created_at') is-invalid @enderror" name="created_at" value="{{old('created_at')}}" placeholder="ap auhor">
-                                        @error('created_at')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div> --}}
+                            
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
-                                        <button class="btn btn-primary" type="submit"><i class="fa fa-save" aria-hidden="true"></i> Save Data Server</button>
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-save" aria-hidden="true"></i> Save Data Router</button>
                                     </div>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>

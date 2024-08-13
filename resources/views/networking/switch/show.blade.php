@@ -62,47 +62,47 @@
                         <div class="card card-primary">
                             <div class="card-body">
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item flex justify-between">
-                                        <span class="font-medium">Nama Switch</span>
-                                        <span class="text-gray-700">{{ $sw->sw_name }}</span>
+                                    <li class="list-group-item grid grid-cols-2 gap-4">
+                                        <span class="font-medium col-span-1">Nama Switch :</span>
+                                        <span class="text-gray-700 col-span-1">{{ $sw->sw_name }}</span>
                                     </li>
-                                    <li class="list-group-item flex justify-between">
-                                        <span class="font-medium">IP Address</span>
-                                        <span class="text-gray-700">{{ $sw->sw_ip }}</span>
+                                    <li class="list-group-item grid grid-cols-2 gap-4">
+                                        <span class="font-medium col-span-1">IP Address :</span>
+                                        <span class="text-gray-700 col-span-1">{{ $sw->sw_ip }}</span>
                                     </li>
                                     @can('edit-server')
-                                        <li class="list-group-item flex items-center justify-between">
-                                            <span class="font-medium">Switch Auth</span>
-                                            <span class="text-gray-700 flex items-center">
+                                        <li class="list-group-item grid grid-cols-2 gap-4">
+                                            <span class="font-medium col-span-1">Switch Auth :</span>
+                                            <span class="text-gray-700 col-span-1 flex items-center">
                                                 <input class="border border-gray-300 rounded px-2 py-1" type="password" value="{{ $sw->sw_auth }}" id="myInput" disabled>
                                                 <input type="checkbox" id="showPasswordCheckbox" class="ml-2">
                                                 <label for="showPasswordCheckbox" class="ml-1"></label>
                                             </span>
                                         </li>
                                     @endcan
-                                    <li class="list-group-item flex justify-between">
-                                        <span class="font-medium">Port Uplink</span>
-                                        <span class="text-gray-700">{{ $sw->sw_uplink }}</span>
+                                    <li class="list-group-item grid grid-cols-2 gap-4">
+                                        <span class="font-medium col-span-1">Port Uplink :</span>
+                                        <span class="text-gray-700 col-span-1">{{ $sw->sw_uplink }}</span>
                                     </li>
-                                    <li class="list-group-item flex justify-between">
-                                        <span class="font-medium">Lokasi</span>
-                                        <span class="text-gray-700">{{ $sw->location->nama_lokasi }}</span>
+                                    <li class="list-group-item grid grid-cols-2 gap-4">
+                                        <span class="font-medium col-span-1">Lokasi :</span>
+                                        <span class="text-gray-700 col-span-1">{{ $sw->location->nama_lokasi }}</span>
                                     </li>
-                                    <li class="list-group-item flex justify-between">
-                                        <span class="font-medium">Detail Lokasi</span>
-                                        <span class="text-gray-700">{{ $sw->sw_lokasi }}</span>
+                                    <li class="list-group-item grid grid-cols-2 gap-4">
+                                        <span class="font-medium col-span-1">Detail Lokasi :</span>
+                                        <span class="text-gray-700 col-span-1">{{ $sw->sw_lokasi }}</span>
                                     </li>
-                                    <li class="list-group-item flex justify-between">
-                                        <span class="font-medium">Vendor</span>
-                                        <span class="text-gray-700">{{ $sw->vendor->nama_vendor }}</span>
+                                    <li class="list-group-item grid grid-cols-2 gap-4">
+                                        <span class="font-medium col-span-1">Vendor :</span>
+                                        <span class="text-gray-700 col-span-1">{{ $sw->vendor->nama_vendor }}</span>
                                     </li>
-                                    <li class="list-group-item flex justify-between">
-                                        <span class="font-medium">Pengadaan</span>
-                                        <span class="text-gray-700">{{ $sw->pengadaan->thn_pengadaan }}</span>
+                                    <li class="list-group-item grid grid-cols-2 gap-4">
+                                        <span class="font-medium col-span-1">Pengadaan :</span>
+                                        <span class="text-gray-700 col-span-1">{{ $sw->pengadaan->thn_pengadaan }}</span>
                                     </li>
-                                    <li class="list-group-item flex justify-between">
-                                        <span class="font-medium">Status</span>
-                                        <span class="text-gray-700">
+                                    <li class="list-group-item grid grid-cols-2 gap-4">
+                                        <span class="font-medium col-span-1">Status :</span>
+                                        <span class="text-gray-700 col-span-1">
                                             @if ($sw->sw_status == 'Aktif')
                                                 <span class="bg-green-500 text-white px-2 py-1 rounded">{{ $sw->sw_status }}</span>
                                             @else
@@ -110,21 +110,22 @@
                                             @endif
                                         </span>
                                     </li>
-                                    <li class="list-group-item flex justify-between">
-                                        <span class="font-medium">Author</span>
-                                        <span class="text-gray-700">{{ $sw->sw_author }}</span>
+                                    <li class="list-group-item grid grid-cols-2 gap-4">
+                                        <span class="font-medium col-span-1">Author :</span>
+                                        <span class="text-gray-700 col-span-1">{{ $sw->sw_author }}</span>
                                     </li>
-                                    <li class="list-group-item flex justify-between">
-                                        <span class="font-medium">Tanggal Input</span>
-                                        <span class="text-gray-700">{{ \Carbon\Carbon::parse($sw->created_at)->format('d F, Y') }}</span>
+                                    <li class="list-group-item grid grid-cols-2 gap-4">
+                                        <span class="font-medium col-span-1">Tanggal Input :</span>
+                                        <span class="text-gray-700 col-span-1">{{ \Carbon\Carbon::parse($sw->created_at)->format('d F, Y') }}</span>
                                     </li>
-                                    <li class="list-group-item flex justify-between">
-                                        <span class="font-medium">Tanggal Update</span>
-                                        <span class="text-gray-700">{{ \Carbon\Carbon::parse($sw->updated_at)->format('d F, Y') }}</span>
+                                    <li class="list-group-item grid grid-cols-2 gap-4">
+                                        <span class="font-medium col-span-1">Tanggal Update :</span>
+                                        <span class="text-gray-700 col-span-1">{{ \Carbon\Carbon::parse($sw->updated_at)->format('d F, Y') }}</span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
+                        
                     </div>
                 </div>
                 

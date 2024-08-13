@@ -43,9 +43,6 @@ class ApController extends Controller
             'pengadaan' => $pengadaan,
         ]);
     }
-
-
-
     public function show($id)
     {
         $accespoint = Accespoint::find($id);
@@ -118,7 +115,9 @@ class ApController extends Controller
         Storage::deleteDirectory('tmp/' . $tmp->foldername);
 
         // Redirect kembali ke halaman index dengan pesan sukses
-        return redirect()->route('accespoint.index')->with('success', 'Data Accespoint berhasil ditambahkan');
+        // return redirect()->route('accespoint.index')->with('success', 'Data Accespoint berhasil ditambahkan');
+
+        return redirect()->back()->with('status', 'Data Acces Point berhasil ditambah');
     }
 
 
@@ -185,19 +184,6 @@ class ApController extends Controller
         // Redirect kembali ke halaman index dengan pesan sukses
         return redirect()->back()->with('status', 'Data Acces Point berhasil diubah');
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public function destroy($id)
     {

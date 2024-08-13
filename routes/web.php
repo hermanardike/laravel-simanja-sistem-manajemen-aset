@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApController;
+use App\Http\Controllers\CCTVController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PasswordController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\RackController;
 use App\Http\Controllers\FilepondController;
 use App\Http\Controllers\NetworkingController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RouterController;
 use App\Http\Controllers\SwController;
 
 
@@ -61,7 +63,13 @@ Route::middleware(['auth','verified'])->group(function () {
 
     // Switch Controller
     Route::resource('switch', SwController::class);
+    
+    // Acesspoint Controller
     Route::resource('accespoint', ApController::class);
+    
+    // Router Controller
+    Route::resource('router', RouterController::class);
+
 
     Route::resource('networking', NetworkingController::class);
     Route::get('networking-sw', [NetworkingController::class, 'sw'])->name('networking.sw');

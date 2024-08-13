@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'networking')
+@section('title', 'Accespoint')
 @section('content')
     <section class="section">
         <div class="section-header">
@@ -101,7 +101,7 @@
                         <table id="myTable" class="table table-striped table-bordered" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th style="text-align: center">Number</th>
+                                    <th>Number</th>
                                     <th>Ap Number</th>
                                     <th>Mac</th>
                                     <th>Lokasi</th>
@@ -113,12 +113,12 @@
                             <tbody>
                                 @forelse($accespoint as $index => $ap)
                                     <tr>
-                                        <td style="text-align: center">
+                                        <td class="text-center">
                                             {{ $index + 1 }}
                                         </td>
-                                        <td>{{ $ap->ap_number }}</td>
+                                        <td class="text-center">{{ $ap->ap_number }}</td>
                                         <td>{{ $ap->ap_mac }}</td>
-                                        <td>{{ $ap->ap_lokasi }}</td>
+                                        <td>{{ $ap->location->nama_lokasi }}</td>
                                         <td>{{ $ap->ap_status }}</td>
                                         <td>{{ $ap->ap_keterangan }}</td>
                                         <td>
@@ -192,7 +192,7 @@
                 language: {
                     lengthMenu: 'Display _MENU_ _ENTRIES_',
                     entries: {
-                        _: 'switch',
+                        _: 'accespoint',
                     },
 
                 }

@@ -12,7 +12,6 @@
                 <div class="breadcrumb-item"><a href="{{ route('accespoint.index') }}">Acces Point Server</a></div>
                 <div class="breadcrumb-item">Add New Acces Point</div>
             </div>
-            
         </div>
         <div class="section-body">
             <h2 class="section-title">Add New Acces Point </h2>
