@@ -39,5 +39,9 @@ class Accespoint extends Model
     {
         return $this->belongsTo(Vendor::class, 'id_vendor', 'id_vendor');
     }
+    public function kodeap()
+    {
+        return $this->belongsTo(Kodeap::class, 'id_kodeap', 'id_kodeap');
+    }
 
 }

@@ -1,22 +1,22 @@
 @extends('layout.app')
-@section('title', 'Simanja : Add New Acces Point')
+@section('title', 'Simanja : Add New CCTV')
 @section('content')
     <section class="section">
         <div class="section-header">
             <div class="section-header-back">
-                <a href="{{ route('accespoint.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
+                <a href="{{ route('cctv.index') }}" class="btn btn-icon"><i class="fas fa-arrow-left"></i></a>
             </div>
-            <h1>Create New Acces Point </h1>
+            <h1>Create New CCTV </h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="{{ route('home') }}">Dashboard</a></div>
-                <div class="breadcrumb-item"><a href="{{ route('accespoint.index') }}">Acces Point Server</a></div>
-                <div class="breadcrumb-item">Add New Acces Point</div>
+                <div class="breadcrumb-item"><a href="{{ route('cctv.index') }}">CCTV Server</a></div>
+                <div class="breadcrumb-item">Add New CCTV</div>
             </div>
         </div>
         <div class="section-body">
-            <h2 class="section-title">Add New Acces Point </h2>
+            <h2 class="section-title">Add New CCTV </h2>
             <p class="section-lead">
-                Halaman menambahkan Acces Point Server Baru
+                Halaman menambahkan CCTV Server Baru
             </p>
 
             @if (session('status'))
@@ -33,16 +33,32 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4><i class="fa fa-server" aria-hidden="true"></i> Add Acces Point Details</h4>
+                            <h4><i class="fa fa-server" aria-hidden="true"></i> Add CCTV Details</h4>
                         </div>
                         <div class="card-body" >
-                            <form METHOD="POST"  enctype="multipart/form-data"  action="{{route('accespoint.store')}}">
+                            <form METHOD="POST"  enctype="multipart/form-data"  action="{{route('cctv.store')}}">
                                 @csrf
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kode</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Kode CCTV</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="number" class="form-control @error('id_kode') is-invalid @enderror" name="id_kode" value="{{old('id_kode')}}" placeholder="Masukan Kode ID ">
-                                        @error('id_kode')
+                                        <select class="form-control selectric @error('id_kodecctv')  is-invalid @enderror" name="id_kodecctv" id="id_kodecctv" >
+                                            @foreach($kodecctv as $data)
+                                                <option value="{{$data->id_kodecctv}}" @selected(old('id_kodecctv') == $data->id_kodecctv)>{{$data->cctv_code}}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('id_kodecctv')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">CCTV Number</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="text" class="form-control @error('cctv_number') is-invalid @enderror" name="cctv_number" value="{{old('cctv_number')}}" placeholder="Masukkan CCTV Number">
+                                        @error('cctv_number')
                                         <div class="invalid-feedback">
                                             {{$message}}
                                         </div>
@@ -50,10 +66,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Ap Number</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">CCTV Mac</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('ap_number') is-invalid @enderror" name="ap_number" value="{{old('ap_number')}}" placeholder="Masukan Ap Number">
-                                        @error('ap_number')
+                                        <input type="text" class="form-control @error('cctv_mac') is-invalid @enderror" name="cctv_mac" value="{{old('cctv_mac')}}" placeholder="Masukkan CCTV Mac ">
+                                        @error('cctv_mac')
                                         <div class="invalid-feedback">
                                             {{$message}}
                                         </div>
@@ -61,10 +77,34 @@
                                     </div>
                                 </div>
                                 <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Ap Mac</label>
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"> CCTV Auth</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('ap_mac') is-invalid @enderror" name="ap_mac" value="{{old('ap_mac')}}" placeholder="Masukan Ap Mac ">
-                                        @error('ap_mac')
+                                        <input type="text" class="form-control @error('cctv_auth') is-invalid @enderror" name="cctv_auth" value="{{ old('cctv_auth') }}" placeholder="User: / Password:">
+                                        @error('cctv_auth')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">CCTV iP</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <input type="text" class="form-control @error('cctv_ip') is-invalid @enderror" name="cctv_ip" value="{{old('cctv_ip')}}" placeholder="Masukkan CCTV Mac ">
+                                        @error('cctv_ip')
+                                        <div class="invalid-feedback">
+                                            {{$message}}
+                                        </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-4">
+                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">CCTV Type</label>
+                                    <div class="col-sm-12 col-md-7">
+                                        <select class="form-control  @error('cctv_type') is-invalid @enderror selectric" name="cctv_type" id="cctv_type">
+                                            <option value="Indoor" @selected(old('cctv_type') =='Indoor' )>Indoor</option>
+                                            <option value="Outdoor" @selected(old('cctv_type') =='Outdoor' )>Outdoor</option>                                        </select>
+                                        @error('cctv_type')
                                         <div class="invalid-feedback">
                                             {{$message}}
                                         </div>
@@ -72,22 +112,6 @@
                                     </div>
                                 </div>
         
-
-                                {{-- <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Port Link</label>
-                                    <div class="col-sm-12 col-md-7">
-                                    <textarea class="summernote-simple form-control @error('sw_uplink') is-invalid @enderror" name="sw_uplink">
-                                     {{old('sw_uplink')}}
-                                    </textarea>
-                                        @error('sw_uplink')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div> --}}
-
-
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Lokasi</label>
                                     <div class="col-sm-12 col-md-7">
@@ -108,8 +132,8 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Details Lokasi</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('ap_lokasi') is-invalid @enderror" name="ap_lokasi" value="{{old('ap_lokasi')}}" placeholder="Lokasi Lengkap Device">
-                                        @error('ap_lokasi')
+                                        <input type="text" class="form-control @error('cctv_lokasi') is-invalid @enderror" name="cctv_lokasi" value="{{old('cctv_lokasi')}}" placeholder="Lokasi Lengkap Device">
+                                        @error('cctv_lokasi')
                                         <div class="invalid-feedback">
                                             {{$message}}
                                         </div>
@@ -151,12 +175,12 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <select class="form-control  @error('ap_status') is-invalid @enderror selectric" name="ap_status" id="ap_status">
-                                            <option value="Aktif" @selected(old('ap_status') =='Aktif' )>Aktif</option>
-                                            <option value="Rusak" @selected(old('ap_status') =='Rusak' )>Rusak</option>
-                                            <option value="Mati" @selected(old('ap_status') =='Mati>' )>Mati</option>
+                                        <select class="form-control  @error('cctv_status') is-invalid @enderror selectric" name="cctv_status" id="cctv_status">
+                                            <option value="Aktif" @selected(old('cctv_status') =='Aktif' )>Aktif</option>
+                                            <option value="Rusak" @selected(old('cctv_status') =='Rusak' )>Rusak</option>
+                                            <option value="Mati" @selected(old('cctv_status') =='Mati>' )>Mati</option>
                                         </select>
-                                        @error('ap_status')
+                                        @error('cctv_status')
                                         <div class="invalid-feedback">
                                             {{$message}}
                                         </div>
@@ -166,10 +190,10 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Details Switch</label>
                                     <div class="col-sm-12 col-md-7">
-                                    <textarea class="summernote-simple form-control @error('ap_keterangan') is-invalid @enderror" name="ap_keterangan" >
-                                        {{old('ap_keterangan')}}
+                                    <textarea class="summernote-simple form-control @error('cctv_keterangan') is-invalid @enderror" name="cctv_keterangan" >
+                                        {{old('cctv_keterangan')}}
                                     </textarea>
-                                        @error('ap_keterangan')
+                                        @error('cctv_keterangan')
                                         <div class="invalid-feedback">
                                             {{$message}}
                                         </div>
@@ -187,17 +211,7 @@
                                     </div>
                                     @enderror
                                 </div>
-                                {{-- <div class="form-group row mb-4">
-                                    <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Ap Author</label>
-                                    <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control @error('created_at') is-invalid @enderror" name="created_at" value="{{old('created_at')}}" placeholder="ap auhor">
-                                        @error('created_at')
-                                        <div class="invalid-feedback">
-                                            {{$message}}
-                                        </div>
-                                        @enderror
-                                    </div>
-                                </div> --}}
+                            
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">

@@ -27,7 +27,7 @@
                     <li class="active"><a class="nav-link" href="{{route('accespoint.index')}}">Acces Point</a></li>
                     <li><a class="nav-link" href="{{route('switch.index')}}">Switch</a></li>
                     <li><a class="nav-link" href="{{route('router.index')}}">Router</a></li>
-                    <li><a class="nav-link" href="{{route('networking.tv')}}">CCTV</a></li>
+                    <li><a class="nav-link" href="{{route('cctv.index')}}">CCTV</a></li>
                 </ul>
             </li>
 

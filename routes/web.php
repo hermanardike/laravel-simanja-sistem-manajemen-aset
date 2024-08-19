@@ -33,29 +33,29 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::middleware(['auth','verified'])->group(function () {
-//   Route::get('/',function () {
-//       return view('home.index');
-//   })->name('home');
+Route::middleware(['auth', 'verified'])->group(function () {
+    //   Route::get('/',function () {
+    //       return view('home.index');
+    //   })->name('home');
 
-   Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
-   // Menu User
-   Route::resource('user', UserController::class);
-   Route::put('update-password/{id}',[UserController::class,'UpdatePassword']);
+    // Menu User
+    Route::resource('user', UserController::class);
+    Route::put('update-password/{id}', [UserController::class, 'UpdatePassword']);
     Route::get('edit-profile', function () {
         return view('home.profile');
     })->name('profile.edit');
 
     // Menu Server
-   Route::resource('server', ServerController::class);
-   Route::resource('host', HostController::class);
-   Route::resource('instance', InstanceController::class);
+    Route::resource('server', ServerController::class);
+    Route::resource('host', HostController::class);
+    Route::resource('instance', InstanceController::class);
 
     //Menu Settings
-   Route::resource('os', OsController::class);
-   Route::resource('pengadaan', PengadaanController::class);
-   Route::resource('rack', RackController::class);
+    Route::resource('os', OsController::class);
+    Route::resource('pengadaan', PengadaanController::class);
+    Route::resource('rack', RackController::class);
 
     // ImageUPloadConfiguration
     Route::post('file-pond', [FilepondController::class, 'store'])->name('filepond.store');
@@ -63,12 +63,15 @@ Route::middleware(['auth','verified'])->group(function () {
 
     // Switch Controller
     Route::resource('switch', SwController::class);
-    
+
     // Acesspoint Controller
     Route::resource('accespoint', ApController::class);
-    
+
     // Router Controller
     Route::resource('router', RouterController::class);
+
+    // CCTV CONTROLLER
+    Route::resource('cctv', CCTVController::class);
 
 
     Route::resource('networking', NetworkingController::class);
@@ -78,7 +81,4 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('networking-domain', [NetworkingController::class, 'domain'])->name('networking.domain');
     Route::get('networking-ip', [NetworkingController::class, 'ip'])->name('networking.ip ');
     Route::get('networking-ls', [NetworkingController::class, 'ls'])->name('networking.ls');
-
 });
-
-
