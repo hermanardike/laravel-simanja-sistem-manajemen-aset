@@ -82,5 +82,13 @@ class DatabaseSeeder extends Seeder
            KodecctvSeeder::class,
         ]);
 
+        $this->call([
+            DomainSeeder::class,
+        ]);
+        $this->call([
+            SubdomainSeeder::class,
+        ]);
+
+
     }
 }

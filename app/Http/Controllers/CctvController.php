@@ -68,7 +68,7 @@ class CctvController extends Controller
             'cctv_number' => 'required',
             'cctv_mac' => 'required|unique:cctv,cctv_mac',
             'id_lokasi' => 'required',
-            'cctv_ip' => 'required,ipv4',
+            'cctv_ip' => 'required|ipv4',
             'cctv_lokasi' => 'required',
             'cctv_auth' => 'required',
             'cctv_type' => 'required',
