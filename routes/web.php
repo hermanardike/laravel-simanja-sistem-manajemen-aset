@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApController;
 use App\Http\Controllers\CCTVController;
+use App\Http\Controllers\DomainController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PasswordController;
@@ -72,6 +73,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // CCTV CONTROLLER
     Route::resource('cctv', CCTVController::class);
+
+    //Domain Unila
+    Route::resource('domain', DomainController::class);
 
 
     Route::resource('networking', NetworkingController::class);
