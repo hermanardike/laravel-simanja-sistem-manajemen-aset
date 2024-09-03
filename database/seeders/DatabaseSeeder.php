@@ -89,6 +89,12 @@ class DatabaseSeeder extends Seeder
             SubdomainSeeder::class,
         ]);
 
+        $this->call([
+            IpaddressSedeer::class,
+        ]);
 
+        $this->call([
+            IpnetworkSeeder::class,
+        ]);
     }
 }
