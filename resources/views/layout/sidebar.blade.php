@@ -36,7 +36,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th-large"></i> <span>Digital Asset</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="route(" href="{{route('domain.index')}}">Domain Unila</a></li>
-                    <li><a class="nav-link beep beep-sidebar" href="{{route('networking.ip ')}}">IP Address</a></li>
+                    <li><a class="nav-link beep beep-sidebar" href="{{route('ip.index')}}">IP Address</a></li>
                     <li><a class="nav-link" href="{{ route('networking.ls') }}">Lisensi</a></li>
                 </ul>
             </li>

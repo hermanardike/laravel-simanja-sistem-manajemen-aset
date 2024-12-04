@@ -17,6 +17,7 @@ use App\Http\Controllers\NetworkingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RouterController;
 use App\Http\Controllers\SwController;
+use App\Http\Controllers\IpControllelr;
 
 
 /*
@@ -76,6 +77,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //Domain Unila
     Route::resource('domain', DomainController::class);
+
+    //IP Controller
+    Route::resource('ip', IpControllelr::class);
+
+
 
 
     Route::resource('networking', NetworkingController::class);
